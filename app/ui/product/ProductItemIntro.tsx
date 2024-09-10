@@ -16,7 +16,7 @@ export default function ProductItemIntro({ data }: { data: JSONObject }) {
 
 
     return (
-        <div className="flex flex-col justify-between h-full bg-white shadow-lg rounded-lg overflow-hidden">
+        <div className="flex flex-col justify-between h-full bg-white shadow-lg shadow-gray-200 rounded-lg overflow-hidden">
             {/* Image Section */}
             {data.images.length > 0 && (
                 // <div className="w-full h-64 bg-gray-200 flex justify-center items-center">
