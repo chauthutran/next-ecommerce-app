@@ -2,7 +2,7 @@ import { JSONObject } from "@/lib/definations";
 import { useEffect, useState } from "react";
 import * as dbService from "@/lib/dbService";
 import Image from 'next/image';
-import ProductItem from "../product/ProductItem";
+import ProductItemIntro from "../product/ProductItemIntro";
 
 
 export default function TopRatingProducts() {
@@ -33,7 +33,7 @@ export default function TopRatingProducts() {
     return (
         <div className="grid grid-cols-3 gap-4">
             {products.map((product: JSONObject, idx: number) => (
-                <ProductItem key={`product_${product._id}`} data={product} />
+                <ProductItemIntro key={`product_${product._id}`} data={product} />
             ))}
         </div>
     )

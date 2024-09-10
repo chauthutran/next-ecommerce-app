@@ -1,7 +1,7 @@
 import { JSONObject } from "@/lib/definations";
 import Image from "next/image";
 
-export default function ProductItem({ data }: { data: JSONObject }) {
+export default function ProductItemIntro({ data }: { data: JSONObject }) {
 
     return (
         <div className="flex flex-col justify-between h-full bg-white shadow-lg rounded-lg overflow-hidden">

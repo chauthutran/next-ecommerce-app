@@ -10,7 +10,7 @@ export async function fetchTopRatingProducts(limit: number): Promise<JSONObject>
 		await connectToDatabase();
 
 		const products = await Product.find({})
-				.sort({ rating: -1 })  // Sort by rating in descending order
+				.sort({ rating: 1 })  // Sort by rating in descending order
 				.limit(limit);  // Limit to 10 products
 
 		return { status: "success", data: Utils.cloneJSONObject(products) };
