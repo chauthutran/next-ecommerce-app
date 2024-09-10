@@ -31,9 +31,12 @@ export default function CategoryMenus() {
     else if( categories == null ) return ( <div>Loading ...</div>);
 
     return (
-        <div className="bg-white grid grid-cols-1">
+        <div className="bg-white grid grid-cols-1 gap-4 font-semibold rounded-lg px-4 py-5 min-w-72">
             {categories.map((category: JSONObject, idx: number) => (
-                <div key={`category_${category._id}`}>{category.name}</div>
+                <div 
+                    key={`category_${category._id}`}
+                    className="cursor-pointer border-b border-light-gray py-2 whitespace-nowrap"
+                >{category.name}</div>
             ))}
         </div>
     )
