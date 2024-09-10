@@ -37,7 +37,7 @@ export default function ProductItemIntro({ data }: { data: JSONObject }) {
             {/* Product Info */}
             <div className="p-4">
                 <p className="text-lg font-semibold text-gray-800 mt-2">${data.price}</p>
-                <ProductRating rating={data.rating} numReviews={data.reviews.length} />
+                <ProductRating rating={data.rating} numReviews={data.numReviews} />
 
                 <h2 className="text-xl font-bold text-gray-800">{data.name}</h2>
             </div>
