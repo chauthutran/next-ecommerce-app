@@ -8,7 +8,7 @@ export default function CategoryMenus() {
 
     const [categories, setCategories] = useState<JSONObject | null>(null);
     const [errMessage, setErrMessage] = useState("");
-    const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+    // const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
 
 
     const fetchCategories = async () => {
@@ -31,23 +31,27 @@ export default function CategoryMenus() {
     else if (categories == null) return (<div>Loading ...</div>);
 
     return (
-        <div className="bg-white grid grid-cols-1 gap-4 rounded-lg px-3 py-5">
+        <div className="bg-white grid grid-cols-1 gap-4 rounded-lg px-1 py-5 border-2 border-gray-200">
             {categories.map((category: JSONObject, idx: number) => (
                 <div
                     key={`category_${category._id}`}
-                    className="relative flex flex-row cursor-pointer whitespace-nowrap"
-                    onMouseEnter={() => setHoveredCategory(category.name)}
-                    onMouseLeave={() => setHoveredCategory(null)}
+                    className="flex items-center space-x-4 p-4 cursor-pointer text-gray-800 hover:bg-firebrick hover:text-white rounded-lg transition-all duration-300 ease-in-out"
+                // onMouseEnter={() => setHoveredCategory(category.name)}
+                // onMouseLeave={() => setHoveredCategory(null)}
                 >
                     {/* Icon */}
-                    <div className="px-1 py-2 hover:border-l hover:border-t hover:border-b hover:border-slate-300 rounded-l-lg hover:bg-lime_green text-2xl">{category.icon}</div>
+                    <div className="flex items-center justify-center p-3 bg-blue-50 rounded-full border-2 border-blue-200  text-xl"
+                        style={{ width: '48px', height: '48px' }}>{category.icon}</div>
+
+                    <span className="text-xl font-semibold hidden lg:flex">{category.name}</span>
+
 
                     {/* Show category name when hovered (absolute positioning) */}
-                    {hoveredCategory === category.name && (
-                        <div className="absolute left-full px-3 py-2 text-gray-700 z-10 border-r border-t border-b border-slate-300 bg-lime_green rounded-r-lg font-semibold  text-2xl">
+                    {/* {hoveredCategory === category.name && (
+                        <div className="absolute left-full px-3 py-2 z-10 bg-blue-50 border-r border-b border-t border-blue-200 rounded-r-lg text-black shadow-xl">
                             {category.name}
                         </div>
-                    )}
+                    )} */}
                 </div>
             ))}
         </div>

@@ -18,7 +18,7 @@ export default function AppWrapper() {
 	const { user } = useAuth();
 	
 	return (
-		<main className={`flex-1 overflow-auto bg-alice-blue`}>
+		<main className={`flex-1 overflow-auto bg-ghost-white`}>
 			{mainPage === Constant.PAGE_HOME && <HomePage />}
 			{mainPage === Constant.PAGE_PRODUCT_DETAILS && <ProductDetailsPage data={AppStore.getProduct()} />}
 			{mainPage === Constant.PAGE_SEARCH_PRODUCT && <ProductSearchPage keyword={AppStore.getSearchKey()} />}

@@ -12,7 +12,7 @@ import { useRef } from "react";
 export default function Header() {
 
     const { setMainPage } = useMainUi();
-    const searchInputRef = 	useRef<HTMLInputElement>(null);
+    const searchInputRef = useRef<HTMLInputElement>(null);
 
 
     const showProductSearchPage = () => {
@@ -24,26 +24,26 @@ export default function Header() {
     }
 
     return (
-        <header className="grid grid-cols-3 p-4 bg-alice-blue border-b-2 border-gray-200">
+        <header className="grid grid-cols-3 px-4 py-3 border-b-2 border-gray-200">
             <div className="text-2xl flex space-x-3">
-                <div className="text-moss-green"><GiShoppingBag /></div>
-                <div className="" style={{letterSpacing: "6px"}}>E-Commerce</div>
+                <div className="">🛍️</div>
+                <div className="font-extrabold text-royal-blue">E-Commerce</div>
             </div>
-            <div className="flex items-center border border-gray-200 rounded-md overflow-hidden">
-            <input
-                type="text"
-                name="search"
-                placeholder="Search ..."
-                ref={searchInputRef}
-                className="flex-1 py-2 px-4 text-sm outline-none placeholder:text-gray-500"
-            />
-            <button
-                className=" text-gray-500 px-4 py-2 flex items-center justify-center hover:bg-gray-300 transition-colors"
-                onClick={() => showProductSearchPage()}
-            >
-                <FaSearch className="h-5 w-5" />
-            </button>
-        </div>
+            <div className="flex items-center border border-gray-200 rounded-md overflow-hidden hover:border-royal-blue">
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Search ..."
+                    ref={searchInputRef}
+                    className="flex-1 py-2 px-4 text-sm outline-none placeholder:text-gray-500"
+                />
+                <button
+                    className=" text-gray-500 bg-white px-4 py-2 flex items-center justify-center "
+                    onClick={() => showProductSearchPage()}
+                >
+                    <FaSearch className="h-5 w-5 hover:text-royal-blue" />
+                </button>
+            </div>
 
         </header>
     )
