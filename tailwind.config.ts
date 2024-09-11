@@ -15,7 +15,16 @@ const config: Config = {
         "light-gray": "#e2e2e2",
         "pale-spring-bud": "#dde9d1",
         "deep-gray": "#909090",
-        "dark-gray": "#999999"
+        "dark-gray": "#999999",
+
+        "moss-green": "#87b041",
+        "pale_sage": "#d4ddc5",
+        "lime_green": "#bfed5d",
+        "light_khaki": "#eff1c5",
+        "light_buttercream": "#faf5c4",
+        "lavender_blush": "#f3daf4",
+        "light_sky_blue": "#d1eafe",
+        "soft_mint_green": "#91c39c"
       },
       rotate: {
         '-15': '-5deg',

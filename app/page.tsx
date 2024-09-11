@@ -3,15 +3,16 @@ import { MainUiProvider } from "./contexts/MainUiContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import AppWrapper from "./ui/AppWrapper";
 import Header from "./ui/layout/Header";
+import Footer from "./ui/layout/Footer";
 
 export default function Home() {
   return (
     <MainUiProvider>
 		 	 <AuthProvider>
-				<div className="h-screen flex flex-col text-black">
+				<div className="h-screen flex flex-col text-black bg-alice-blue">
 					<Header />
 					<AppWrapper />
-					{/* <Footer />  */}
+					<Footer /> 
 				</div>
 		 	</AuthProvider> 
 		 </MainUiProvider>

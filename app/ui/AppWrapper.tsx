@@ -3,9 +3,11 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { useMainUi } from "@/contexts/MainUiContext";
 import * as Constant from "@/lib/constants";
-import HomePage from "./home/HomePage";
+import HomePage from "./HomePage";
 import LoginForm from "./auth/LoginForm";
 import RegisterForm from "./auth/RegisterForm";
+import ProductDetailsPage from "./ProductDetailsPage";
+import * as AppStore from "@/lib/appStore";
 
 
 export default function AppWrapper() {
@@ -16,6 +18,7 @@ console.log(mainPage);
 	return (
 		<main className={`flex-1 overflow-auto bg-alice-blue`}>
 			{mainPage === Constant.PAGE_HOME && <HomePage />}
+			{mainPage === Constant.PAGE_PRODUCT_DETAILS && <ProductDetailsPage data={AppStore.getProduct()} />}
 
 			{mainPage === Constant.PAGE_LOGIN && <LoginForm />}
 			{mainPage === Constant.PAGE_USER_REGISTRATION && <RegisterForm />}

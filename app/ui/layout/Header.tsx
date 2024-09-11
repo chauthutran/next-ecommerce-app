@@ -4,9 +4,9 @@ import { GiShoppingBag } from "react-icons/gi";
 export default function Header() {
 
     return (
-        <header className="grid grid-cols-3 p-4 bg-alice-blue border-b-2 border-pale-robin-egg-blue">
+        <header className="grid grid-cols-3 p-4 bg-alice-blue border-b-2 border-gray-200">
             <div className="text-4xl flex space-x-3">
-                <div className=""><GiShoppingBag /></div>
+                <div className="text-moss-green"><GiShoppingBag /></div>
                 <div className="" style={{letterSpacing: "8px"}}>E-Commerce</div>
             </div>
             <div className="flex-1 relative">
