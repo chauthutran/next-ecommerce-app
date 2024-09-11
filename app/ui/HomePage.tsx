@@ -42,8 +42,6 @@ export default function HomePage() {
 
     
     if( errMessage !== "" ) return ( <div>{errMessage}</div>);
-    else if( latestProducts == null ) return ( <div>Loading ...</div>);
-
 
     return (
         <div className="m-3 flex space-x-5">
