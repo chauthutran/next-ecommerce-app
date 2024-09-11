@@ -39,7 +39,7 @@ export default function ProductDetailsPage({ data }: { data: JSONObject }) {
                     {/* Image Section */}
                     {data.images.length > 0 && (
                         // <div className="w-full h-64 bg-gray-200 flex justify-center items-center">
-                        <div className="flex lg:justify-end lg:items-end ">
+                        <div className="flex lg:justify-end lg:items-end">
                             {data.images.map((img: string, idx: number) => (
                                 <Image
                                     key={idx}
@@ -47,7 +47,7 @@ export default function ProductDetailsPage({ data }: { data: JSONObject }) {
                                     alt={data.name}
                                     width={300}
                                     height={300}
-                                    className="object-cover w-72 h-72"
+                                    className="object-cover w-72 h-72 rounded-lg"
                                 />
                             ))}
                         </div>
