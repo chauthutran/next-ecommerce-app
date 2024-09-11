@@ -23,7 +23,7 @@ if (!cached) {
 }
 
 async function connectToDatabase() {
-  console.log('===== connectToDatabase ... ');
+  
   if (cached.conn) {
     return cached.conn;
   }

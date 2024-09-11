@@ -55,3 +55,23 @@ export async function fetchTopRatingProductsByCategory(limit: number, categoryId
 		return { status: "error", message: error.message };
 	}
 }
+
+export async function searchProducts(keyword: string): Promise<JSONObject> {
+	try {
+		await connectToDatabase();
+
+		// Ensure the keywords are sanitized or processed as needed
+		const searchQuery = keyword.trim();
+
+		// Perform a text search
+        const products = await Product.find({
+            $text: { $search: searchQuery }
+        });
+
+		return { status: "success", data: Utils.cloneJSONObject(products) };
+
+		// return { status: "success", data: [] };
+	} catch (error: any) {
+		return { status: "error", message: error.message };
+	}
+}

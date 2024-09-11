@@ -1,24 +1,50 @@
+'use client';
+
+import { useMainUi } from "@/contexts/MainUiContext";
 import { FaSearch } from "react-icons/fa";
 import { GiShoppingBag } from "react-icons/gi";
+import * as AppStore from "@/lib/appStore";
+import * as Constant from "@/lib/constants";
+import { IoMdArrowRoundForward } from "react-icons/io";
+import { useRef } from "react";
+
 
 export default function Header() {
 
+    const { setMainPage } = useMainUi();
+    const searchInputRef = 	useRef<HTMLInputElement>(null);
+
+
+    const showProductSearchPage = () => {
+        if (searchInputRef.current) {
+            const query = searchInputRef.current.value;
+            AppStore.setSearchKey(query);
+            setMainPage(Constant.PAGE_SEARCH_PRODUCT);
+        }
+    }
+
     return (
         <header className="grid grid-cols-3 p-4 bg-alice-blue border-b-2 border-gray-200">
-            <div className="text-4xl flex space-x-3">
+            <div className="text-2xl flex space-x-3">
                 <div className="text-moss-green"><GiShoppingBag /></div>
-                <div className="" style={{letterSpacing: "8px"}}>E-Commerce</div>
+                <div className="" style={{letterSpacing: "6px"}}>E-Commerce</div>
             </div>
-            <div className="flex-1 relative">
-                <input
-                    className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 "
-                    type="text"
-                    name="search"
-                    placeholder="Search ..."
-                    // onChange={(e) => { setEmail(e.target.value) }}
-                />
-                <FaSearch className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"></FaSearch>
-            </div>
+            <div className="flex items-center border border-gray-200 rounded-md overflow-hidden">
+            <input
+                type="text"
+                name="search"
+                placeholder="Search ..."
+                ref={searchInputRef}
+                className="flex-1 py-2 px-4 text-sm outline-none placeholder:text-gray-500"
+            />
+            <button
+                className=" text-gray-500 px-4 py-2 flex items-center justify-center hover:bg-gray-300 transition-colors"
+                onClick={() => showProductSearchPage()}
+            >
+                <FaSearch className="h-5 w-5" />
+            </button>
+        </div>
+
         </header>
     )
 }

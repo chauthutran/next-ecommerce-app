@@ -13,7 +13,7 @@ export default function CategoryMenus() {
 
     const fetchCategories = async () => {
         const response: JSONObject = await dbService.fetchCategories();
-        console.log(response);
+
         if (response.status != "success") {
             setErrMessage(response.message);
         }
