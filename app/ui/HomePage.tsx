@@ -5,6 +5,7 @@ import CategoryMenus from "./layout/CategoryMenus";
 import { JSONObject } from "@/lib/definations";
 import * as dbService from "@/lib/dbService";
 import ProductList from "./product/ProductList";
+import { RiBubbleChartFill } from "react-icons/ri";
 
 
 export default function HomePage() {
@@ -47,11 +48,20 @@ export default function HomePage() {
         <div className="flex space-x-5">
             <div className=""><CategoryMenus /></div>
             <div className="col-span-3 flex-1 bg-white rounded-lg p-3 m-3">
-                <div className="font-semibold text-2xl mt-5 mb-10 border-b border-slate-400 pb-3">Top rating products</div>
+
+                <div className="font-semibold text-2xl mt-5 mb-10 border-b border-slate-400 pb-3 flex">
+                    <RiBubbleChartFill className="text-firebrick mr-2" />
+                    Top rating products
+                </div>
                 <ProductList data={topRatingProducts} />
 
-                <div className="font-semibold text-2xl mt-20 mb-10 border-b border-slate-400 pb-3">Latest products</div>
+                <div className="font-semibold text-2xl mt-10 mb-10 border-b border-slate-400 pb-3 flex">
+                    <RiBubbleChartFill className="text-firebrick mr-2" />
+                    Latest products
+                </div>
+                
                 <ProductList data={latestProducts} />
+
             </div>
         </div>
     )

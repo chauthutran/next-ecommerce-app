@@ -2,7 +2,6 @@
 import { useMainUi } from "@/contexts/MainUiContext";
 import * as AppStore from "@/lib/appStore";
 import * as Constant from "@/lib/constants";
-import { IoIosArrowForward } from "react-icons/io";
 
 
 export default function ProductDetailsNav() {
@@ -10,7 +9,7 @@ export default function ProductDetailsNav() {
 
     return (
 
-        <nav className="flex items-center space-x-4 px-6 py-2 bg-firebrick text-white text-lg">
+        <nav className="flex items-center space-x-2 px-6 py-2 bg-firebrick text-white text-lg">
             <div
                 className="cursor-pointer px-4 py-2 hover:bg-white hover:text-firebrick rounded-md transition duration-300 ease-in-out"
                 onClick={() => setMainPage(Constant.PAGE_HOME)}

@@ -2,37 +2,37 @@ import { JSONObject } from "@/lib/definations";
 import { useEffect, useState } from "react";
 import * as dbService from "@/lib/dbService";
 import ProductList from "./product/ProductList";
+import { RiBubbleChartFill } from "react-icons/ri";
+import * as Constant from "@/lib/constants";
+import { useMainUi } from "@/contexts/MainUiContext";
 
 
-export default function ProductSearchPage({keyword}: {keyword: string}) {
+export default function ProductSearchPage({ data }: { data: JSONObject[] }) {
 
-    const [searchedProducts, setSearchedProducts] = useState<JSONObject[]>([]);
-    const [errMessage, setErrMessage] = useState("");
-console.log(keyword);
-    const fetchSimilarProducts = async () => {
-        const response: JSONObject = await dbService.searchProducts(keyword);
-        console.log(response);
-        if (response.status != "success") {
-            setErrMessage(response.message);
-        }
-        else {
-            setSearchedProducts(response.data);
-        }
-    }
+    const { setMainPage } = useMainUi();
 
     useEffect(() => {
-        fetchSimilarProducts();
-    }, [])
-    
-    
-    if( errMessage !== "" ) return ( <div className="m-4 text-red-600 text-lg">{errMessage}</div>);
+
+    }, [data])
+
+
+    // if( errMessage !== "" ) return ( <div className="m-4 text-red-600 text-lg">{errMessage}</div>);
 
     return (
         <>
-            {searchedProducts.length == 1 && <div>There is one product found</div>}
-            {searchedProducts.length > 1 && <div>There is {searchedProducts.length} product found</div>}
+            <nav className="flex items-center space-x-2 px-6 py-2 bg-firebrick text-white text-lg">
+               
+                <div className="flex space-x-1 items-center">
+                    <RiBubbleChartFill />
+                    {data.length == 0 && <div>Sorry, no products match your search.</div>}
+                    {data.length == 1 && <div>1 product found</div>}
+                    {data.length > 1 && <div>{data.length} products found</div>}
+                </div>
+            </nav>
 
-            <ProductList data={searchedProducts} />
+            <div className="bg-white p-3 m-3 h-fit min-h-full">
+                <ProductList data={data} />
+            </div>
         </>
     )
 }

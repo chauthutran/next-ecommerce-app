@@ -10,7 +10,6 @@ export default function Home() {
     <MainUiProvider>
 		 	 <AuthProvider>
 				<div className="h-screen flex flex-col text-black">
-					<Header />
 					<AppWrapper />
 					<Footer /> 
 				</div>

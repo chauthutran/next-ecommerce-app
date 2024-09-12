@@ -65,8 +65,12 @@ export async function searchProducts(keyword: string): Promise<JSONObject> {
 
 		// Perform a text search
         const products = await Product.find({
-            $text: { $search: searchQuery }
-        });
+			$or: [
+			  { name: { $regex: searchQuery, $options: "i" } },
+			  { description: { $regex: searchQuery, $options: "i" } },
+			  { branch: { $regex: searchQuery, $options: "i" } }
+			]
+		  });
 
 		return { status: "success", data: Utils.cloneJSONObject(products) };
 
