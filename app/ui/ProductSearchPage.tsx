@@ -1,15 +1,11 @@
 import { JSONObject } from "@/lib/definations";
 import { useEffect, useState } from "react";
-import * as dbService from "@/lib/dbService";
 import ProductList from "./product/ProductList";
 import { RiBubbleChartFill } from "react-icons/ri";
-import * as Constant from "@/lib/constants";
-import { useMainUi } from "@/contexts/MainUiContext";
 
 
 export default function ProductSearchPage({ data }: { data: JSONObject[] }) {
 
-    const { setMainPage } = useMainUi();
 
     useEffect(() => {
 
