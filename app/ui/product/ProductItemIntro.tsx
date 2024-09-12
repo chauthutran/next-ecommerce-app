@@ -4,6 +4,7 @@ import ProductRating from "./ProductRating";
 import { useMainUi } from "@/contexts/MainUiContext";
 import * as AppStore from "@/lib/appStore";
 import * as Constant from "@/lib/constants";
+import { useState } from "react";
 
 
 export default function ProductItemIntro({ data }: { data: JSONObject }) {
