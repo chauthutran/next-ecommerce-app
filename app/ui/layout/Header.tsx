@@ -27,9 +27,9 @@ export default function Header() {
         <header className="grid grid-cols-3 px-4 py-3 border-b-2 border-gray-200">
             <div className="text-2xl flex space-x-3">
                 <div className="">🛍️</div>
-                <div className="font-extrabold text-royal-blue">E-Commerce</div>
+                <div className="font-extrabold text-black">E-Commerce</div>
             </div>
-            <div className="flex items-center border border-gray-200 rounded-md overflow-hidden hover:border-royal-blue">
+            <div className="flex items-center border border-gray-200 rounded-md overflow-hidden hover:border-gray-400">
                 <input
                     type="text"
                     name="search"
@@ -41,7 +41,7 @@ export default function Header() {
                     className=" text-gray-500 bg-white px-4 py-2 flex items-center justify-center "
                     onClick={() => showProductSearchPage()}
                 >
-                    <FaSearch className="h-5 w-5 hover:text-royal-blue" />
+                    <FaSearch className="h-5 w-5 hover:text-black" />
                 </button>
             </div>
 
