@@ -9,15 +9,17 @@ export default function ProductDetailsNav() {
 
     return (
 
-        <nav className="flex items-center space-x-2 px-6 py-2 bg-firebrick text-white text-lg">
+        <nav className="flex items-center space-x-2 px-6 py-2 bg-mustard-yellow text-black text-lg">
             <div
-                className="cursor-pointer px-4 py-2 hover:bg-white hover:text-firebrick rounded-md transition duration-300 ease-in-out"
+                className="cursor-pointer px-4 py-1 hover:bg-white rounded-md transition duration-300 ease-in-out"
                 onClick={() => setMainPage(Constant.PAGE_HOME)}
             >
                 Home
             </div>
-            <span className="text-white">/</span>
-            <div className="bg-white text-firebrick px-4 py-2 rounded-md shadow-sm">
+            
+            <span>/</span>
+
+            <div className="bg-white px-4 py-1 rounded-md shadow-sm">
                 {AppStore.getProduct().name}
             </div>
         </nav>

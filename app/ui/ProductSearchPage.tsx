@@ -16,7 +16,7 @@ export default function ProductSearchPage({ data }: { data: JSONObject[] }) {
 
     return (
         <>
-            <nav className="flex items-center space-x-2 px-6 py-2 bg-firebrick text-white text-lg">
+            <nav className="flex items-center space-x-2 px-6 py-2 bg-mustard-yellow text-black text-lg">
                
                 <div className="flex space-x-1 items-center">
                     <RiBubbleChartFill />

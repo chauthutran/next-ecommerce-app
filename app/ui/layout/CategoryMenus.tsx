@@ -50,15 +50,15 @@ export default function CategoryMenus() {
                 absolute top-0 left-0 h-full w-72 transform transition-transform duration-500 ease-in-out
                 ${isVisible ? 'translate-x-0' : '-translate-x-full'} lg:relative lg:translate-x-0 lg:w-auto lg:grid`} // Sliding effect and positioning
                   >
-                <div className="bg-red-50 shadow-xl shadow-firebrick lg:shadow-none">
+                <div className="bg-white shadow-xl shadow-bright-yellow lg:shadow-none">
                     {categories.map((category: JSONObject, idx: number) => (
                         <div
                             key={`category_${category._id}`}
-                            className="flex items-center space-x-4 p-4 cursor-pointer text-black hover:bg-firebrick hover:text-white transition-all duration-300 ease-in-out"
+                            className="flex items-center space-x-4 p-4 cursor-pointer text-black hover:bg-bright-yellow hover:text-black transition-all duration-300 ease-in-out"
                         >
                             {/* Icon */}
                             <div 
-                                className="flex items-center justify-center p-3 bg-blue-50 rounded-full border-2 border-blue-200  text-xl"
+                                className="flex items-center justify-center p-3 bg-yellow-50 rounded-full border-2 border-yellow-200  text-xl"
                                 style={{ width: '48px', height: '48px' }}>{category.icon}</div>
 
                             <span className="text-xl ">{category.name}</span>
@@ -68,7 +68,7 @@ export default function CategoryMenus() {
 
                 {/* Button to toggle visibility on small screens */}
                 <button 
-                    className="text-white bg-firebrick rounded-r-md p-1 shadow-lg shadow-firebrick lg:hidden absolute left-[286px] transition-colors hover:bg-vivid-red"
+                    className="text-white bg-bright-yellow rounded-r-md p-1 shadow-lg shadow-mustard-yellow lg:hidden absolute left-[285px] transition-colors hover:bg-color-2"
                     onClick={toggleVisibility} >
                         <FiList className="size-8" />
                 </button>
