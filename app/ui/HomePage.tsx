@@ -44,9 +44,9 @@ export default function HomePage() {
     if( errMessage !== "" ) return ( <div>{errMessage}</div>);
 
     return (
-        <div className="m-3 flex space-x-5">
-            <div><CategoryMenus /></div>
-            <div className="col-span-3 flex-1 bg-white rounded-lg p-3">
+        <div className="flex space-x-5">
+            <div className="my-3"><CategoryMenus /></div>
+            <div className="col-span-3 flex-1 bg-white rounded-lg p-3 m-3">
                 <div className="font-semibold text-2xl mt-5 mb-10 border-b border-slate-400 pb-3">Top rating products</div>
                 <ProductList data={topRatingProducts} />
 
