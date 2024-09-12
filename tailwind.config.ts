@@ -11,7 +11,7 @@ const config: Config = {
       colors: {
         "royal-blue": "#00246B",
         "ghost-white": "#eff0f3",
-        "firebrick": "#cc3333",
+        "firebrick": "#b22222",
         "pale-robin-egg-blue": "#b6dcdc",
         "navy-blue": "#003366",
         "vivid-red": "#ef2300",

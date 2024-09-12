@@ -5,14 +5,22 @@ import * as Constant from "@/lib/constants";
 import { IoIosArrowForward } from "react-icons/io";
 
 
-export default function ProductDetailsNav () {
+export default function ProductDetailsNav() {
     const { setMainPage } = useMainUi();
 
     return (
-        <nav className="flex space-x-3 px-5 py-2 bg-navy-blue items-center text-ghost-white">
-            <div className="cursor-pointer px-2 hover:rounded-md hover:bg-vivid-red hover:text-black" onClick={() => setMainPage(Constant.PAGE_HOME)}>Home</div>
-            <IoIosArrowForward />
-            <div className="bg-vivid-red px-2 rounded-md text-black"> {AppStore.getProduct().name}</div>
+
+        <nav className="flex items-center space-x-4 px-6 py-2 bg-firebrick text-white text-lg">
+            <div
+                className="cursor-pointer px-4 py-2 hover:bg-white hover:text-firebrick rounded-md transition duration-300 ease-in-out"
+                onClick={() => setMainPage(Constant.PAGE_HOME)}
+            >
+                Home
+            </div>
+            <span className="text-white">/</span>
+            <div className="bg-white text-firebrick px-4 py-2 rounded-md shadow-sm">
+                {AppStore.getProduct().name}
+            </div>
         </nav>
     )
 }
