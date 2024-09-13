@@ -6,13 +6,13 @@ import { useEffect, useState } from 'react';
 import { FaSpinner } from 'react-icons/fa';
 import { IoKeyOutline } from "react-icons/io5";
 import * as Constant from '@/lib/constants';
-import { useMainUi } from "@/contexts/MainUiContext";
+import { useCurrentPage } from "@/contexts/MainUiContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { GiThreeLeaves } from 'react-icons/gi';
 
 export default function RegisterForm() {
 
-	const { setMainPage } = useMainUi();
+	const { setCurrentPage } = useCurrentPage();
 	const { loading, error, user, register} = useAuth();
 
 	const [email, setEmail] = useState("");
@@ -25,7 +25,7 @@ export default function RegisterForm() {
 
 	useEffect(() => {
 	  if( user != null ) {
-		setMainPage(Constant.PAGE_HOME);
+		setCurrentPage(Constant.PAGE_HOME);
 	  }
 	},[user])
 
@@ -66,7 +66,7 @@ export default function RegisterForm() {
     const handleCancelBtn = () => {
         const ok = confirm("Are you sure you don't want to register an account ?")
         if( ok ) {
-            setMainPage(Constant.PAGE_HOME);
+            setCurrentPage(Constant.PAGE_HOME);
         }
     }
 

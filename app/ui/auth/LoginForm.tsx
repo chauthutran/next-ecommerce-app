@@ -6,13 +6,13 @@ import { FaSpinner } from 'react-icons/fa';
 import { IoKeyOutline } from "react-icons/io5";
 import * as Constant from '@/lib/constants';
 import * as Utils from "@/lib/utils";
-import { useMainUi } from "@/contexts/MainUiContext";
+import { useCurrentPage } from "@/contexts/MainUiContext";
 import { useAuth } from "@/contexts/AuthContext";
 
 
 export default function LoginForm() {
 
-	const { setMainPage, setSubPage } = useMainUi();
+	const { setCurrentPage } = useCurrentPage();
 	const { user, login, loading, error } = useAuth();
 
 	const [email, setEmail] = useState("manager1@example.com");
@@ -21,8 +21,7 @@ export default function LoginForm() {
 
 	useEffect(() => {
 		if (user != null) {
-			setMainPage(Constant.PAGE_HOME);
-			setSubPage(null);
+			setCurrentPage(Constant.PAGE_HOME);
 		}
 	}, [user])
 

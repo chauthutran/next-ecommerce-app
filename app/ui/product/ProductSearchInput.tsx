@@ -6,7 +6,7 @@ import { JSONObject } from "@/lib/definations";
 import * as dbService from "@/lib/dbService";
 
 
-export default function ProductSearchInput({onSuccess, onError}: {onSuccess: (data: JSONObject[]) => void, onError: (msg: string) => void}) {
+export default function ProductSearchInput({handleSearchResponse}: {handleSearchResponse: (response: JSONObject) => void}) {
 
     const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -14,13 +14,7 @@ export default function ProductSearchInput({onSuccess, onError}: {onSuccess: (da
         if (searchInputRef.current) {
             const query = searchInputRef.current.value;
             const response: JSONObject = await dbService.searchProducts(query);
-            console.log(response);
-            if (response.status != "success") {
-                onError(response.message);
-            }
-            else {
-                onSuccess(response.data);
-            }
+            handleSearchResponse(response);
         }
     }
 
