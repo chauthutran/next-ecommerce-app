@@ -25,3 +25,24 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Customize the scrollbar width and appearance */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 12px; /* Adjust the width to make it bigger */
+}
+
+/* Customize the scrollbar track */
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Customize track color */
+}
+
+/* Customize the scrollbar thumb */
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scroll handle */
+  border: 3px solid #f1f1f1; /* Adds padding around the thumb */
+}
+
+/* Change color when hovered */
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}

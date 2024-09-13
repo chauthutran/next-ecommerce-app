@@ -79,3 +79,18 @@ export async function searchProducts(keyword: string): Promise<JSONObject> {
 		return { status: "error", message: error.message };
 	}
 }
+
+
+export async function getAllBranches(): Promise<JSONObject> {
+	try {
+		await connectToDatabase();
+
+		const brands = await Product.distinct('brand');
+
+		return { status: "success", data: Utils.cloneJSONObject(brands) };
+
+		// return { status: "success", data: [] };
+	} catch (error: any) {
+		return { status: "error", message: error.message };
+	}
+}

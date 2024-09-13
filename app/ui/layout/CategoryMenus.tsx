@@ -68,7 +68,7 @@ export default function CategoryMenus() {
 
                 {/* Button to toggle visibility on small screens */}
                 <button 
-                    className="text-white bg-bright-yellow rounded-r-md p-1 shadow-lg shadow-mustard-yellow lg:hidden absolute left-[285px] transition-colors hover:bg-color-2"
+                    className="text-black bg-bright-yellow rounded-r-md p-1 shadow-lg shadow-mustard-yellow lg:hidden absolute left-[285px] transition-colors hover:bg-color-2"
                     onClick={toggleVisibility} >
                         <FiList className="size-8" />
                 </button>

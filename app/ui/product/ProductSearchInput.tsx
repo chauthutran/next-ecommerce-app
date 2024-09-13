@@ -25,6 +25,11 @@ export default function ProductSearchInput({handleSearchResponse}: {handleSearch
                 name="search"
                 placeholder="Search ..."
                 ref={searchInputRef}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                        fetchSimilarProducts();
+                    }
+                }}
                 className="flex-1 py-2 px-4 text-sm outline-none placeholder:text-gray-500"
             />
             <button

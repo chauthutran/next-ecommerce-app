@@ -3,7 +3,7 @@ import { IoStarHalfSharp } from "react-icons/io5";
 
 type ProductProps = {
     rating: number;
-    numReviews: number;
+    numReviews?: number;
 };
 
 const ProductRating: React.FC<ProductProps> = ({ rating, numReviews }) => {
@@ -29,7 +29,7 @@ const ProductRating: React.FC<ProductProps> = ({ rating, numReviews }) => {
                     <span key={index} className="text-gray-300 text-lg">★</span>
                 ))}
             {/* Reviews Count */}
-            <span className="text-sm text-gray-600 ml-2">({numReviews} reviews)</span>
+            {numReviews !== undefined && <span className="text-sm text-gray-600 ml-2">({numReviews} reviews)</span>}
         </div>
     );
 };
