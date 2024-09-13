@@ -8,34 +8,20 @@ import { BiFilter } from "react-icons/bi";
 import ProductRatingFilter from "../product/ProductRatingFilter";
 
 
-export default function ProductFilters() {
+export default function ProductFilters({data}: {data: JSONObject[]}) {
 
-    const [branches, setBranches] = useState<JSONObject | null>(null);
-
+    // const [branches, setBranches] = useState<JSONObject | null>(null);
     const [isVisible, setIsVisible] = useState(false);
-    const [errMessage, setErrMessage] = useState("");
-
 
     // Toggle the category list visibility
     const toggleVisibility = () => {
         setIsVisible(!isVisible);
     };
 
-
-    const fetchBranches = async () => {
-        const response: JSONObject = await dbService.getAllBranches();
-
-        if (response.status != "success") {
-            setErrMessage(response.message);
-        }
-        else {
-            setBranches(response.data);
-        }
+    const getBranches = (): Array<string> => {
+        return Array.from(new Set(data.map(product => product.brand)));
+        // setBranches(list);
     }
-
-    useEffect(() => {
-        fetchBranches();
-    }, []);
 
     return (
         <div className="relative flex w-fit lg:my-3">
@@ -64,13 +50,12 @@ export default function ProductFilters() {
             {/* For branch list */}
             <div className="">
                 <div className="text-xl py-1 font-semibold mb-4 uppercase">Branch</div>
-                {branches === null && <div>Loading ...</div>}
 
                 {/* Scrollable branch list */}
                 <div
                      className="scrollbar-custom flex flex-col items-start space-y-1 text-black transition-all duration-300 ease-in-out max-h-60 overflow-y-auto"
                 >
-                    {branches !== null && branches.map((branch: string, idx: number) => (
+                    {getBranches().map((branch: string, idx: number) => (
                         <div
                             key={`branch_${branch}`}
                             className="flex items-center justify-between p-3 w-full text-xl">

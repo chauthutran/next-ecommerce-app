@@ -27,7 +27,7 @@ export default function ProductSearchPage() {
             </nav>
 
             <div className="flex space-x-5">
-                <div className=""><ProductFilters /></div>
+                <div className=""><ProductFilters data={resultList} /></div>
                 <div className="col-span-3 flex-1 bg-white rounded-lg p-3 m-3">
 
                     <div className="font-semibold text-2xl mt-5 mb-10 border-b border-slate-400 pb-3 flex">
