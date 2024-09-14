@@ -15,9 +15,9 @@ export default function Header() {
     return (
         <header className="grid grid-cols-1 md:grid-cols-2 px-4 py-3 border-b-2 border-gray-200 gap-4">
             
-            <div className="text-2xl flex space-x-3 cursor-pointer items-center" onClick={() => setCurrentPage(Constant.PAGE_HOME)}>
-                <div className="rounded-full pt-1 bg-yellow-100 text-"><LuBaggageClaim className="size-10" /></div>
-                <div className="font-extrabold text-black whitespace-nowrap">E-Commerce</div>
+            <div className="text-2xl flex space-x-3 items-center">
+                <div className="rounded-full pt-1 cursor-pointer bg-yellow-100" onClick={() => setCurrentPage(Constant.PAGE_HOME)}><LuBaggageClaim className="size-10" /></div>
+                <div className="font-extrabold cursor-pointer text-black whitespace-nowrap" onClick={() => setCurrentPage(Constant.PAGE_HOME)}>E-Commerce</div>
             </div>
 
             <div className="flex mr-3 space-x-10 justify-center items-center">

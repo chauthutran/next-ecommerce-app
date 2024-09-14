@@ -14,6 +14,7 @@ export default function ProductSearchInput({handleSearchResponse}: {handleSearch
         if (searchInputRef.current) {
             const query = searchInputRef.current.value;
             const response: JSONObject = await dbService.searchProducts(query);
+console.log(response);
             handleSearchResponse(response);
         }
     }

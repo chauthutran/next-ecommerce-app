@@ -27,6 +27,7 @@ export async function fetchLatestProducts(limit: number): Promise<JSONObject> {
 		await connectToDatabase();
 
 		const products = await Product.find({})
+				.populate('category', 'name') // Populate the category field and select the 'name' field
 				.sort({ createdAt: 1 })  // Sort by rating in descending order
 				.limit(limit);  // Limit to 10 products
 
@@ -45,6 +46,7 @@ export async function fetchTopRatingProductsByCategory(limit: number, categoryId
 		const categoryIdObj = new mongoose.Types.ObjectId(categoryId);
 
 		const products = await Product.find({category: categoryIdObj})
+				.populate('category', 'name') // Populate the category field and select the 'name' field
 				.sort({ createdAt: 1 })  // Sort by rating in descending order
 				.limit(limit);  // Limit to 10 products
 
@@ -68,9 +70,9 @@ export async function searchProducts(keyword: string): Promise<JSONObject> {
 			$or: [
 			  { name: { $regex: searchQuery, $options: "i" } },
 			  { description: { $regex: searchQuery, $options: "i" } },
-			  { branch: { $regex: searchQuery, $options: "i" } }
+			  { brand: { $regex: searchQuery, $options: "i" } }
 			]
-		  });
+		  }) .populate('category', 'name') // Populate the category field and select the 'name' field;
 
 		return { status: "success", data: Utils.cloneJSONObject(products) };
 
@@ -81,7 +83,7 @@ export async function searchProducts(keyword: string): Promise<JSONObject> {
 }
 
 
-export async function getAllBranches(): Promise<JSONObject> {
+export async function getAllBrandes(): Promise<JSONObject> {
 	try {
 		await connectToDatabase();
 

@@ -29,7 +29,7 @@ const ProductSchema = new Schema(
 )
 const Product = mongoose.models.Product || mongoose.model('Product', ProductSchema);
 
-// Create a text index on the `name`, `description`, `branch` fields
+// Create a text index on the `name`, `description`, `brand` fields
 Product.collection.createIndex({ name: 'text', description: 'text', brand: 'text' });
 
 export default Product;
