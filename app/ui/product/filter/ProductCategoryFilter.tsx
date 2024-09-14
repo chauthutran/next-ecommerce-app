@@ -44,6 +44,7 @@ export default function ProductCategoryFilter({data, handleOnChange}: {data: JSO
                         <input
                             type="checkbox"
                             value={categoryName}
+                            checked={selected.indexOf(categoryName) >= 0}
                             onChange={(e) => handleCategoryChange(e)}
                             className="form-checkbox h-5 w-5 text-yellow-500 border-red-500 rounded focus:ring focus:ring-yellow-400 focus:outline-none transition duration-200"
                         />
