@@ -22,8 +22,6 @@ export default function ProductSearchPage() {
     const filterData = (filters: JSONObject) => {
         const resultList = currentPage.data.data;
         
-        console.log("===== filters", filters);
-
         const resolvedData = resultList.filter((product: JSONObject) => {
             const price = product.price;
             const brand = product.brand;

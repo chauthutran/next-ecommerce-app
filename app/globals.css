@@ -38,8 +38,9 @@ body {
 
 /* Customize the scrollbar thumb */
 .scrollbar-custom::-webkit-scrollbar-thumb {
-  background-color: #888; /* Color of the scroll handle */
-  border: 3px solid #f1f1f1; /* Adds padding around the thumb */
+  background-color: #bdbdbd; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
+  border: 2px solid #f5f5f5; /* Adds some space around the thumb */
 }
 
 /* Change color when hovered */

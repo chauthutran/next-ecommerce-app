@@ -57,10 +57,10 @@ export default function ProductFiltersOption({ data, handleSelectFilters }: { da
 
                     {/* For Price list */}
                     <div className="">
-                        <div className="text-xl py-1 font-semibold mb-2 uppercase">Price</div>
+                        <div className="text-xl font-semibold uppercase">Price</div>
                         {/* Price list */}
                         <div
-                            className="scrollbar-custom flex flex-col items-start space-y-2 text-black transition-all duration-300 ease-in-out"
+                            className="scrollbar-custom flex flex-col items-start text-black transition-all duration-300 ease-in-out space-y-1"
                         >
                             <ProductPriceFilter handleOnChange={(priceFilter) => setPriceFilter(priceFilter)}/>
                         </div>

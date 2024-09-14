@@ -80,7 +80,7 @@ export default function ProductPriceFilter({handleOnChange}: {handleOnChange: (d
     return (
         <>
         <div
-             className="flex items-center justify-between p-3 w-full text-xl">
+             className="flex items-center justify-between w-full ">
                  <label className="flex items-center space-x-3">
                  <input
                      type="radio"
@@ -95,7 +95,7 @@ export default function ProductPriceFilter({handleOnChange}: {handleOnChange: (d
          </div>
 
            <div
-                className="flex items-center justify-between p-3 w-full text-xl">
+                className="flex items-center justify-between w-full ">
                     <label className="flex items-center space-x-3">
                     <input
                         type="radio"
@@ -110,7 +110,7 @@ export default function ProductPriceFilter({handleOnChange}: {handleOnChange: (d
             </div>
 
             <div
-                className="flex items-center justify-between p-3 w-full text-xl">
+                className="flex items-center justify-between w-full ">
                 <label className="flex items-center space-x-3">
                     <input
                         type="radio"
@@ -125,7 +125,7 @@ export default function ProductPriceFilter({handleOnChange}: {handleOnChange: (d
             </div>
 
             <div
-                className="flex items-center justify-between p-3 w-full text-xl">
+                className="flex items-center justify-between w-full ">
                 <label className="flex items-center space-x-3">
                     <input
                         type="radio"
@@ -140,7 +140,7 @@ export default function ProductPriceFilter({handleOnChange}: {handleOnChange: (d
             </div>
 
             <div
-                className="flex items-center justify-between p-3 w-full text-xl">
+                className="flex items-center justify-between w-full ">
                 <input
                     ref={inputMinPriceRef}
                     type="number"
