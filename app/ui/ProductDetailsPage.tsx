@@ -31,10 +31,6 @@ console.log(data);
     }, []);
 
 
-    useEffect(() => {
-        fetchSimilarProducts();
-    }, [data]);
-
     return (
         <>
             <ProductDetailsNav />
