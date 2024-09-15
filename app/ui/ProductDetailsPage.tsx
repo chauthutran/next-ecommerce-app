@@ -7,11 +7,14 @@ import ProductRating from "./product/ProductRating";
 import { useEffect, useState } from "react";
 import * as dbService from "@/lib/dbService";
 import ProductList from "./product/ProductList";
+import { useCurrentPage } from "@/contexts/MainUiContext";
 
 
-export default function ProductDetailsPage({ data }: { data: JSONObject }) {
+export default function ProductDetailsPage() {
 
     const productNo = 10;
+
+    const { currentPage } = useCurrentPage();
     const [suggestedProducts, setSuggestedProducts] = useState<JSONObject[]>([]);
     const [errMessage, setErrMessage] = useState("");
 
@@ -24,13 +27,13 @@ export default function ProductDetailsPage({ data }: { data: JSONObject }) {
             setSuggestedProducts(response.data);
         }
     }
-console.log(data);
+    
 
     useEffect(() => {
         fetchSimilarProducts();
     }, []);
 
-
+    const data = currentPage.data;
     return (
         <>
             <ProductDetailsNav />
@@ -39,7 +42,6 @@ console.log(data);
                 <div className="flex-1 grid grid-cols-1 gap-6 lg:grid-cols-2 md:grid-cols-2 h-full py-10 bg-white shadow-lg rounded-lg overflow-hidden m-3">
                     {/* Image Section */}
                     {data.images.length > 0 && (
-                        // <div className="w-full h-64 bg-gray-200 flex justify-center items-center">
                         <div className="flex lg:justify-end lg:items-end">
                             {data.images.map((img: string, idx: number) => (
                                 <Image

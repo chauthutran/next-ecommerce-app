@@ -4,7 +4,6 @@ import ProductRating from "./ProductRating";
 import { useCurrentPage } from "@/contexts/MainUiContext";
 import * as AppStore from "@/lib/appStore";
 import * as Constant from "@/lib/constants";
-import { useState } from "react";
 
 
 export default function ProductItemIntro({ data }: { data: JSONObject }) {
@@ -13,8 +12,7 @@ export default function ProductItemIntro({ data }: { data: JSONObject }) {
 
     const showDetailsPage = () => {
         AppStore.setProduct(data);
-        setCurrentPage( Constant.PAGE_PRODUCT_DETAILS );
-        
+        setCurrentPage( Constant.PAGE_PRODUCT_DETAILS, data );
     }
 
     return (

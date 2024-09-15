@@ -34,7 +34,7 @@ export default function AppWrapper() {
 			<main className={`flex-1 overflow-auto bg-ghost-white`}>
 				{currentPage.name === Constant.PAGE_HOME && <HomePage />}
 				{currentPage.name === Constant.PAGE_PRODUCTS_BY_CATEGORY && <ProductsByCategoryPage />}
-				{currentPage.name === Constant.PAGE_PRODUCT_DETAILS && <ProductDetailsPage data={AppStore.getProduct()} />}
+				{currentPage.name === Constant.PAGE_PRODUCT_DETAILS && <ProductDetailsPage />}
 				{currentPage.name === Constant.PAGE_SEARCH_PRODUCT && <ProductSearchPage />}
 
 
