@@ -2,7 +2,6 @@ import { JSONObject } from "@/lib/definations";
 import Image from "next/image";
 import ProductRating from "./ProductRating";
 import { useCurrentPage } from "@/contexts/MainUiContext";
-import * as AppStore from "@/lib/appStore";
 import * as Constant from "@/lib/constants";
 
 
@@ -11,7 +10,6 @@ export default function ProductItemIntro({ data }: { data: JSONObject }) {
     const {setCurrentPage} = useCurrentPage();
 
     const showDetailsPage = () => {
-        AppStore.setProduct(data);
         setCurrentPage( Constant.PAGE_PRODUCT_DETAILS, data );
     }
 

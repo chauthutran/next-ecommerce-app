@@ -2,24 +2,25 @@
 
 import { JSONObject } from "@/lib/definations";
 import Image from "next/image";
-import ProductDetailsNav from "./layout/ProductDetailsNav";
 import ProductRating from "./product/ProductRating";
 import { useEffect, useState } from "react";
 import * as dbService from "@/lib/dbService";
 import ProductList from "./product/ProductList";
 import { useCurrentPage } from "@/contexts/MainUiContext";
+import * as Constant from "@/lib/constants";
+import { RiBubbleChartFill } from "react-icons/ri";
 
 
 export default function ProductDetailsPage() {
 
     const productNo = 10;
 
-    const { currentPage } = useCurrentPage();
+    const { currentPage, setCurrentPage, previousPage } = useCurrentPage();
     const [suggestedProducts, setSuggestedProducts] = useState<JSONObject[]>([]);
     const [errMessage, setErrMessage] = useState("");
 
     const fetchSimilarProducts = async () => {
-        const response: JSONObject = await dbService.fetchTopRatingProductsByCategory( data.category._id, productNo );
+        const response: JSONObject = await dbService.fetchTopRatingProductsByCategory(data.category._id, productNo);
         if (response.status != "success") {
             setErrMessage(response.message);
         }
@@ -27,7 +28,7 @@ export default function ProductDetailsPage() {
             setSuggestedProducts(response.data);
         }
     }
-    
+
 
     useEffect(() => {
         fetchSimilarProducts();
@@ -36,7 +37,58 @@ export default function ProductDetailsPage() {
     const data = currentPage.data;
     return (
         <>
-            <ProductDetailsNav />
+            {(previousPage?.name === Constant.PAGE_HOME 
+                || previousPage?.name === Constant.PAGE_SEARCH_PRODUCT
+                || previousPage?.name === Constant.PAGE_PRODUCTS_BY_CATEGORY
+            ) && <nav className="flex items-center px-6 py-1 bg-mustard-yellow text-black">
+                <RiBubbleChartFill className="" />
+                
+                {/* Home Navigation */}
+                {previousPage?.name === Constant.PAGE_HOME && (
+                    <div className="flex items-center space-x-1">
+                        <div
+                            className="px-2 py-1 hover:bg-ghost-white rounded-sm cursor-pointer"
+                            onClick={() => setCurrentPage(Constant.PAGE_HOME)}
+                        >
+                            Home
+                        </div>
+                    </div>
+                )}
+                
+                {/* Category Navigation */}
+                {previousPage?.name === Constant.PAGE_PRODUCTS_BY_CATEGORY && (
+                    <div className="flex items-center space-x-1">
+                        <div
+                            className="px-2 py-1 hover:bg-ghost-white rounded-sm cursor-pointer"
+                            onClick={() => setCurrentPage(Constant.PAGE_PRODUCTS_BY_CATEGORY, previousPage.data)}
+                        >
+                            {previousPage.data.name}
+                        </div>
+                    </div>
+                )}
+
+                {/* Search Results Navigation */}
+                {previousPage?.name === Constant.PAGE_SEARCH_PRODUCT && (
+                    <div className="flex items-center space-x-2">
+                        {/* Search Result Button */}
+                        <div
+                            className="px-4 py-1 hover:bg-ghost-white rounded-md cursor-pointer"
+                            onClick={() => setCurrentPage(Constant.PAGE_SEARCH_PRODUCT, previousPage.data)}
+                        >
+                            Search Results
+                        </div>
+
+                        {/* Separator */}
+                        <span>/</span>
+
+                        {/* Current Product Name */}
+                        <div className="bg-white px-4 py-1 rounded-md shadow-sm">
+                            {currentPage.data.name}
+                        </div>
+                    </div>
+                )}
+            </nav>}
+
 
             <div className="flex flex-col">
                 <div className="flex-1 grid grid-cols-1 gap-6 lg:grid-cols-2 md:grid-cols-2 h-full py-10 bg-white shadow-lg rounded-lg overflow-hidden m-3">

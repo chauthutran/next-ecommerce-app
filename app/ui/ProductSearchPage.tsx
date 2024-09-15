@@ -43,16 +43,6 @@ export default function ProductSearchPage() {
 
     return (
         <>
-            {/* <nav className="flex items-center space-x-2 px-6 py-2 bg-mustard-yellow text-black">
-
-                <div className="flex space-x-1 items-center text-back ">
-                    <RiBubbleChartFill />
-                    {filteredList.length == 0 && <div>Sorry, no products match your search.</div>}
-                    {filteredList.length == 1 && <div>1 product found</div>}
-                    {filteredList.length > 1 && <div>{filteredList.length} products found</div>}
-                </div>
-            </nav> */}
-
             <div className="flex space-x-5">
                 <div className="">
                     <ProductFiltersOption data={currentPage.data.data} handleSelectFilters={(filters) => filterData(filters)} />
