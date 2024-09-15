@@ -18,7 +18,7 @@ export default function ProductItemIntro({ data }: { data: JSONObject }) {
     }
 
     return (
-        <div key={data._id} className="bg-white p-4 rounded-lg shadow-md" onClick={() => showDetailsPage() }>
+        <div key={data._id} className="bg-white p-4 rounded-lg shadow-md cursor-pointer" onClick={() => showDetailsPage() }>
             <Image
                 src={data.images[0]}
                 alt={data.name}

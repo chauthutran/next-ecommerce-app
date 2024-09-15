@@ -43,7 +43,7 @@ export default function ProductBrandFilter({data, handleOnChange}: {data: JSONOb
             {getBrandes().map((brand: string, idx: number) => (
                 <div
                     key={`brand_${brand}`}
-                    className="flex items-center justify-between p-3 w-full text-xl">
+                    className="flex items-center justify-between px-2 py-1 w-full text-xl">
                     <label className="flex items-center space-x-3">
                         <input
                             type="checkbox"

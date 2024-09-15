@@ -3,19 +3,18 @@
 import { JSONObject } from "@/lib/definations";
 import * as dbService from "@/lib/dbService";
 import { useEffect, useState } from "react";
-import { MdCategory } from "react-icons/md";
-import { BiCategoryAlt } from "react-icons/bi";
-import { CiBoxList } from "react-icons/ci";
-import { TbLayoutListFilled } from "react-icons/tb";
-import { PiListBold } from "react-icons/pi";
 import { FiList } from "react-icons/fi";
+import { useCurrentPage } from "@/contexts/MainUiContext";
+import * as Constant from "@/lib/constants";
 
 
 export default function CategoryMenus() {
 
+    const { currentPage, setCurrentPage } = useCurrentPage();
     const [categories, setCategories] = useState<JSONObject | null>(null);
     const [errMessage, setErrMessage] = useState("");
     const [isVisible, setIsVisible] = useState(false);
+    const [selectedId, setSelectedId] = useState("");
 
 
     const fetchCategories = async () => {
@@ -32,6 +31,15 @@ export default function CategoryMenus() {
     useEffect(() => {
         fetchCategories();
     }, []);
+
+    useEffect(() => {
+        
+    }, [currentPage])
+
+    const handleCategorySelected = (category: JSONObject) => {
+        setSelectedId( category._id );
+        setCurrentPage(Constant.PAGE_PRODUCTS_BY_CATEGORY, category);
+    }
 
     // Toggle the category list visibility
     const toggleVisibility = () => {
@@ -53,7 +61,8 @@ export default function CategoryMenus() {
                     {categories.map((category: JSONObject, idx: number) => (
                         <div
                             key={`category_${category._id}`}
-                            className="flex items-center space-x-4 p-4 cursor-pointer text-black hover:bg-bright-yellow hover:text-black transition-all duration-300 ease-in-out"
+                            className={`flex items-center space-x-4 p-4 cursor-pointer text-black hover:bg-bright-yellow hover:text-black transition-all duration-300 ease-in-out ${selectedId === category._id && "bg-bright-yellow" }`}
+                            onClick={() => handleCategorySelected(category)}
                         >
                             {/* Icon */}
                             <div

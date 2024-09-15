@@ -16,7 +16,7 @@ export default function ProductDetailsPage({ data }: { data: JSONObject }) {
     const [errMessage, setErrMessage] = useState("");
 
     const fetchSimilarProducts = async () => {
-        const response: JSONObject = await dbService.fetchTopRatingProductsByCategory(productNo, data.category);
+        const response: JSONObject = await dbService.fetchTopRatingProductsByCategory( data.category._id, productNo );
         if (response.status != "success") {
             setErrMessage(response.message);
         }
@@ -24,11 +24,16 @@ export default function ProductDetailsPage({ data }: { data: JSONObject }) {
             setSuggestedProducts(response.data);
         }
     }
+console.log(data);
+
+    useEffect(() => {
+        fetchSimilarProducts();
+    }, []);
 
 
     useEffect(() => {
         fetchSimilarProducts();
-    }, [])
+    }, [data]);
 
     return (
         <>

@@ -12,6 +12,7 @@ import ProductSearchPage from "./ProductSearchPage";
 import { JSONObject } from "@/lib/definations";
 import Header from "./layout/Header";
 import { useState } from "react";
+import ProductsByCategoryPage from "./ProductsByCategoryPage";
 
 
 export default function AppWrapper() {
@@ -32,8 +33,10 @@ export default function AppWrapper() {
 			
 			<main className={`flex-1 overflow-auto bg-ghost-white`}>
 				{currentPage.name === Constant.PAGE_HOME && <HomePage />}
+				{currentPage.name === Constant.PAGE_PRODUCTS_BY_CATEGORY && <ProductsByCategoryPage />}
 				{currentPage.name === Constant.PAGE_PRODUCT_DETAILS && <ProductDetailsPage data={AppStore.getProduct()} />}
 				{currentPage.name === Constant.PAGE_SEARCH_PRODUCT && <ProductSearchPage />}
+
 
 				{currentPage.name === Constant.PAGE_LOGIN && <LoginForm />}
 				{currentPage.name === Constant.PAGE_USER_REGISTRATION && <RegisterForm />}

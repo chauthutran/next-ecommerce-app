@@ -57,7 +57,7 @@ export default function ProductFiltersOption({ data, handleSelectFilters }: { da
 
                     {/* For Price list */}
                     <div className="">
-                        <div className="text-xl font-semibold uppercase">Price</div>
+                        <div className="text-xl font-semibold uppercase mb-3">Price</div>
                         {/* Price list */}
                         <div
                             className="scrollbar-custom flex flex-col items-start text-black transition-all duration-300 ease-in-out space-y-3 ml-3"
@@ -70,7 +70,7 @@ export default function ProductFiltersOption({ data, handleSelectFilters }: { da
 
                     {/* For brand list */}
                     <div className="">
-                        <div className="text-xl py-1 font-semibold mb-4 uppercase">Brand</div>
+                        <div className="text-xl py-1 font-semibold mb-3 uppercase">Brand</div>
 
                         {/* Scrollable brand list */}
                         <div
@@ -84,7 +84,7 @@ export default function ProductFiltersOption({ data, handleSelectFilters }: { da
 
                     {/* For Category list */}
                     <div>
-                        <div className="text-xl py-1 font-semibold mb-4 uppercase">Category</div>
+                        <div className="text-xl py-1 font-semibold mb-3 uppercase">Category</div>
 
                         {/* Scrollable Category list */}
                         <div

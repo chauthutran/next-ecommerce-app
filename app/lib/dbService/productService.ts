@@ -11,6 +11,7 @@ export async function fetchTopRatingProducts(limit: number): Promise<JSONObject>
 		await connectToDatabase();
 
 		const products = await Product.find({})
+				.populate('category', 'name') // Populate the category field and select the 'name' field
 				.sort({ rating: 1 })  // Sort by rating in descending order
 				.limit(limit);  // Limit to 10 products
 
@@ -39,16 +40,23 @@ export async function fetchLatestProducts(limit: number): Promise<JSONObject> {
 	}
 }
 
-export async function fetchTopRatingProductsByCategory(limit: number, categoryId: string): Promise<JSONObject> {
+export async function fetchTopRatingProductsByCategory( categoryId: string, limit?: number): Promise<JSONObject> {
 	try {
 		await connectToDatabase();
 
 		const categoryIdObj = new mongoose.Types.ObjectId(categoryId);
 
-		const products = await Product.find({category: categoryIdObj})
-				.populate('category', 'name') // Populate the category field and select the 'name' field
-				.sort({ createdAt: 1 })  // Sort by rating in descending order
-				.limit(limit);  // Limit to 10 products
+		const productsQuery = Product.find({ category: categoryIdObj })
+				.populate('category', 'name')  // Populate the category field and select the 'name' field
+				.sort({ createdAt: 1 });  // Sort by createdAt in ascending order
+
+		// Apply limit only if it's provided
+		if (limit) {
+			productsQuery.limit(limit);
+		}
+
+		const products = await productsQuery; // Await the query result
+
 
 		return { status: "success", data: Utils.cloneJSONObject(products) };
 

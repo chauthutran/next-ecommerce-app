@@ -39,7 +39,7 @@ export default function ProductCategoryFilter({data, handleOnChange}: {data: JSO
             {getCategoryNames().map((categoryName: string, idx: number) => (
                 <div
                     key={`category_${categoryName}`}
-                    className="flex items-center justify-between p-3 w-full text-xl">
+                    className="flex items-center justify-between px-2 py-1 w-full text-xl">
                     <label className="flex items-center space-x-3">
                         <input
                             type="checkbox"
