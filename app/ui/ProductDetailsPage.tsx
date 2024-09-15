@@ -9,6 +9,8 @@ import ProductList from "./product/ProductList";
 import { useCurrentPage } from "@/contexts/MainUiContext";
 import * as Constant from "@/lib/constants";
 import { RiBubbleChartFill } from "react-icons/ri";
+import * as AppStore from "@/lib/appStore";
+import DOMPurify from "dompurify";
 
 
 export default function ProductDetailsPage() {
@@ -35,6 +37,19 @@ export default function ProductDetailsPage() {
     }, []);
 
     const data = currentPage.data;
+    
+    const renderConfigData = () => {
+        const template = AppStore.getConfigData().productDetails.join("");
+        const sanitizedHTML = template.replace(/\$\{data\.(\w+)\}/g, (match: string, key: string) => {
+            return key in data ? data[key] : match;
+        });
+
+        return DOMPurify.sanitize(sanitizedHTML);
+    }
+
+
+    const detailsInfoTag = renderConfigData();
+
     return (
         <>
             {(previousPage?.name === Constant.PAGE_HOME 
@@ -108,16 +123,21 @@ export default function ProductDetailsPage() {
                         </div>
                     )}
 
-                    {/* Product Info */}
-                    <div className="p-4">
+                    {/* Product Info - If there is configuration for 'productDetails' */}
+                    {detailsInfoTag != null && <div 
+                        className="p-4"
+                        dangerouslySetInnerHTML={{ __html: detailsInfoTag }}
+                    />}
+                    {/* Product Info - Default infor without the configuration 'productDetails' */}
+                    {detailsInfoTag === null && <div className="p-4">
                         <h2 className="text-xl font-bold text-gray-800">{data.name}</h2>
                         <ProductRating rating={data.rating} numReviews={data.numReviews} />
                         <p className="text-gray-600 mt-2">{data.description}</p>
-                        <p className="text-lg font-semibold text-gray-800 mt-2">Price: ${data.price}</p>
+                        <p className="text-lg font-semibold text-red-600 mt-2">Price: ${data.price}</p>
                         <p className="text-sm text-gray-500 mt-1">Brand: {data.brand}</p>
                         <p className="text-sm text-gray-500">Stock: {data.stock}</p>
-
-                    </div>
+                    </div>}
+                   
 
                     {/* Reviews Section */}
                     {data.reviews.length > 0 && (

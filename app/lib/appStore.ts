@@ -1,21 +1,20 @@
 import { JSONObject } from "./definations";
 import * as Utils from "@/lib/utils";
 
+let _configData: JSONObject = {};
 
-let _product: JSONObject = {};
-let _products: JSONObject[] = [];
+export const fetchConfigData = async(): Promise<JSONObject> => {
+    try {
+        const response = await fetch("/config.json");
+        _configData = await response.json();
 
-export const setProduct = (product: JSONObject) => {
-    _product = product;
-}
+        return _configData;
+    }
+    catch (error: any) {
+        return ({status: "error", message: error.message});
+    }
+};
 
-export const getProduct = () => {
-    return _product;
-}
-
-export const setProducts = (products: JSONObject[]) => {
-    _products = products;
-}
-export const getProducts = () => {
-    return _products;
+export const getConfigData = () => {
+    return _configData;
 }

@@ -6,18 +6,20 @@ import { JSONObject } from "@/lib/definations";
 import * as dbService from "@/lib/dbService";
 import ProductList from "./product/ProductList";
 import { RiBubbleChartFill } from "react-icons/ri";
+import * as AppStore from "@/lib/appStore";
 
 
 export default function HomePage() {
 
-    const productNo = 10;
+    const topRatingProductNo = AppStore.getConfigData().topRating;
+    const latestProductNo = AppStore.getConfigData().latestProduct;
 
     const [topRatingProducts, setTopRatingProducts] = useState<JSONObject[]>([]);
     const [latestProducts, setLatestProducts] = useState<JSONObject[]>([]);
     const [errMessage, setErrMessage] = useState("");
 
     const fetchTopRatingProducts = async () => {
-        const response: JSONObject = await dbService.fetchTopRatingProducts(productNo);
+        const response: JSONObject = await dbService.fetchTopRatingProducts(topRatingProductNo);
         if (response.status != "success") {
             setErrMessage(response.message);
         }
@@ -27,7 +29,7 @@ export default function HomePage() {
     }
 
     const fetchLatestProducts = async () => {
-        const response: JSONObject = await dbService.fetchLatestProducts(productNo);
+        const response: JSONObject = await dbService.fetchLatestProducts(latestProductNo);
         if (response.status != "success") {
             setErrMessage(response.message);
         }

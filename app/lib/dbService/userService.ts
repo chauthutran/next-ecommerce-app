@@ -65,26 +65,3 @@ export async function register(userData: JSONObject): Promise<JSONObject> {
         // }
 	}
 }
-
-
-// export async function linkTeamMembers() {
-//     try {
-//         await connectToDatabase();
-
-//         // Find all users with the "team_member" role
-//         const teamMembers = await User.find({ role: 'team_member' });
-
-//         // Iterate over each team member and link them to other team members
-//         for (let user of teamMembers) {
-//             user.teamMembers = teamMembers
-//                 .filter(member => member._id.toString() !== user._id.toString()) // Exclude the user from their own teamMembers array
-//                 .map(member => member._id); // Map to ObjectId
-
-//             await user.save();
-//         }
-
-//         console.log('Team members linked successfully.');
-//     } catch (error) {
-//         console.error('Error linking team members:', error);
-//     } 
-// }

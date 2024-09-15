@@ -37,7 +37,6 @@ export default function ProductSearchPage() {
             );
         })
 
-        console.log("resolvedData", resolvedData);
         setFilteredList( resolvedData );
     }
 

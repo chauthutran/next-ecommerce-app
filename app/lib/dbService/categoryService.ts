@@ -10,11 +10,7 @@ export async function fetchCategories(): Promise<JSONObject> {
 		await connectToDatabase();
 
 		const categories = await Category.find({});
-
-		console.log("------ fetchCategories", categories);
 		return { status: "success", data: Utils.cloneJSONObject(categories) };
-
-		// return { status: "success", data: [] };
 	} catch (error: any) {
 		return { status: "error", message: error.message };
 	}
