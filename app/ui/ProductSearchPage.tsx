@@ -55,7 +55,7 @@ export default function ProductSearchPage() {
                         {filteredList.length > 1 && <div>{filteredList.length} products found</div>}
                     </div>
 
-                    <ProductList data={filteredList} />
+                    <div><ProductList data={filteredList} /></div>
                 </div>
             </div>
         </>

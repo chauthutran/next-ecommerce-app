@@ -4,7 +4,6 @@ import { JSONObject } from "@/lib/definations";
 import ProductSearch from "../product/ProductSearchInput";
 import { useCurrentPage } from "@/contexts/MainUiContext";
 import * as Constant from "@/lib/constants";
-import { DiBower } from "react-icons/di";
 import { DiYii } from "react-icons/di";
 
 
@@ -25,7 +24,6 @@ export default function Header() {
                     <ProductSearch 
                         handleSearchResponse={(response: JSONObject) => setCurrentPage(Constant.PAGE_SEARCH_PRODUCT, response) } />
                 </div>
-                <button className="px-5 py-2 rounded-md bg-mustard-yellow" onClick={() => setCurrentPage(Constant.PAGE_LOGIN)} >Login</button>
             </div>
 
         </header>

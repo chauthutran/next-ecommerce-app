@@ -153,8 +153,11 @@ export default function ProductDetailsPage() {
                     )}
                 </div>
 
-                <div>
-                    <div className="font-semibold text-2xl mt-10 mb-5 border-b border-slate-400 pb-3 mx-4">Suggested products</div>
+                <div className="p-3 bg-gray-100 rounded-lg m-3 border">
+                    <div className="font-semibold text-2xl mt-5 mb-10 border-b border-slate-400 pb-3 flex">
+                        <RiBubbleChartFill className="text-firebrick mr-2" />
+                        Suggested products
+                    </div>
                     <div className="mx-4"><ProductList data={suggestedProducts} /></div>
                 </div>
             </div>

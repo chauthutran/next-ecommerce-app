@@ -9,190 +9,175 @@ import * as Constant from '@/lib/constants';
 import { useCurrentPage } from "@/contexts/MainUiContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { GiThreeLeaves } from 'react-icons/gi';
+import { JSONObject } from '@/lib/definations';
+import { IoIosCloseCircle } from 'react-icons/io';
 
-export default function RegisterForm() {
+export default function RegisterForm({ onSubmit, onClose }: { onSubmit: (formData: JSONObject) => void, onClose: () => void }) {
 
 	const { setCurrentPage } = useCurrentPage();
-	const { loading, error, user, register} = useAuth();
+	const { loading, error, user, register } = useAuth();
 
-	const [email, setEmail] = useState("");
+	// Set initial form state based on schema
+	const [formData, setFormData] = useState<JSONObject>({
+		name: '',
+		email: '',
+		password: '',
+		role: 'customer',
+		address: {
+			street: '',
+			city: '',
+			country: '',
+			zipCode: ''
+		},
+		orders: [], // Assuming orders are selected/added through another process
+	});
 
-	const [password, setPassword] = useState("");
-	const [confirmPassword, setConfirmPassword] = useState("");
-	const [errorMsg, setErrorMsg] = useState<string | null>(null);
-	const [role, setRole] = useState<string>("project_manager");
-
-
-	useEffect(() => {
-	  if( user != null ) {
-		setCurrentPage(Constant.PAGE_HOME);
-	  }
-	},[user])
-
-	const handleRegisterBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
-		e.preventDefault();
-
-		if( checkValidUser() ){
-			register({ email, password, role });
+	// Handle form input change
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+		const { name, value } = e.target;
+		if (name.includes("address")) {
+			const [field, key] = name.split(".");
+			setFormData({
+				...formData,
+				[field]: {
+					...formData[field],
+					[key]: value
+				}
+			});
+		} else {
+			setFormData({
+				...formData,
+				[name]: value,
+			});
 		}
 	};
 
-	
-    const validateConfirmPassword = (password: string, confirmPassword: string) => {
-        if (password !== confirmPassword) {
-            setErrorMsg('Passwords do not match!');
-        } else {
-            setErrorMsg(null);
-        }
-    };
-
-
-    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const newPassword = e.target.value;
-        setPassword(newPassword);
-        validateConfirmPassword(newPassword, confirmPassword);
-    };
-
-    const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newConfirmPassword = e.target.value;
-        setConfirmPassword(newConfirmPassword);
-        validateConfirmPassword(password, newConfirmPassword);
-    };
-	
-	const checkValidUser = () => {
-		return( email !== "" && password !== "" && confirmPassword === password );
-	}
-
-    const handleCancelBtn = () => {
-        const ok = confirm("Are you sure you don't want to register an account ?")
-        if( ok ) {
-            setCurrentPage(Constant.PAGE_HOME);
-        }
-    }
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+		console.log("====== formData: ", formData)
+		// Call the parent onSubmit function with the form data
+		register(formData);
+	};
 
 	return (
-		<div className="justify-center">
-			<div className="relative w-full bg-opacity-20 bg-royal-blue h-full pb-10">
-
-				<div className="absolute inset-0 flex m-95">
-					<GiThreeLeaves className="text-pale-blue size-96 opacity-60" />
+		<div className="bg-white rounded-lg max-w-[600px] md:w-3/4">
+			<h2 className="py-3 px-5 text-xl flex bg-blue-navy text-black rounded-t-lg items-center justify-between font-semibold border-b-2 border-gray-300">
+				<div>Register New User</div>
+				<div className="flex cursor-pointer" onClick={() => onClose()}>
+					<IoIosCloseCircle className="size-6" />
 				</div>
+			</h2>
 
-		<div className="relative max-w-md mx-auto p-8">
-			<h2 className="text-2xl font-semibold mb-3 text-center uppercase" style={{letterSpacing: "2px"}}>Register</h2>
+			<div className="p-5 rounded-md bg-ghost-white overflow-y-auto" style={{ height: 'calc(100vh - 180px)' }}>
+				<form onSubmit={handleSubmit} action="POST" className="grid grid-cols-1 justify-center gap-4 m-1" >
+					<div>
+						<label className="block text-xs font-medium" htmlFor="email">Name</label>
+						<div className="relative">
+							<input
+								type="text"
+								name="name"
+								className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
+								value={formData.name}
+								onChange={handleChange}
+								required
+							/>
+						</div>
+					</div>
 
-			<div className="mb-4">
-				<label
-					className="block text-xs font-medium text-gray-900"
-					htmlFor="email"
-				>
-					Email
-				</label>
-				<div className="relative">
-					<input
-						className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-						id="email"
-						type="text"
-						name="email"
-						value={email}
-						required
-						minLength={4}
-						placeholder="Enter your email"
-						onChange={(e) => { setEmail(e.target.value) }}
-					/>
-					<IoKeyOutline className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
-					
-					{email === "" && <span className="text-red-500 italic text-sm">* This field is required</span>}
-				</div>
+					<div>
+						<label className="block text-xs font-medium" htmlFor="email">Email</label>
+						<div className="relative">
+							<input
+								type="email"
+								name="email"
+								className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
+								value={formData.email}
+								onChange={handleChange}
+								required
+							/>
+						</div>
+					</div>
+
+					<div>
+						<label className="block text-xs font-medium" htmlFor="password" >Password</label>
+						<div className="relative">
+							<input
+								type="password"
+								name="password"
+								className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
+								value={formData.password}
+								onChange={handleChange}
+								required
+							/>
+						</div>
+					</div>
+
+					<div>
+						<label className="block text-xs font-medium" htmlFor="role">Role</label>
+						<div className="relative">
+							<select name="role" value={formData.role} onChange={handleChange}
+								className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500">
+								<option value="customer">Customer</option>
+								<option value="admin">Admin</option>
+							</select>
+						</div>
+					</div>
+
+					<h3>Address</h3>
+					<div>
+						<label className="block text-xs font-medium" htmlFor="address.street">Street</label>
+						<div className="relative">
+							<input
+								type="text"
+								name="address.street"
+								className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
+								value={formData.address.street}
+								onChange={handleChange}
+							/>
+						</div>
+						<div>
+							<label className="block text-xs font-medium" htmlFor="address.city">City</label>
+							<div className="relative">
+								<input
+									type="text"
+									name="address.city"
+									className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
+									value={formData.address.city}
+									onChange={handleChange}
+								/>
+							</div>
+						</div>
+
+						<div>
+							<label className="block text-xs font-medium" htmlFor="address.country">Country</label>
+							<div className="relative">
+								<input
+									type="text"
+									name="address.country"
+									className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
+									value={formData.address.country}
+									onChange={handleChange}
+								/>
+							</div>
+						</div>
+
+						<div>
+							<label className="block text-xs font-medium" htmlFor="address.zipCode">Zip Code</label>
+							<div className="relative">
+								<input
+									type="text"
+									name="address.zipCode"
+									className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
+									value={formData.address.zipCode}
+									onChange={handleChange}
+								/>
+							</div>
+						</div>
+					</div>
+
+					<button type="submit" className="bg-mustard-yellow p-1 rounded-lg">Submit</button>
+				</form>
 			</div>
-
-			<div className="mb-4">
-				<label
-					className="block text-xs font-medium text-gray-900"
-					htmlFor="password"
-				>
-					Password
-				</label>
-				<div className="relative">
-					<input
-						className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-						id="password"
-						type="password"
-						name="password"
-						value={password}
-						required
-						minLength={4}
-						placeholder="Enter your password"
-						onChange={handlePasswordChange}
-					/>
-					<IoKeyOutline className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
-					
-					{password === "" && <span className="text-red-500 italic text-sm">* This field is required</span>}
-				</div>
-			</div>
-			
-			<div className="mb-4">
-				<label
-					className="block text-xs font-medium text-gray-900"
-					htmlFor="confirmPassword"
-				>
-					Confirm Password
-				</label>
-				<div className="relative">
-					<input
-						className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-						id="confirmPassword"
-						type="password"
-						name="confirmPassword"
-						value={confirmPassword}
-						required
-						minLength={4}
-						placeholder="Confirm Password"
-						onChange={handleConfirmPasswordChange}
-					/>
-					<IoKeyOutline className="pointer-events-none absolute left-3 top-1/3 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
-
-					{errorMsg !== null && <span className="text-red-500 italic text-sm">{errorMsg}</span>}
-				</div>
-			</div>
-
-			
-			<div className="mb-4">
-				<label
-					className="block text-xs font-medium text-gray-900"
-					htmlFor="role"
-				>
-					Role
-				</label>
-				<div className="relative">
-					<select
-						className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-						id="role"
-						name="role"
-						value={role}
-						onChange={(e) => setRole(e.target.value)}
-					>
-						<option value="project_manager">Project Manager</option>
-						<option value="team_member">Team Member</option>
-					</select>
-					{errorMsg !== null && <span className="text-red-500 italic text-sm">{errorMsg}</span>}
-				</div>
-			</div>
-
-
-			<div className="mb-4">
-				<button className="flex w-full flex-row bg-blue-navy px-4 py-2 rounded hover:bg-bg-blue-800 text-white" onClick={(e) => handleRegisterBtn(e)} >
-					<span className="flex-1">Register</span>
-					{loading && <FaSpinner className="ml-auto h-5 text-gray-50" size={20} />}
-				</button>
-			</div>
-
-			<div className="flex h-8 items-end space-x-1">
-				{error !== null && <p>{error}</p>}
-			</div>
-
-		</div>
-		</div>
 		</div>
 	);
 }

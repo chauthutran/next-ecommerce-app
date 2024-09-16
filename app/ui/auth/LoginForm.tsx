@@ -15,7 +15,7 @@ export default function LoginForm() {
 	const { setCurrentPage } = useCurrentPage();
 	const { user, login, loading, error } = useAuth();
 
-	const [email, setEmail] = useState("manager1@example.com");
+	const [email, setEmail] = useState("test1@example.com");
 	const [password, setPassword] = useState("1234");
 
 
