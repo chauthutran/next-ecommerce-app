@@ -13,7 +13,9 @@ export default function Footer() {
     return (
         <>
             {showRegistrationForm && <Modal>
-                <RegisterForm onSubmit={() => {} } onClose={() => setShowRegistrationForm(false)} /> 
+                <div className="">
+                    <RegisterForm onClose={() => setShowRegistrationForm(false)} />
+                </div>
             </Modal>}
 
             <footer className="h-30 py-3 w-screen text-center text-xs z-10 flex item-center bg-gray-200 border-t border-gray-300">

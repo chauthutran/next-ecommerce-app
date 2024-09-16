@@ -12,7 +12,7 @@ import { GiThreeLeaves } from 'react-icons/gi';
 import { JSONObject } from '@/lib/definations';
 import { IoIosCloseCircle } from 'react-icons/io';
 
-export default function RegisterForm({ onSubmit, onClose }: { onSubmit: (formData: JSONObject) => void, onClose: () => void }) {
+export default function RegisterForm({ onClose }: { onClose: () => void }) {
 
 	const { setCurrentPage } = useCurrentPage();
 	const { loading, error, user, register } = useAuth();
@@ -54,8 +54,6 @@ export default function RegisterForm({ onSubmit, onClose }: { onSubmit: (formDat
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		console.log("====== formData: ", formData)
-		// Call the parent onSubmit function with the form data
 		register(formData);
 	};
 
@@ -68,7 +66,7 @@ export default function RegisterForm({ onSubmit, onClose }: { onSubmit: (formDat
 				</div>
 			</h2>
 
-			<div className="p-5 rounded-md bg-ghost-white overflow-y-auto" style={{ height: 'calc(100vh - 180px)' }}>
+			<div className="px-5 py-2 rounded-md bg-ghost-white overflow-y-auto" style={{ height: 'calc(100vh - 180px)' }}>
 				<form onSubmit={handleSubmit} action="POST" className="grid grid-cols-1 justify-center gap-4 m-1" >
 					<div>
 						<label className="block text-xs font-medium" htmlFor="email">Name</label>
@@ -177,6 +175,10 @@ export default function RegisterForm({ onSubmit, onClose }: { onSubmit: (formDat
 
 					<button type="submit" className="bg-mustard-yellow p-1 rounded-lg">Submit</button>
 				</form>
+			</div>
+			
+			<div className="flex h-8 items-end space-x-1 text-red-500 m-5 italic">
+				{error != null && <p>{error}</p>}
 			</div>
 		</div>
 	);

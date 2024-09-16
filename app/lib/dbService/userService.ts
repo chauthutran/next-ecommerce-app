@@ -50,6 +50,7 @@ export async function register(userData: JSONObject): Promise<JSONObject> {
 		userData.password = await Encrypt.hashPassword(password);
 
 		const newUser = await User.create(userData);
+		console.log("newUser: ", newUser);
 		return ({status: "succcess", data: Utils.cloneJSONObject(newUser)});
 
 	} catch (error: any) {
