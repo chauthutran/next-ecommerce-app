@@ -6,7 +6,7 @@ type ProductProps = {
     numReviews?: number;
 };
 
-const ProductRating: React.FC<ProductProps> = ({ rating, numReviews }) => {
+const ProductRating: React.FC<ProductProps> = ({ rating, numReviews}) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);

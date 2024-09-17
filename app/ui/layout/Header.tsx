@@ -5,11 +5,14 @@ import ProductSearch from "../product/ProductSearchInput";
 import { useCurrentPage } from "@/contexts/MainUiContext";
 import * as Constant from "@/lib/constants";
 import { DiYii } from "react-icons/di";
+import { useAuth } from "@/contexts/AuthContext";
+import { FaRegUser } from "react-icons/fa";
 
 
 export default function Header() {
 
     const { setCurrentPage } = useCurrentPage();
+	const { user } = useAuth();
 
     return (
         <header className="grid grid-cols-1 md:grid-cols-2 px-4 py-3 border-b-2 border-gray-200 gap-4">
@@ -19,11 +22,15 @@ export default function Header() {
                 <div className="font-extrabold cursor-pointer text-black whitespace-nowrap" onClick={() => setCurrentPage(Constant.PAGE_HOME)}>E-Commerce</div>
             </div>
 
-            <div className="flex mr-3 space-x-10 justify-center items-center">
+            <div className="flex mr-3 space-x-5 justify-center items-center flex-row">
                 <div className="flex-1">
                     <ProductSearch 
                         handleSearchResponse={(response: JSONObject) => setCurrentPage(Constant.PAGE_SEARCH_PRODUCT, response) } />
+                    
                 </div>
+                {user === null && <div className="rounded-full border-2 border-bright-yellow bg-yellow-100 p-2">
+                    <FaRegUser/> 
+                </div>}
             </div>
 
         </header>

@@ -7,6 +7,7 @@ import * as dbService from "@/lib/dbService";
 import ProductList from "./product/ProductList";
 import { RiBubbleChartFill } from "react-icons/ri";
 import * as AppStore from "@/lib/appStore";
+import { useAuth } from "@/contexts/AuthContext";
 
 
 export default function HomePage() {

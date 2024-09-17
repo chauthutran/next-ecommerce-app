@@ -32,6 +32,14 @@ export default function RegisterForm({ onClose }: { onClose: () => void }) {
 		orders: [], // Assuming orders are selected/added through another process
 	});
 
+
+	useEffect(() => {
+		if (user != null) {
+			alert("The user is registered successfully and logged!");
+		}
+	}, [user])
+
+
 	// Handle form input change
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 		const { name, value } = e.target;
@@ -58,7 +66,7 @@ export default function RegisterForm({ onClose }: { onClose: () => void }) {
 	};
 
 	return (
-		<div className="bg-white rounded-lg max-w-[600px] md:w-3/4">
+		<div className="bg-ghost-white rounded-lg min-w-[600px] md:w-3/4">
 			<h2 className="py-3 px-5 text-xl flex bg-blue-navy text-black rounded-t-lg items-center justify-between font-semibold border-b-2 border-gray-300">
 				<div>Register New User</div>
 				<div className="flex cursor-pointer" onClick={() => onClose()}>
@@ -66,7 +74,7 @@ export default function RegisterForm({ onClose }: { onClose: () => void }) {
 				</div>
 			</h2>
 
-			<div className="px-5 py-2 rounded-md bg-ghost-white overflow-y-auto" style={{ height: 'calc(100vh - 180px)' }}>
+			<div className="px-5 py-2 rounded-md bg-white overflow-y-auto" style={{ height: 'calc(100vh - 180px)' }}>
 				<form onSubmit={handleSubmit} action="POST" className="grid grid-cols-1 justify-center gap-4 m-1" >
 					<div>
 						<label className="block text-xs font-medium" htmlFor="email">Name</label>
