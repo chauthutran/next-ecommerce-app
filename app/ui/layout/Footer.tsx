@@ -34,7 +34,7 @@ export default function Footer() {
                 </div>
 
                 <div className="rounded-md justify-end mr-5 flex space-x-3" >
-                    {user !== null && <>
+                    {user === null && <>
                         <div className="cursor-pointer" onClick={() => setShowLoginForm(true)}>Login</div>
                         <div className="cursor-pointer text-gray-400">|</div>
                         <div className="cursor-pointer"  onClick={() => setShowRegistrationForm(true)}>Register</div>

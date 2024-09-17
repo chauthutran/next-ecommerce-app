@@ -14,32 +14,33 @@ export default function ProductItemIntro({ data }: { data: JSONObject }) {
     const [showReviews, setShowReviews] = useState(false);
 
     const showDetailsPage = () => {
-        setCurrentPage( Constant.PAGE_PRODUCT_DETAILS, data );
+        setCurrentPage(Constant.PAGE_PRODUCT_DETAILS, data);
     }
 
     return (
         <>
-            <div key={data._id} className="bg-white p-4 rounded-lg shadow-md cursor-pointer" onClick={() => showDetailsPage() }>
+            <div key={data._id} className="bg-white p-4 rounded-lg shadow-md">
                 <Image
                     src={data.images[0]}
                     alt={data.name}
                     width={300}
                     height={300}
-                    className="object-cover w-full h-48 mb-4 rounded"
+                    className="object-cover w-full h-48 mb-4 rounded cursor-pointer"
+                    onClick={() => showDetailsPage()}
                 />
 
                 <h2 className="text-gray-800">{data.description}</h2>
                 <p className="text-lg font-semibold text-red-600 mt-2">${data.price}</p>
-                <div onClick={() => setShowReviews(true)}>
+                <div className="cursor-pointer" onClick={() => data.numReviews > 0 && setShowReviews(true)}>
                     <ProductRating rating={data.rating} numReviews={data.numReviews} />
                 </div>
             </div>
 
-            <Modal >
+            {showReviews && <Modal >
                 <div className="">
-                    <ReviewList  />
+                    <ReviewList productId={data._id} onClose={() => setShowReviews(false)} />
                 </div>
-            </Modal>
+            </Modal>}
         </>
     )
 }

@@ -61,3 +61,36 @@ export async function register(userData: JSONObject): Promise<JSONObject> {
         // }
 	}
 }
+
+export async function generateUsers(): Promise<JSONObject> {
+	try {
+    await connectToDatabase();
+
+    for (let i = 2; i <= 200; i++) {
+		const item = 
+		{
+			"name": `TEST ${i}`,
+			"email": `test${i}@example.com`,
+			"password": "$2a$10$SLIKs23i5Ha/1hQTc3BJk.ulkbBrEtJKCdPDFnS4C81/jie.QzkZ6",
+			"role": "customer",
+			"address": {
+			  "street": "123 ANC Street",
+			  "city": "City A",
+			  "country": "KR",
+			  "zipCode": `${(i + "").padStart(2, '0')}`,
+			},
+			"orders": [],
+			createdAt: new Date(
+				2024,
+				8,
+				Math.floor(Math.random() * 30) + 1
+			).toISOString(), // Random date in September 2024
+		  };
+
+		await User.create(item);
+	}
+}catch(ex: any) {
+    console.log(ex.message);
+}
+	return { status: "success" };
+}

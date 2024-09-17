@@ -48,7 +48,7 @@ export default function HomePage() {
     if (errMessage !== "") return (<div>{errMessage}</div>);
 
     return (
-        <div className="">
+        <div className=""> 
             {/* Make CategoryMenus fixed */}
             <div className="fixed w-[250px]">
                 <CategoryMenus />

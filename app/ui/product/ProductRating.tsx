@@ -12,7 +12,7 @@ const ProductRating: React.FC<ProductProps> = ({ rating, numReviews}) => {
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
     return (
-        <div className="flex items-center mt-2">
+        <div className="flex items-center">
             {/* Full Stars */}
             {Array(fullStars)
                 .fill(0)

@@ -45,10 +45,6 @@ export default function AppWrapper() {
 				{currentPage.name === Constant.PAGE_PRODUCTS_BY_CATEGORY && <ProductsByCategoryPage />}
 				{currentPage.name === Constant.PAGE_PRODUCT_DETAILS && <ProductDetailsPage />}
 				{currentPage.name === Constant.PAGE_SEARCH_PRODUCT && <ProductSearchPage />}
-
-
-				{currentPage.name === Constant.PAGE_LOGIN && <LoginForm />}
-				{currentPage.name === Constant.PAGE_USER_REGISTRATION && <RegisterForm />}
 			</main>
 		</>
 	)

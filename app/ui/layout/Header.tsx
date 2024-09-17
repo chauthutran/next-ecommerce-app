@@ -7,6 +7,7 @@ import * as Constant from "@/lib/constants";
 import { DiYii } from "react-icons/di";
 import { useAuth } from "@/contexts/AuthContext";
 import { FaRegUser } from "react-icons/fa";
+import UserMenus from "./UserMenus";
 
 
 export default function Header() {
@@ -28,9 +29,11 @@ export default function Header() {
                         handleSearchResponse={(response: JSONObject) => setCurrentPage(Constant.PAGE_SEARCH_PRODUCT, response) } />
                     
                 </div>
-                {user === null && <div className="rounded-full border-2 border-bright-yellow bg-yellow-100 p-2">
+                {/* {user === null && <div className="rounded-full border-2 border-yellow-300 bg-yellow-100 p-2">
                     <FaRegUser/> 
-                </div>}
+                </div>} */}
+
+                {user !== null && <UserMenus handleItemClick={() => {}} />}
             </div>
 
         </header>
