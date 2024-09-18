@@ -12,7 +12,7 @@ import { RiBubbleChartFill } from "react-icons/ri";
 import * as AppStore from "@/lib/appStore";
 import DOMPurify from "dompurify";
 import Modal from "./basics/Modal";
-import ReviewList from "./review/ReviewList";
+import ReviewList from "./product/ReviewList";
 
   
 export default function ProductDetailsPage() {
@@ -134,6 +134,8 @@ export default function ProductDetailsPage() {
                             
                         />
                         <div className="mx-4 mt-2"><ProductRating rating={data.rating} numReviews={data.numReviews} /></div>
+
+                        <button className="mx-4 mt-3 bg-mustard-yellow py-1 px-3 rounded-lg" onClick={() => {}}>Add To Card</button>
                     </div>}
 
                     {/* Product Info - Default infor without the configuration 'productDetails' */}

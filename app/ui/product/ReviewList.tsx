@@ -2,7 +2,7 @@ import { JSONObject } from "@/lib/definations";
 import { useEffect, useState } from "react";
 import * as dbService from "@/lib/dbService";
 import { IoIosCloseCircle } from "react-icons/io";
-import ProductRating from "../product/ProductRating";
+import ProductRating from "./ProductRating";
 
 
 export default function ReviewList({ productId }: { productId: string}) {

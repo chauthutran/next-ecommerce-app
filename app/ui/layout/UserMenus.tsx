@@ -1,16 +1,9 @@
-import { JSONObject } from '@/lib/definations';
 import React, { useEffect, useRef, useState } from 'react';
-import { RiUserSettingsFill } from "react-icons/ri";
-import { BiSolidPurchaseTag } from "react-icons/bi";
-import * as Constant from "@/lib/constants";
-import { GiTakeMyMoney } from "react-icons/gi";
-import { MdNotificationAdd } from "react-icons/md";
-import { IoLogOutSharp } from "react-icons/io5";
-import { RiStockFill } from "react-icons/ri";
-import { IoMdHome } from "react-icons/io";
-import { IoMdSettings } from "react-icons/io";
 import { FaRegUser } from 'react-icons/fa';
 import { useAuth } from '@/contexts/AuthContext';
+import { MdLogout } from "react-icons/md";
+import { MdOutlineShoppingCart } from "react-icons/md";
+import { TfiPackage } from "react-icons/tfi";
 
 
 export default function UserMenus({ handleItemClick }: { handleItemClick: (pageName: string) => void }) {
@@ -46,9 +39,18 @@ export default function UserMenus({ handleItemClick }: { handleItemClick: (pageN
 	const renderUserRelatedMenus = () => {
 		return (
 			<>
-				{/* <li className="my-3 border-b border-gray-600 "></li> */}
-				<li className="py-2 flex space-x-2 items-center cursor-pointer" onClick={() => logout()} >
-					<IoLogOutSharp size={22} />
+				<li className="px-4 py-2 flex space-x-2 items-center cursor-pointer" >
+					<MdOutlineShoppingCart  size={22} />
+					<span>Cart</span>
+				</li>
+				<li className="px-4 py-2 flex space-x-2 items-center cursor-pointer" >
+					<TfiPackage size={18} />
+					<span>Orders</span>
+				</li>
+
+				<li className="mx-2 my-3 border-b border-gray-300 "></li>
+				<li className="px-4 py-2 flex space-x-2 items-center cursor-pointer text-firebrick" onClick={() => logout()} >
+					<MdLogout size={22} />
 					<span>Log-out</span>
 				</li>
 			</>
@@ -69,7 +71,7 @@ export default function UserMenus({ handleItemClick }: { handleItemClick: (pageN
 				{/* Dropdown menu */}
 				{isOpen && (
 					<div ref={divRef} className="absolute right-0 mt-2 w-48 bg-white border-2 border-gray-300 rounded-md shadow-lg">
-						<ul className="py-1 text-navy-blue px-4">
+						<ul className="py-1 text-navy-blue">
 							{renderUserRelatedMenus()}
 						</ul>
 					</div>

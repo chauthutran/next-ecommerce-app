@@ -5,7 +5,7 @@ import { useCurrentPage } from "@/contexts/MainUiContext";
 import * as Constant from "@/lib/constants";
 import { useState } from "react";
 import Modal from "../basics/Modal";
-import ReviewList from "../review/ReviewList";
+import ReviewList from "./ReviewList";
 
 
 export default function ProductItemIntro({ data }: { data: JSONObject }) {
