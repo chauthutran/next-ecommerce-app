@@ -11,8 +11,10 @@ import * as Constant from "@/lib/constants";
 import { RiBubbleChartFill } from "react-icons/ri";
 import * as AppStore from "@/lib/appStore";
 import DOMPurify from "dompurify";
+import Modal from "./basics/Modal";
+import ReviewList from "./review/ReviewList";
 
-
+  
 export default function ProductDetailsPage() {
 
     const productNo = 10;
@@ -20,6 +22,7 @@ export default function ProductDetailsPage() {
     const { currentPage, setCurrentPage, previousPage } = useCurrentPage();
     const [suggestedProducts, setSuggestedProducts] = useState<JSONObject[]>([]);
     const [errMessage, setErrMessage] = useState("");
+
 
     const fetchSimilarProducts = async () => {
         const response: JSONObject = await dbService.fetchTopRatingProductsByCategory(data.category._id, productNo);
@@ -105,8 +108,8 @@ export default function ProductDetailsPage() {
             </nav>}
 
 
-            <div className="flex flex-col">
-                <div className="flex-1 grid grid-cols-1 gap-6 lg:grid-cols-2 md:grid-cols-2 h-full py-10 bg-white shadow-lg rounded-lg overflow-hidden m-3">
+            <div className="flex flex-col mx-4">
+                <div className="flex-1 grid grid-cols-1 gap-6 lg:grid-cols-2 md:grid-cols-2 h-full bg-white shadow-lg rounded-t-lg overflow-hidden mt-3">
                     {/* Image Section */}
                     {data.images.length > 0 && (
                         <div className="flex lg:justify-end lg:items-end">
@@ -124,36 +127,36 @@ export default function ProductDetailsPage() {
                     )}
 
                     {/* Product Info - If there is configuration for 'productDetails' */}
-                    {detailsInfoTag != null && <div 
-                        className="p-4"
-                        dangerouslySetInnerHTML={{ __html: detailsInfoTag }}
-                    />}
+                    {detailsInfoTag != null && <div>
+                        <div 
+                            className="pt-4 px-4"
+                            dangerouslySetInnerHTML={{ __html: detailsInfoTag }}
+                            
+                        />
+                        <div className="mx-4 mt-2"><ProductRating rating={data.rating} numReviews={data.numReviews} /></div>
+                    </div>}
+
                     {/* Product Info - Default infor without the configuration 'productDetails' */}
                     {detailsInfoTag === null && <div className="p-4">
                         <h2 className="text-xl font-bold text-gray-800">{data.name}</h2>
-                        <ProductRating rating={data.rating} numReviews={data.numReviews} />
+                         <ProductRating rating={data.rating} numReviews={data.numReviews} />
                         <p className="text-gray-600 mt-2">{data.description}</p>
                         <p className="text-lg font-semibold text-red-600 mt-2">Price: ${data.price}</p>
                         <p className="text-sm text-gray-500 mt-1">Brand: {data.brand}</p>
                         <p className="text-sm text-gray-500">Stock: {data.stock}</p>
                     </div>}
-                   
 
-                    {/* Reviews Section */}
-                    {data.reviews.length > 0 && (
-                        <div className="p-4 border-t">
-                            <h3 className="font-semibold text-gray-800">Reviews</h3>
-                            {data.reviews.map((review: JSONObject, idx: number) => (
-                                <div key={idx} className="mt-2">
-                                    <p className="text-sm text-yellow-500">Rating: {review.rating}</p>
-                                    <p className="text-sm text-gray-600">Comment: {review.comment}</p>
-                                </div>
-                            ))}
-                        </div>
-                    )}
                 </div>
 
-                <div className="p-3 bg-gray-100 rounded-lg m-3 border">
+                {/* Reviews Section */}
+                <div className="px-6 border-t w-full bg-white shadow-lg rounded-b-lg pb-5">
+                    <div className="font-semibold text-xl mt-5 mb-3 border-b border-slate-400 pb-3 flex">
+                        Reviews
+                    </div>
+                    <ReviewList productId={data._id} />
+                </div>
+                
+                <div className="bg-white rounded-lg mt-5 border">
                     <div className="font-semibold text-2xl mt-5 mb-10 border-b border-slate-400 pb-3 flex">
                         <RiBubbleChartFill className="text-firebrick mr-2" />
                         Suggested products
@@ -161,6 +164,7 @@ export default function ProductDetailsPage() {
                     <div className="mx-4"><ProductList data={suggestedProducts} /></div>
                 </div>
             </div>
+
         </>
     )
 }

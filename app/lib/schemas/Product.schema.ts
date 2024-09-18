@@ -14,13 +14,6 @@ const ProductSchema = new Schema(
         images: [{ type: String }],
         rating: { type: Number, default: 0 },
         numReviews: { type: Number, default: 0 },
-        reviews: [
-          {
-            userId: { type: Schema.Types.ObjectId, ref: 'User' },
-            comment: String,
-            rating: Number,
-          },
-        ],
         createdAt: { type: Date, default: Date.now }
 	},
 	{

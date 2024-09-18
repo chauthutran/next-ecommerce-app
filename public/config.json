@@ -5,7 +5,6 @@
     },
     "productDetails": [
         "   <h2 class='text-xl font-bold text-gray-800'>${data.name}</h2>",
-        "   <ProductRating rating={data.rating} numReviews={data.numReviews} />",
         "   <p class='text-gray-600 mt-2'>${data.description}</p>",
         "   <p class='text-lg font-semibold text-red-600 mt-2'>Price: ${data.price}</p>",
         "   <p class='text-sm text-gray-500 mt-1'>Brand: ${data.brand}</p>",
