@@ -4,8 +4,6 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useCurrentPage } from "@/contexts/MainUiContext";
 import * as Constant from "@/lib/constants";
 import HomePage from "./HomePage";
-import LoginForm from "./auth/LoginForm";
-import RegisterForm from "./auth/RegisterForm";
 import ProductDetailsPage from "./ProductDetailsPage";
 import ProductSearchPage from "./ProductSearchPage";
 import Header from "./layout/Header";

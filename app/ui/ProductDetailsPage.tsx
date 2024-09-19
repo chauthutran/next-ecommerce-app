@@ -13,6 +13,7 @@ import * as AppStore from "@/lib/appStore";
 import DOMPurify from "dompurify";
 import Modal from "./basics/Modal";
 import ReviewList from "./product/ReviewList";
+import ProductDetailsInfo from "./product/ProductDetailsInfo";
 
   
 export default function ProductDetailsPage() {
@@ -108,53 +109,11 @@ export default function ProductDetailsPage() {
             </nav>}
 
 
-            <div className="flex flex-col mx-4">
-                <div className="flex-1 grid grid-cols-1 gap-6 lg:grid-cols-2 md:grid-cols-2 h-full bg-white shadow-lg rounded-t-lg overflow-hidden mt-3">
-                    {/* Image Section */}
-                    {data.images.length > 0 && (
-                        <div className="flex lg:justify-end lg:items-end">
-                            {data.images.map((img: string, idx: number) => (
-                                <Image
-                                    key={idx}
-                                    src={img}
-                                    alt={data.name}
-                                    width={300}
-                                    height={300}
-                                    className="object-cover w-72 h-72 rounded-lg"
-                                />
-                            ))}
-                        </div>
-                    )}
-
-                    {/* Product Info - If there is configuration for 'productDetails' */}
-                    {detailsInfoTag != null && <div>
-                        <div 
-                            className="pt-4 px-4"
-                            dangerouslySetInnerHTML={{ __html: detailsInfoTag }}
-                            
-                        />
-                        <div className="mx-4 mt-2"><ProductRating rating={data.rating} numReviews={data.numReviews} /></div>
-
-                        <button className="mx-4 mt-3 bg-mustard-yellow py-1 px-3 rounded-lg" onClick={() => {}}>Add To Card</button>
-                    </div>}
-
-                    {/* Product Info - Default infor without the configuration 'productDetails' */}
-                    {detailsInfoTag === null && <div className="p-4">
-                        <h2 className="text-xl font-bold text-gray-800">{data.name}</h2>
-                         <ProductRating rating={data.rating} numReviews={data.numReviews} />
-                        <p className="text-gray-600 mt-2">{data.description}</p>
-                        <p className="text-lg font-semibold text-red-600 mt-2">Price: ${data.price}</p>
-                        <p className="text-sm text-gray-500 mt-1">Brand: {data.brand}</p>
-                        <p className="text-sm text-gray-500">Stock: {data.stock}</p>
-                    </div>}
-
-                </div>
+            <div className="flex flex-col mx-4 h-full bg-white shadow-lg rounded-t-lg overflow-hidden mt-3 pt-5">
+                   <ProductDetailsInfo data={data} />
 
                 {/* Reviews Section */}
                 <div className="px-6 border-t w-full bg-white shadow-lg rounded-b-lg pb-5">
-                    <div className="font-semibold text-xl mt-5 mb-3 border-b border-slate-400 pb-3 flex">
-                        Reviews
-                    </div>
                     <ReviewList productId={data._id} />
                 </div>
                 

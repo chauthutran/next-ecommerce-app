@@ -11,25 +11,27 @@ import { useAuth } from "@/contexts/AuthContext";
 import { IoIosCloseCircle } from "react-icons/io";
 
 
-export default function LoginForm({ onClose }: { onClose: () => void }) {
+export default function LoginForm({ onClose, onSuccess }: { onClose: () => void, onSuccess?: () => void}) {
 
-	const { setCurrentPage } = useCurrentPage();
 	const { user, login, loading, error } = useAuth();
 
 	const [email, setEmail] = useState("test1@example.com");
 	const [password, setPassword] = useState("1234");
 
 
-	useEffect(() => {
-		if (user != null) {
-			onClose();
-		}
-	}, [user])
+	// useEffect(() => {
+	// 	if (user != null) {
+	// 		onClose();
+	// 	}
+	// }, [user])
 
-	const handleLoginBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
+	const handleLoginBtn = async(e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
 
-		login(email, password);
+		await login(email, password);
+		if( onSuccess) onSuccess();
+
+		onClose();
 	};
 
 
