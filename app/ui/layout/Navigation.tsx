@@ -11,6 +11,7 @@ export default function Navigation() {
     const goBackPage = (): string | null => {
         if( previousPage?.name === Constant.PAGE_HOME 
             || currentPage?.name === Constant.PAGE_PRODUCTS_BY_CATEGORY 
+            || currentPage?.name === Constant.PAGE_USER_CART
             || currentPage?.name === Constant.PAGE_SEARCH_PRODUCT ) return Constant.PAGE_HOME;
         
         if( currentPage?.name === Constant.PAGE_PRODUCT_DETAILS ) {
