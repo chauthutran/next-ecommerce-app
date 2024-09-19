@@ -51,9 +51,7 @@ export default function ProductDetailsPage() {
         return DOMPurify.sanitize(sanitizedHTML);
     }
 
-
-    const detailsInfoTag = renderConfigData();
-
+    
     return (
         <>
             {(previousPage?.name === Constant.PAGE_HOME 

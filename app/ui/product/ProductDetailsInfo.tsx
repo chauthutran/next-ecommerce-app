@@ -8,7 +8,7 @@ import DOMPurify from "dompurify";
 import ProductRating from "./ProductRating";
 import { useAuth } from "@/contexts/AuthContext";
 import Modal from "../basics/Modal";
-import LoginForm from "../auth/LoginForm";
+import LoginForm from "../user/LoginForm";
 import * as dbService from "@/lib/dbService";
 import Alert from "../basics/Alert";
 import * as Constant from "@/lib/constants";

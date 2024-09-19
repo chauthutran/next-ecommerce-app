@@ -4,11 +4,15 @@ import { useAuth } from '@/contexts/AuthContext';
 import { MdLogout } from "react-icons/md";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { TfiPackage } from "react-icons/tfi";
+import { useCurrentPage } from '@/contexts/MainUiContext';
+import * as Constant from "@/lib/constants";
 
 
 export default function UserMenus({ handleItemClick }: { handleItemClick: (pageName: string) => void }) {
 	
 	const { setUser } = useAuth();
+	const { setCurrentPage } = useCurrentPage();
+
 	const [isOpen, setIsOpen] = useState(false);
 	const divRef = useRef<HTMLDivElement>(null);
 
@@ -39,7 +43,7 @@ export default function UserMenus({ handleItemClick }: { handleItemClick: (pageN
 	const renderUserRelatedMenus = () => {
 		return (
 			<>
-				<li className="px-4 py-2 flex space-x-2 items-center cursor-pointer" >
+				<li className="px-4 py-2 flex space-x-2 items-center cursor-pointer" onClick={() => setCurrentPage(Constant.PAGE_USER_CART)}>
 					<MdOutlineShoppingCart  size={22} />
 					<span>Cart</span>
 				</li>
@@ -63,7 +67,7 @@ export default function UserMenus({ handleItemClick }: { handleItemClick: (pageN
 			<div className="relative text-left hidden md:flex">
 				<button
 					onClick={toggleDropdown}
-					className="p-2 bg-gold text-black rounded-full bg-yellow-100  border-2 border-yellow-300 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+					className="p-2 bg-gold text-black rounded-full bg-yellow-100  border-2 border-yellow-300 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-500"
 				>
 					<FaRegUser /> 
 				</button>

@@ -11,6 +11,7 @@ import ProductsByCategoryPage from "./ProductsByCategoryPage";
 import * as AppStore from "@/lib/appStore";
 import { useEffect, useState } from "react";
 import { JSONObject } from "@/lib/definations";
+import CartPage from "./user/cart/CartPage";
 
 
 export default function AppWrapper() {
@@ -43,6 +44,8 @@ export default function AppWrapper() {
 				{currentPage.name === Constant.PAGE_PRODUCTS_BY_CATEGORY && <ProductsByCategoryPage />}
 				{currentPage.name === Constant.PAGE_PRODUCT_DETAILS && <ProductDetailsPage />}
 				{currentPage.name === Constant.PAGE_SEARCH_PRODUCT && <ProductSearchPage />}
+
+				{currentPage.name === Constant.PAGE_USER_CART && <CartPage />}
 			</main>
 		</>
 	)

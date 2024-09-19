@@ -2,9 +2,9 @@
 import { useCurrentPage } from "@/contexts/MainUiContext";
 import * as Constant from "@/lib/constants";
 import Modal from "../basics/Modal";
-import RegisterForm from "../auth/RegisterForm";
+import RegisterForm from "../user/RegisterForm";
 import { useState } from "react";
-import LoginForm from "../auth/LoginForm";
+import LoginForm from "../user/LoginForm";
 import { useAuth } from "@/contexts/AuthContext";
 
 export default function Footer() {
