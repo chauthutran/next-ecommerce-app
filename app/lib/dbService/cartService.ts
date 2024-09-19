@@ -17,8 +17,7 @@ export async function fetchUserCart(userId: string): Promise<JSONObject> {
 		const cart =  await Cart.find({user: userIdObj}).populate("product");
 		// .populate("product", "name description price");
 
-		return ({status: "succcess", data: Utils.cloneJSONObject(cart)});
-
+		return ({status: "success", data: Utils.cloneJSONObject(cart)});
 	} catch (error: any) {
 		return ({status: "error", message: error.message});
 	}
@@ -51,7 +50,7 @@ export async function addProductToCart(userId: string, productId: string, quanti
 		}
 
       
-		return ({status: "succcess", data: Utils.cloneJSONObject(cart)});
+		return ({status: "success", data: Utils.cloneJSONObject(cart)});
 
 	} catch (error: any) {
 		return ({status: "error", message: error.message});

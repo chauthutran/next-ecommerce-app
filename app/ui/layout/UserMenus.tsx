@@ -64,7 +64,7 @@ export default function UserMenus({ handleItemClick }: { handleItemClick: (pageN
 	return (
 		<>
 			{/* For the large size */}
-			<div className="relative text-left hidden md:flex">
+			<div className="relative text-left">
 				<button
 					onClick={toggleDropdown}
 					className="p-2 bg-gold text-black rounded-full bg-yellow-100  border-2 border-yellow-300 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-500"

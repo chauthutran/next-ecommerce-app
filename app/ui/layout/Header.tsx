@@ -23,16 +23,12 @@ export default function Header() {
                 <div className="font-extrabold cursor-pointer text-black whitespace-nowrap">E-Commerce</div>
             </div>
 
-            <div className="flex mr-3 space-x-5 justify-center items-center flex-row">
+            <div className="flex flex-row mr-3 space-x-5 justify-center items-center">
                 <div className="flex-1">
                     <ProductSearch 
                         handleSearchResponse={(response: JSONObject) => setCurrentPage(Constant.PAGE_SEARCH_PRODUCT, response) } />
                     
                 </div>
-                {/* {user === null && <div className="rounded-full border-2 border-yellow-300 bg-yellow-100 p-2">
-                    <FaRegUser/> 
-                </div>} */}
-
                 {user !== null && <UserMenus handleItemClick={() => {}} />}
             </div>
 

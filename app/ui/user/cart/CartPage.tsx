@@ -1,3 +1,5 @@
+'use client';
+
 import { useAuth } from '@/contexts/AuthContext';
 import { JSONObject } from '@/lib/definations';
 import { useEffect, useState } from 'react';
@@ -14,6 +16,8 @@ export default function CartPage() {
 
     const fetchUserCart = async () => {
         const response: JSONObject = await dbService.fetchUserCart(user!._id);
+
+        console.log(response);
         if (response.status != "success") {
             setErrMessage(response.message);
         }
@@ -22,20 +26,14 @@ export default function CartPage() {
         }
     }
 
-
     useEffect(() => {
         fetchUserCart();
     }, []);
 
 
-    const totalPrice = (product: JSONObject, quantity: number) => {
-        return quantity * product.price;
-    }
-
-
     return (
-        <div className="container mx-auto mt-10">
-            <h1 className="text-2xl font-semibold mb-6">Shopping Cart</h1>
+        <div className="p-5 mx-auto bg-white h-full">
+            <h1 className="text-2xl font-semibold mb-6">Your Cart</h1>
 
             {cartItems.length === 0 ? (
                 <p className="text-gray-600">Your cart is empty</p>
@@ -44,34 +42,54 @@ export default function CartPage() {
                     {cartItems.map((item) => (
                         <div
                             key={item.product._id}
-                            className="flex flex-col md:flex-row items-center justify-between bg-white shadow-md p-4 rounded-lg border border-gray-200"
+                            className="bg-white shadow-md p-4 rounded-lg border border-gray-200"
                         >
-                            {/* Product Image */}
-                            <div className="w-24 h-24">
-                                <Image
-                                    src={item.product.images[0]}
-                                    alt={item.product.name}
-                                    width={96}
-                                    height={96}
-                                    className="object-cover rounded-lg"
-                                />
-                            </div>
+                            {/* Product Selection and Title */}
+                            <label className="cursor-pointer space-x-3 text-lg font-semibold flex items-center mb-2">
+                                <input type="checkbox" />
+                                <span>{item.product.name}</span>
+                            </label>
 
-                            {/* Product Details */}
-                            <div className="flex flex-col flex-1 ml-4">
-                                <h2 className="text-lg font-semibold">{item.product.name}</h2>
-                                <p className="text-gray-600">{item.product.description}</p>
-                                <p className="text-lg text-red-500 font-bold mt-2">${item.product.price}</p>
-                            </div>
+                            {/* Product Image and Details */}
+                            <div className="grid grid-cols-1 md:grid-cols-[100px_auto_auto] gap-5">
+                                {/* Product Image */}
+                                <div className="w-24 h-24">
+                                    <Image
+                                        src={item.product.images[0]}
+                                        alt={item.product.name}
+                                        width={96}
+                                        height={96}
+                                        className="object-cover rounded-lg"
+                                    />
+                                </div>
 
-                            {/* Quantity and Total Price */}
-                            <div className="flex flex-col items-center mt-4 md:mt-0 md:ml-6">
-                                <span className="text-gray-700">Quantity: {item.quantity}</span>
-                                <span className="text-lg text-gray-800 font-semibold mt-2">
-                                    Total: ${(item.quantity * item.product.price).toFixed(2)}
-                                </span>
+                                {/* Product Details */}
+                                <div>
+                                    <p>{item.product.description}</p>
+                                    <p className="text-lg text-red-500 font-bold mt-2">${item.product.price}</p>
+
+                                    {/* Quantity and Total Price */}
+                                    <label className="grid grid-cols-[80px_100px] items-center gap-2">
+                                        <span className="text-gray-700">Quantity:</span>
+                                        <input
+                                            className="border border-gray-300 rounded-md px-3"
+                                            type="number"
+                                            value={item.quantity}
+                                        />
+                                    </label>
+                                </div>
+
+                                {/* Total */}
+                                <div className="flex h-full items-start justify-start space-x-3 lg:justify-end">
+                                    <div className="text-gray-800 font-semibold">Total:</div>
+                                    <div className="bg-red-500 text-white px-3 whitespace-nowrap rounded-lg">
+                                        ${(item.quantity * item.product.price).toFixed(2)}
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
+
                     ))}
                 </div>
             )}

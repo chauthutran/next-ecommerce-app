@@ -46,7 +46,7 @@ export async function register(userData: JSONObject): Promise<JSONObject> {
 
 		const newUser = await User.create(userData);
 		console.log("newUser: ", newUser);
-		return ({status: "succcess", data: Utils.cloneJSONObject(newUser)});
+		return ({status: "success", data: Utils.cloneJSONObject(newUser)});
 
 	} catch (error: any) {
 		return ({status: "error", message: error.message});

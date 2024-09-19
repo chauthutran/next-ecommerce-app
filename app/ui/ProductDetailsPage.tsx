@@ -51,7 +51,7 @@ export default function ProductDetailsPage() {
         return DOMPurify.sanitize(sanitizedHTML);
     }
 
-    
+
     return (
         <>
             {(previousPage?.name === Constant.PAGE_HOME 
@@ -107,7 +107,7 @@ export default function ProductDetailsPage() {
             </nav>}
 
 
-            <div className="flex flex-col mx-4 h-full bg-white shadow-lg rounded-t-lg overflow-hidden mt-3 pt-5">
+            <div className="flex flex-col mx-4 bg-white shadow-lg rounded-t-lg overflow-hidden mt-3 pt-5">
                    <ProductDetailsInfo data={data} />
 
                 {/* Reviews Section */}
