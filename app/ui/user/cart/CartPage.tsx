@@ -33,8 +33,9 @@ export default function CartPage() {
 
     return (
         <div className="p-5 mx-auto bg-white h-full">
-            <h1 className="text-2xl font-semibold mb-6">
+            <h1 className="grid grid-cols-1 md:grid-cols-2 text-2xl font-semibold mb-6 w-full">
                 <div>Your Cart</div>
+                <div className="justify-start flex mt-0 md:justify-end md:mt-3">Total: <span className="mx-3 px-3 bg-red-500 text-white px-3 whitespace-nowrap rounded-lg">$xxx</span></div>
             </h1>
 
             {cartItems.length === 0 ? (
@@ -44,11 +45,11 @@ export default function CartPage() {
                     {cartItems.map((item) => (
                         <div
                             key={item.product._id}
-                            className="bg-white shadow-md p-4 rounded-lg border border-gray-200"
+                            className="bg-white px-4 py-2 rounded-lg border-b border-gray-300"
                         >
                             {/* Product Selection and Title */}
-                            <label className="cursor-pointer space-x-3 text-lg font-semibold flex items-center mb-2">
-                                <input type="checkbox" />
+                            <label className="cursor-pointe space-x-3 text-lg font-semibold flex items-center mb-3">
+                            <input type="checkbox" className="w-6 h-6 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500" />
                                 <span>{item.product.name}</span>
                             </label>
 
@@ -82,9 +83,9 @@ export default function CartPage() {
                                 </div>
 
                                 {/* Total */}
-                                <div className="flex h-full items-start justify-start space-x-3 lg:justify-end">
+                                <div className="flex h-full items-start justify-start space-x-3 md:justify-end">
                                     <div className="text-gray-800 font-semibold">Total:</div>
-                                    <div className="bg-red-500 text-white px-3 whitespace-nowrap rounded-lg">
+                                    <div className="bg-red-500 text-white px-3 whitespace-nowrap rounded-lg font-semibold">
                                         ${(item.quantity * item.product.price).toFixed(2)}
                                     </div>
                                 </div>

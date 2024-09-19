@@ -34,7 +34,7 @@ export default function ProductSearchInput({handleSearchResponse}: {handleSearch
                 className="flex-1 py-2 px-4 text-sm outline-none placeholder:text-gray-500"
             />
             <button
-                className=" text-gray-500 bg-white px-4 py-2 flex items-center justify-center "
+                className=" text-gray-500 bg-white px-4 py-2 flex items-center justify-center"
                 onClick={() => fetchSimilarProducts()}
             >
                 <FaSearch className="h-5 w-5 hover:text-black" />
