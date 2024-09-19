@@ -20,10 +20,6 @@ export default function ProductDetailsInfo({ data }: { data: JSONObject }) {
     const [showLoginForm, setShowLoginForm] = useState(false);
     const [alertData, setAlertData] = useState<JSONObject | null>(null);
 
-    // useEffect(() => {
-    //     if( user !== null ) addProductToCart();
-    // }, [user]);
-
 
     const renderConfigData = () => {
         const template = AppStore.getConfigData().productDetails.join("");
@@ -35,7 +31,7 @@ export default function ProductDetailsInfo({ data }: { data: JSONObject }) {
     }
 
     const addProductToCart = async() => {
-        await dbService.addProductToCart( user!._id, data._id, 1);
+        await dbService.addProductToCart( user!._id, data._id);
         setAlertData({type: Constant.STATUS_TYPE_SUCCESS, message: "Product is added to the cart."});
     }
 

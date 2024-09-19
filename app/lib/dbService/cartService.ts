@@ -23,7 +23,7 @@ export async function fetchUserCart(userId: string): Promise<JSONObject> {
 	}
 }
 
-export async function addProductToCart(userId: string, productId: string, quantity: number): Promise<JSONObject> {
+export async function addProductToCart(userId: string, productId: string, quantity?: number): Promise<JSONObject> {
 	
 	try {
 		await connectToDatabase();
@@ -36,7 +36,14 @@ export async function addProductToCart(userId: string, productId: string, quanti
 		const found = await Cart.find({user: userIdObj, product: productIdObj});
 		if( found.length > 0 ) {
 			const payload = found[0];
-			payload.quantity = payload.quantity + 1;
+			let newQuantity = 1;
+			if( quantity === undefined ) {
+				newQuantity = payload.quantity + 1
+			 }
+			else {
+				newQuantity = quantity;
+			} 
+			payload.quantity = newQuantity;
 			cart =  await Cart.findByIdAndUpdate(payload._id, payload, { new: true, runValidators: true });
 		}
 		else { // Add new

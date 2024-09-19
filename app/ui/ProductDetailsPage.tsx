@@ -1,17 +1,11 @@
 'use client';
 
 import { JSONObject } from "@/lib/definations";
-import Image from "next/image";
-import ProductRating from "./product/ProductRating";
 import { useEffect, useState } from "react";
 import * as dbService from "@/lib/dbService";
 import ProductList from "./product/ProductList";
 import { useCurrentPage } from "@/contexts/MainUiContext";
-import * as Constant from "@/lib/constants";
 import { RiBubbleChartFill } from "react-icons/ri";
-import * as AppStore from "@/lib/appStore";
-import DOMPurify from "dompurify";
-import Modal from "./basics/Modal";
 import ReviewList from "./product/ReviewList";
 import ProductDetailsInfo from "./product/ProductDetailsInfo";
 
@@ -42,16 +36,6 @@ export default function ProductDetailsPage() {
 
     const data = currentPage.data;
     
-    const renderConfigData = () => {
-        const template = AppStore.getConfigData().productDetails.join("");
-        const sanitizedHTML = template.replace(/\$\{data\.(\w+)\}/g, (match: string, key: string) => {
-            return key in data ? data[key] : match;
-        });
-
-        return DOMPurify.sanitize(sanitizedHTML);
-    }
-
-
     return (
         <>
             <div className="flex flex-col mx-4 bg-white shadow-lg rounded-t-lg overflow-hidden mt-3 pt-5">
