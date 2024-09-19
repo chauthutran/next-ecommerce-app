@@ -7,7 +7,7 @@ import Alert from "@/ui/basics/Alert";
 import { useState } from "react";
 
 
-export default function CartItem({ data }: { data: JSONObject }) {
+export default function CartItem({ data, handleQuantityChangeSuccess }: { data: JSONObject, handleQuantityChangeSuccess: (quantity: number) => void }) {
 
     const { user } = useAuth();
     const [bgColor, setBgColor] = useState('white');
@@ -16,11 +16,12 @@ export default function CartItem({ data }: { data: JSONObject }) {
 
 
     const updateQuantity = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        const response = await dbService.addProductToCart(user!._id, data.product._id, parseInt(value));
+        const value = parseInt(e.target.value);
+        const response = await dbService.addProductToCart(user!._id, data.product._id, value);
         if (response.status === "success") {
             setQuantity(value);
             setBgColor("#bef7be");
+            handleQuantityChangeSuccess(value);
         }
         else {
             setAlertData({ type: Constant.STATUS_TYPE_SUCCESS, message: "Product is added to the cart." });
