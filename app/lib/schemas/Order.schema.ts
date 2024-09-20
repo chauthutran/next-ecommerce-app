@@ -13,9 +13,9 @@ const OrderSchema = new Schema(
 					required: true,
 				},
 				quantity: { type: Number, required: true },
+				price: { type: Number, required: true },
 			},
 		],
-		totalPrice: { type: Number, required: true },
 		shippingAddress: {
 			street: { type: String, required: true },
 			city: { type: String, required: true },

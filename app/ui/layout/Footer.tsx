@@ -22,6 +22,7 @@ export default function Footer() {
                     {user === null && (
                         <div className="flex space-x-4">
                             <div className="hover:text-gray-800 cursor-pointer" onClick={() => setShowLoginForm(true)}>Login</div>
+                            <div> | </div>
                             <div className="hover:text-gray-800 cursor-pointer" onClick={() => setShowRegistrationForm(true)}>Register</div>
                         </div>
                     )}

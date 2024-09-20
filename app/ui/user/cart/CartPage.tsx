@@ -71,14 +71,14 @@ export default function CartPage() {
                 if (foundCartItem !== null) {
                     products.push({
                         product: foundCartItem.product._id,
-                        quantity: foundCartItem.quantity
+                        quantity: foundCartItem.quantity,
+                        price: foundCartItem.product.price
                     });
                 }
             }
             const payload = {
                 user: user!._id,
                 products: products,
-                totalPrice: calculateTotal(),
                 shippingAddress: user!.address
             };
 
