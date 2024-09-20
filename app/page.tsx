@@ -11,7 +11,6 @@ export default function Home() {
 		 	 <AuthProvider>
 				<div className="h-screen flex flex-col text-black">
 					<AppWrapper />
-					<Footer /> 
 				</div>
 		 	</AuthProvider> 
 		 </MainUiProvider>

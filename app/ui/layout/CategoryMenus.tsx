@@ -50,7 +50,7 @@ export default function CategoryMenus() {
     else if (categories == null) return (<div>Loading ...</div>);
 
     return (
-        <div className="relative flex w-full lg:w-fit" style={{ height: 'calc(100vh - 150px)' }}>
+        <div className="relative flex w-full lg:w-fit" style={{ height: 'calc(100vh - 135px)' }}>
             {/* Category list with background color and sliding effect */}
             <div
                 className={`grid grid-cols-1 gap-4 rounded-lg border-2 border-gray-200 
@@ -61,7 +61,7 @@ export default function CategoryMenus() {
                     {categories.map((category: JSONObject, idx: number) => (
                         <div
                             key={`category_${category._id}`}
-                            className={`flex items-center space-x-4 p-4 cursor-pointer text-black hover:bg-bright-yellow hover:text-black transition-all duration-300 ease-in-out ${selectedId === category._id && "bg-bright-yellow" }`}
+                            className={`flex items-center space-x-4 p-4 cursor-pointer text-black hover:bg-yellow-400 hover:text-black transition-all duration-300 ease-in-out ${selectedId === category._id && "bg-yellow-400" }`}
                             onClick={() => handleCategorySelected(category)}
                         >
                             {/* Icon */}
@@ -78,7 +78,7 @@ export default function CategoryMenus() {
 
                 {/* Button to toggle visibility on small screens */}
                 <button
-                    className="text-black bg-bright-yellow rounded-r-md p-1 shadow-lg shadow-mustard-yellow lg:hidden absolute left-[285px] transition-colors hover:bg-color-2"
+                    className="text-black bg-bright-yellow rounded-r-md p-1 shadow-lg shadow-mustard-yellow lg:hidden absolute left-[285px] transition-colors hover:bg-mustard-yellow"
                     onClick={toggleVisibility}
                 >
                     <FiList className="size-8" />

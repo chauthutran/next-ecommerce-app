@@ -76,7 +76,7 @@ export default function ProductDetailsInfo({ data }: { data: JSONObject }) {
                     />
                     <div className="mx-4 mt-2"><ProductRating rating={data.rating} numReviews={data.numReviews} /></div>
 
-                    <button className="mx-4 mt-3 bg-mustard-yellow py-1 px-3 rounded-lg" onClick={() => handleShowAddToCartForm()}>Add To Card</button>
+                    <button className="mx-4 mt-3 bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-400" onClick={() => handleShowAddToCartForm()}>Add To Card</button>
                 </div>}
 
                 {/* Product Info - Default infor without the configuration 'productDetails' */}

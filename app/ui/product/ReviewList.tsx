@@ -29,9 +29,6 @@ export default function ReviewList({ productId }: { productId: string }) {
 
     return (
         <>
-            <div className="font-semibold text-xl mt-5 mb-3 border-b border-slate-300 pb-3 flex">
-                Reviews
-            </div>
             <div className="flex flex-col justify-center bg-white overflow-y-auto" >
                 <div className="space-y-2" style={{ height: 'calc(100vh - 180px)' }}>
                     {reviews.map((review, idx) => (

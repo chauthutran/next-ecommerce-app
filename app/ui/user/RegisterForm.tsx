@@ -66,128 +66,133 @@ export default function RegisterForm({ onClose }: { onClose: () => void }) {
 	};
 
 	return (
-		<div className="bg-ghost-white rounded-lg min-w-[600px] md:w-3/4">
-			<h2 className="py-3 px-5 text-xl flex bg-blue-navy text-black rounded-t-lg items-center justify-between font-semibold border-b-2 border-gray-300">
-				<div>Register New User</div>
-				<div className="flex cursor-pointer" onClick={() => onClose()}>
-					<IoIosCloseCircle className="size-6" />
+		<div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+			<div className="bg-white rounded-lg shadow-lg w-96">
+				<div className="bg-yellow-500 text-white p-3 rounded-t-lg flex">
+					<h2 className="text-xl font-semibold">Register New User</h2>
+					<div className="ml-auto cursor-pointer" onClick={() => onClose()}>
+						<IoIosCloseCircle className="text-white size-6" />
+					</div>
 				</div>
-			</h2>
 
-			<div className="px-5 py-2 rounded-md bg-white overflow-y-auto" style={{ height: 'calc(100vh - 180px)' }}>
-				<form onSubmit={handleSubmit} action="POST" className="grid grid-cols-1 justify-center gap-4 m-1" >
-					<div>
-						<label className="block text-xs font-medium" htmlFor="email">Name</label>
-						<div className="relative">
-							<input
-								type="text"
-								name="name"
-								className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
-								value={formData.name}
-								onChange={handleChange}
-								required
-							/>
-						</div>
-					</div>
+				<div className="">
+					<form onSubmit={handleSubmit} action="POST" >
+						<div className="overflow-y-auto pb-5 my-5 ml-5 mr-2 pr-2" style={{ maxHeight: 'calc(100vh - 300px)' }}>
+							<div className="grid grid-cols-1 justify-center gap-4">
+								<div>
+									<label className="block text-xs font-medium" htmlFor="email">Name</label>
+									<div className="relative">
+										<input
+											type="text"
+											name="name"
+											className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
+											value={formData.name}
+											onChange={handleChange}
+											required
+										/>
+									</div>
+								</div>
 
-					<div>
-						<label className="block text-xs font-medium" htmlFor="email">Email</label>
-						<div className="relative">
-							<input
-								type="email"
-								name="email"
-								className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
-								value={formData.email}
-								onChange={handleChange}
-								required
-							/>
-						</div>
-					</div>
+								<div>
+									<label className="block text-xs font-medium" htmlFor="email">Email</label>
+									<div className="relative">
+										<input
+											type="email"
+											name="email"
+											className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
+											value={formData.email}
+											onChange={handleChange}
+											required
+										/>
+									</div>
+								</div>
 
-					<div>
-						<label className="block text-xs font-medium" htmlFor="password" >Password</label>
-						<div className="relative">
-							<input
-								type="password"
-								name="password"
-								className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
-								value={formData.password}
-								onChange={handleChange}
-								required
-							/>
-						</div>
-					</div>
+								<div>
+									<label className="block text-xs font-medium" htmlFor="password" >Password</label>
+									<div className="relative">
+										<input
+											type="password"
+											name="password"
+											className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
+											value={formData.password}
+											onChange={handleChange}
+											required
+										/>
+									</div>
+								</div>
 
-					<div>
-						<label className="block text-xs font-medium" htmlFor="role">Role</label>
-						<div className="relative">
-							<select name="role" value={formData.role} onChange={handleChange}
-								className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500">
-								<option value="customer">Customer</option>
-								<option value="admin">Admin</option>
-							</select>
-						</div>
-					</div>
+								<div>
+									<label className="block text-xs font-medium" htmlFor="role">Role</label>
+									<div className="relative">
+										<select name="role" value={formData.role} onChange={handleChange}
+											className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500">
+											<option value="customer">Customer</option>
+											<option value="admin">Admin</option>
+										</select>
+									</div>
+								</div>
 
-					<h3>Address</h3>
-					<div>
-						<label className="block text-xs font-medium" htmlFor="address.street">Street</label>
-						<div className="relative">
-							<input
-								type="text"
-								name="address.street"
-								className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
-								value={formData.address.street}
-								onChange={handleChange}
-							/>
-						</div>
-						<div>
-							<label className="block text-xs font-medium" htmlFor="address.city">City</label>
-							<div className="relative">
-								<input
-									type="text"
-									name="address.city"
-									className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
-									value={formData.address.city}
-									onChange={handleChange}
-								/>
+								<h3>Address</h3>
+								<div>
+									<label className="block text-xs font-medium" htmlFor="address.street">Street</label>
+									<div className="relative">
+										<input
+											type="text"
+											name="address.street"
+											className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
+											value={formData.address.street}
+											onChange={handleChange}
+										/>
+									</div>
+									<div>
+										<label className="block text-xs font-medium" htmlFor="address.city">City</label>
+										<div className="relative">
+											<input
+												type="text"
+												name="address.city"
+												className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
+												value={formData.address.city}
+												onChange={handleChange}
+											/>
+										</div>
+									</div>
+
+									<div>
+										<label className="block text-xs font-medium" htmlFor="address.country">Country</label>
+										<div className="relative">
+											<input
+												type="text"
+												name="address.country"
+												className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
+												value={formData.address.country}
+												onChange={handleChange}
+											/>
+										</div>
+									</div>
+
+									<div>
+										<label className="block text-xs font-medium" htmlFor="address.zipCode">Zip Code</label>
+										<div className="relative">
+											<input
+												type="text"
+												name="address.zipCode"
+												className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
+												value={formData.address.zipCode}
+												onChange={handleChange}
+											/>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 
-						<div>
-							<label className="block text-xs font-medium" htmlFor="address.country">Country</label>
-							<div className="relative">
-								<input
-									type="text"
-									name="address.country"
-									className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
-									value={formData.address.country}
-									onChange={handleChange}
-								/>
-							</div>
+						<div className="bg-gray-100 p-4 rounded-b-lg justify-end">
+							<button type="submit" className="w-full bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-400">Submit</button>
 						</div>
+					</form>
+				</div>
+			</div >
 
-						<div>
-							<label className="block text-xs font-medium" htmlFor="address.zipCode">Zip Code</label>
-							<div className="relative">
-								<input
-									type="text"
-									name="address.zipCode"
-									className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-3 text-sm outline-2 placeholder:text-gray-500"
-									value={formData.address.zipCode}
-									onChange={handleChange}
-								/>
-							</div>
-						</div>
-					</div>
-
-					<button type="submit" className="bg-mustard-yellow p-1 rounded-lg">Submit</button>
-				</form>
-			</div>
-			
-			<div className="flex h-8 items-end space-x-1 text-red-500 m-5 italic">
-				{error != null && <p>{error}</p>}
-			</div>
-		</div>
+		</div >
 	);
 }

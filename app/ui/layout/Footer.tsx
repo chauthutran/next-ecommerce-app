@@ -10,12 +10,25 @@ import { useAuth } from "@/contexts/AuthContext";
 export default function Footer() {
 
     const { setCurrentPage } = useCurrentPage();
-	const { user } = useAuth();
+    const { user } = useAuth();
     const [showLoginForm, setShowLoginForm] = useState(false);
     const [showRegistrationForm, setShowRegistrationForm] = useState(false);
 
     return (
         <>
+            <footer className="bg-yellow-500 text-white shadow-md p-3 text-sm border-t border-yellow-600">
+                <div className="flex justify-between items-center mx-5">
+                    <p className="flex-1 justify-center m-auto flex">© 2024 E-Commerce. All rights reserved.</p>
+                    {user === null && (
+                        <div className="flex space-x-4 ml-auto">
+                            <div className="hover:text-gray-800 cursor-pointer" onClick={() => setShowLoginForm(true)}>Login</div>
+                            <div className="hover:text-gray-800 cursor-pointer" onClick={() => setShowRegistrationForm(true)}>Register</div>
+                        </div>
+                    )}
+                </div>
+            </footer>
+
+
             {showRegistrationForm && <Modal>
                 <div className="">
                     <RegisterForm onClose={() => setShowRegistrationForm(false)} />
@@ -27,20 +40,6 @@ export default function Footer() {
                     <LoginForm onClose={() => setShowLoginForm(false)} />
                 </div>
             </Modal>}
-
-            <footer className="h-30 py-3 w-screen text-center text-xs z-10 flex item-center bg-gray-200 border-t border-gray-300">
-                <div className="flex flex-1 justify-center items-center">
-                    © 2024 E-Commerce. All rights reserved.
-                </div>
-
-                <div className="rounded-md justify-end mr-5 flex space-x-3" >
-                    {user === null && <>
-                        <div className="cursor-pointer hover:bg-mustard-yellow py-1 px-2 rounded-md" onClick={() => setShowLoginForm(true)}>Login</div>
-                        <div className="cursor-pointer text-gray-400">|</div>
-                        <div className="cursor-pointer hover:bg-mustard-yellow py-1 px-2 rounded-md"  onClick={() => setShowRegistrationForm(true)}>Register</div>
-                    </>}
-                </div>
-            </footer>
         </>
     )
 }
