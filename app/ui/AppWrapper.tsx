@@ -12,6 +12,7 @@ import * as AppStore from "@/lib/appStore";
 import { useEffect, useState } from "react";
 import { JSONObject } from "@/lib/definations";
 import CartPage from "./user/cart/CartPage";
+import Footer from "./layout/Footer";
 
 
 export default function AppWrapper() {
@@ -21,7 +22,7 @@ export default function AppWrapper() {
 
 	const { user } = useAuth();
 
-	const fetchConfigData = async() => {
+	const fetchConfigData = async () => {
 		const configData = await AppStore.fetchConfigData();
 		setConfigData(configData);
 	}
@@ -31,22 +32,26 @@ export default function AppWrapper() {
 	}, [])
 
 
-	if( configData === null ) return (<div>Loading ... </div>);
+	if (configData === null) return (<div>Loading ... </div>);
 
-	if( configData.status === "error" ) return (<div>{configData.message}</div>);
+	if (configData.status === "error") return (<div>{configData.message}</div>);
 
 	return (
 		<>
 			<Header />
 
-			<main className={`flex-1 overflow-auto bg-ghost-white`}>
+			<main className={`flex-1 overflow-auto bg-yellow-100`}>
 				{currentPage.name === Constant.PAGE_HOME && <HomePage />}
 				{currentPage.name === Constant.PAGE_PRODUCTS_BY_CATEGORY && <ProductsByCategoryPage />}
 				{currentPage.name === Constant.PAGE_PRODUCT_DETAILS && <ProductDetailsPage />}
 				{currentPage.name === Constant.PAGE_SEARCH_PRODUCT && <ProductSearchPage />}
 
 				{currentPage.name === Constant.PAGE_USER_CART && <CartPage />}
+				
+				<Footer /> 
 			</main>
+
+			
 		</>
 	)
 }
