@@ -50,7 +50,7 @@ export default function CategoryMenus() {
     else if (categories == null) return (<div>Loading ...</div>);
 
     return (
-        <div className="relative flex w-full lg:w-fit" style={{ height: 'calc(100vh - 135px)' }}>
+        <div className="relative flex w-full lg:w-fit" style={{ height: 'calc(100vh - 87px)' }}>
             {/* Category list with background color and sliding effect */}
             <div
                 className={`grid grid-cols-1 gap-4 rounded-lg border-2 border-gray-200 
