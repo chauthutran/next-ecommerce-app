@@ -35,9 +35,9 @@ export default function Footer() {
 
                 <div className="rounded-md justify-end mr-5 flex space-x-3" >
                     {user === null && <>
-                        <div className="cursor-pointer" onClick={() => setShowLoginForm(true)}>Login</div>
+                        <div className="cursor-pointer hover:bg-mustard-yellow py-1 px-2 rounded-md" onClick={() => setShowLoginForm(true)}>Login</div>
                         <div className="cursor-pointer text-gray-400">|</div>
-                        <div className="cursor-pointer"  onClick={() => setShowRegistrationForm(true)}>Register</div>
+                        <div className="cursor-pointer hover:bg-mustard-yellow py-1 px-2 rounded-md"  onClick={() => setShowRegistrationForm(true)}>Register</div>
                     </>}
                 </div>
             </footer>

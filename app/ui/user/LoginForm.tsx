@@ -19,19 +19,16 @@ export default function LoginForm({ onClose, onSuccess }: { onClose: () => void,
 	const [password, setPassword] = useState("1234");
 
 
-	// useEffect(() => {
-	// 	if (user != null) {
-	// 		onClose();
-	// 	}
-	// }, [user])
+	useEffect(() => {
+		if (user != null) {
+			if( onSuccess) onSuccess();
+			onClose();
+		}
+	}, [user])
 
 	const handleLoginBtn = async(e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
-
 		await login(email, password);
-		if( onSuccess) onSuccess();
-
-		onClose();
 	};
 
 

@@ -7,7 +7,7 @@ import Alert from "@/ui/basics/Alert";
 import { useState } from "react";
 
 
-export default function CartItem({ data, handleQuantityChangeSuccess }: { data: JSONObject, handleQuantityChangeSuccess: (quantity: number) => void }) {
+export default function CartItem({ data, onUpdateQuantity, onSelectItem }: { data: JSONObject, onUpdateQuantity: (cartItem: JSONObject, newQuantity: number) => void, onSelectItem: (cartItem: JSONObject, checked: boolean) => void }) {
 
     const { user } = useAuth();
     const [bgColor, setBgColor] = useState('white');
@@ -21,7 +21,7 @@ export default function CartItem({ data, handleQuantityChangeSuccess }: { data: 
         if (response.status === "success") {
             setQuantity(value);
             setBgColor("#bef7be");
-            handleQuantityChangeSuccess(value);
+            onUpdateQuantity(data, value);
         }
         else {
             setAlertData({ type: Constant.STATUS_TYPE_SUCCESS, message: "Product is added to the cart." });
@@ -38,7 +38,7 @@ export default function CartItem({ data, handleQuantityChangeSuccess }: { data: 
             >
                 {/* Product Selection and Title */}
                 <label className="cursor-pointe space-x-3 text-lg font-semibold flex items-center mb-3">
-                    <input type="checkbox" className="w-6 h-6 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500" />
+                    <input type="checkbox" className="w-6 h-6 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500" onChange={(e) => onSelectItem(data, e.target.checked)}/>
                     <span>{data.product.name}</span>
                 </label>
 
