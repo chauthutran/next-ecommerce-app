@@ -16,12 +16,18 @@ export default function CartItem({ data, onUpdateQuantity, onSelectItem }: { dat
 
 
     const updateQuantity = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = parseInt(e.target.value);
-        const response = await dbService.addProductToCart(user!._id, data.product._id, value);
+        let value = e.target.value;
+
+        // Ensure the value is only positive
+        if (parseInt(value) < 0 || isNaN(parseInt(value))) {
+          value = "0"; // Set the value to 0 if it's negative or not a number
+        }
+
+        const response = await dbService.addProductToCart(user!._id, data.product._id, parseInt(value));
         if (response.status === "success") {
             setQuantity(value);
             setBgColor("#bef7be");
-            onUpdateQuantity(data, value);
+            onUpdateQuantity(data, parseInt(value));
         }
         else {
             setAlertData({ type: Constant.STATUS_TYPE_SUCCESS, message: "Product is added to the cart." });
@@ -34,11 +40,11 @@ export default function CartItem({ data, onUpdateQuantity, onSelectItem }: { dat
             {alertData !== null && <Alert type={alertData.type} message={alertData.message} />}
 
             <div
-                className="bg-white px-4 py-2 rounded-lg border-b border-gray-300"
+                className="bg-white px-4 py-2 border-b border-gray-300"
             >
                 {/* Product Selection and Title */}
                 <label className="cursor-pointe space-x-3 text-lg font-semibold flex items-center mb-3">
-                    <input type="checkbox" className="w-6 h-6 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500" onChange={(e) => onSelectItem(data, e.target.checked)}/>
+                    <input type="checkbox" min="0" className="w-6 h-6 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500" onChange={(e) => onSelectItem(data, e.target.checked)}/>
                     <span>{data.product.name}</span>
                 </label>
 
