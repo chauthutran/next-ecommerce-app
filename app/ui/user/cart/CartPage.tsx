@@ -78,11 +78,11 @@ export default function CartPage() {
     }
 
     return (
-        <div className="p-5 mx-auto bg-white">
+        <div className="m-3 bg-white p-3 rounded-lg">
             <h1 className="grid grid-cols-1 md:grid-cols-2 text-2xl font-semibold mb-2 w-full">
                 <div>Your Cart</div>
                 <div className="justify-start flex md:justify-end mt-3 sm:mt-0">
-                    Total: <span className="mx-3 px-3 bg-red-500 text-white whitespace-nowrap rounded-lg">${calculateTotal()}</span>
+                    Total: <span className="mx-3 px-3 bg-red-500 text-white whitespace-nowrap rounded-lg">${calculateTotal().toFixed(2)}</span>
                 </div>
             </h1>
 
