@@ -16,11 +16,11 @@ export default function Footer() {
 
     return (
         <>
-            <footer className="bg-yellow-500 text-white shadow-md p-3 text-sm border-t border-yellow-600">
-                <div className="flex justify-between items-center mx-5">
-                    <p className="flex-1 justify-center m-auto flex">© 2024 E-Commerce. All rights reserved.</p>
+            <footer className="bg-yellow-500 text-white shadow-md p-3 border-t border-yellow-600">
+                <div className="flex flex-col justify-between items-center space-y-1">
+                    <p className="flex-1 justify-center text-sm">© 2024 E-Commerce. All rights reserved.</p>
                     {user === null && (
-                        <div className="flex space-x-4 ml-auto">
+                        <div className="flex space-x-4">
                             <div className="hover:text-gray-800 cursor-pointer" onClick={() => setShowLoginForm(true)}>Login</div>
                             <div className="hover:text-gray-800 cursor-pointer" onClick={() => setShowRegistrationForm(true)}>Register</div>
                         </div>

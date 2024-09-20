@@ -91,9 +91,9 @@ export default function LoginForm({ onClose, onSuccess }: { onClose: () => void,
 				</div>
 
 				<div className="bg-gray-100 p-4 rounded-b-lg flex justify-end space-x-2">
-					<button className="w-full bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-400 " onClick={(e) => handleLoginBtn(e)} >
+					<button className="flex w-full bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-400 " onClick={(e) => handleLoginBtn(e)} >
 						<span className="flex-1">Log in</span>
-						{loading && <FaSpinner className="ml-auto h-5" size={20} />}
+						{loading && <FaSpinner className="ml-auto h-5" size={16} />}
 					</button>
 				</div>
 				<div className="flex items-end space-x-1 text-red-500 italic text-sm">

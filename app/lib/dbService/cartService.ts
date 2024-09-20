@@ -7,7 +7,6 @@ import mongoose from "mongoose";
 import Cart from "../schemas/Cart.schema";
 
 
-
 export async function fetchUserCart(userId: string): Promise<JSONObject> {
 	
 	try {
@@ -22,6 +21,7 @@ export async function fetchUserCart(userId: string): Promise<JSONObject> {
 		return ({status: "error", message: error.message});
 	}
 }
+
 
 export async function addProductToCart(userId: string, productId: string, quantity?: number): Promise<JSONObject> {
 	
@@ -58,6 +58,26 @@ export async function addProductToCart(userId: string, productId: string, quanti
 
       
 		return ({status: "success", data: Utils.cloneJSONObject(cart)});
+
+	} catch (error: any) {
+		return ({status: "error", message: error.message});
+	}
+}
+
+
+export async function removeProductsFromCart(userId: string, productIds: string[]): Promise<JSONObject> {
+	
+	try {
+		const userIdObj = new mongoose.Types.ObjectId(userId);
+		const productIdObjs = productIds.map((productId: string) =>  new mongoose.Types.ObjectId(productId) );
+
+		await connectToDatabase();
+		await Cart.deleteMany({
+			user: userIdObj,
+			product: { $in: productIdObjs }
+		});
+
+		return ({status: "success"});
 
 	} catch (error: any) {
 		return ({status: "error", message: error.message});

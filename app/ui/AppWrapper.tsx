@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { JSONObject } from "@/lib/definations";
 import CartPage from "./user/cart/CartPage";
 import Footer from "./layout/Footer";
+import OrderPage from "./user/order/OrderPage";
 
 
 export default function AppWrapper() {
@@ -47,6 +48,7 @@ export default function AppWrapper() {
 				{currentPage.name === Constant.PAGE_SEARCH_PRODUCT && <ProductSearchPage />}
 
 				{currentPage.name === Constant.PAGE_USER_CART && <CartPage />}
+				{currentPage.name === Constant.PAGE_USER_ORDER && <OrderPage />}
 				
 				<Footer /> 
 			</main>

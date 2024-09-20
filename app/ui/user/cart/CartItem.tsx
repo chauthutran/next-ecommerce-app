@@ -28,9 +28,10 @@ export default function CartItem({ data, onUpdateQuantity, onSelectItem }: { dat
             setQuantity(value);
             setBgColor("#bef7be");
             onUpdateQuantity(data, parseInt(value));
+            setAlertData({ type: Constant.STATUS_TYPE_SUCCESS, message: "Product is added to the cart." });
         }
         else {
-            setAlertData({ type: Constant.STATUS_TYPE_SUCCESS, message: "Product is added to the cart." });
+            setAlertData({ type: Constant.STATUS_TYPE_ERROR, message: response.message });
         }
 
     }
@@ -57,7 +58,7 @@ export default function CartItem({ data, onUpdateQuantity, onSelectItem }: { dat
                             alt={data.product.name}
                             width={96}
                             height={96}
-                            className="object-cover rounded-lg"
+                            className="object-cover rounded-sm"
                         />
                     </div>
 
@@ -82,7 +83,7 @@ export default function CartItem({ data, onUpdateQuantity, onSelectItem }: { dat
                     {/* Total */}
                     <div className="flex h-full items-start justify-start space-x-3 md:justify-end">
                         <div className="text-gray-800 font-semibold">Total:</div>
-                        <div className="bg-red-500 text-white px-3 whitespace-nowrap rounded-lg font-semibold">
+                        <div className="bg-red-500 text-white px-3 whitespace-nowrap rounded-sm font-semibold">
                             ${(quantity * data.product.price).toFixed(2)}
                         </div>
                     </div>

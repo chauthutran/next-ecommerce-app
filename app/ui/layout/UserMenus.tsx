@@ -43,11 +43,11 @@ export default function UserMenus({ handleItemClick }: { handleItemClick: (pageN
 	const renderUserRelatedMenus = () => {
 		return (
 			<>
-				<li className="px-4 py-2 flex space-x-2 items-center cursor-pointer hover:bg-yellow-400 hover:shadow-lg" onClick={() => {setCurrentPage(Constant.PAGE_USER_CART); setIsOpen(false);}}>
+				<li className="px-4 py-2 flex space-x-2 items-center cursor-pointer hover:bg-yellow-400 hover:shadow-lg" onClick={() => {setCurrentPage(Constant.PAGE_USER_CART); setIsOpen(false);}} >
 					<MdOutlineShoppingCart  size={22} />
 					<span>Cart</span>
 				</li>
-				<li className="px-4 py-2 flex space-x-2 items-center cursor-pointer hover:bg-yellow-400 hover:shadow-lg" >
+				<li className="px-4 py-2 flex space-x-2 items-center cursor-pointer hover:bg-yellow-400 hover:shadow-lg" onClick={() => {setCurrentPage(Constant.PAGE_USER_ORDER); setIsOpen(false);}} >
 					<TfiPackage size={18} />
 					<span>Orders</span>
 				</li>
