@@ -82,7 +82,7 @@ export default function CartPage() {
         <>
        
 
-            <div className="mx-auto bg-white p-5 pb-[60px]">
+            <div className="mx-auto bg-white p-5 pb-[70px]">
                 <div className="font-semibold text-2xl mb-2">Your Cart</div>
 
                 <hr className="mb-3" />
