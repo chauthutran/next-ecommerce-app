@@ -41,7 +41,7 @@ export default function AppWrapper() {
 		<>
 			<Header />
 
-			<main className={`flex-1 overflow-auto bg-yellow-100`}>
+			<main className={`flex-1 overflow-auto bg-white`}>
 				{currentPage.name === Constant.PAGE_HOME && <HomePage />}
 				{currentPage.name === Constant.PAGE_PRODUCTS_BY_CATEGORY && <ProductsByCategoryPage />}
 				{currentPage.name === Constant.PAGE_PRODUCT_DETAILS && <ProductDetailsPage />}

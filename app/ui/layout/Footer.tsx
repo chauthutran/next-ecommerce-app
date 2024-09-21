@@ -16,7 +16,7 @@ export default function Footer() {
 
     return (
         <>
-            <footer className="bg-yellow-500 text-white shadow-md p-3 border-t border-yellow-600">
+            <footer className="bg-yellow-500 text-white shadow-md p-1">
                 <div className="flex flex-col justify-between items-center space-y-1">
                     <p className="flex-1 justify-center text-sm">© 2024 E-Commerce. All rights reserved.</p>
                     {user === null && (

@@ -48,7 +48,7 @@ export default function HomePage() {
     if (errMessage !== "") return (<div>{errMessage}</div>);
 
     return (
-        <div className=""> 
+        <> 
             {/* Make CategoryMenus fixed */}
             <div className="fixed lg:w-[250px]">
                 <CategoryMenus />
@@ -68,6 +68,6 @@ export default function HomePage() {
                 </div>
                 <ProductList data={latestProducts} />
             </div>
-        </div>
+        </>
     )
 }

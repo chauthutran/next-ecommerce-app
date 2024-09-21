@@ -50,9 +50,9 @@ export async function addProductToCart(userId: string, productId: string, quanti
 			const payload = {
 				user : userIdObj,
 				product : productIdObj,
-				quantity : quantity
+				quantity : 1
 			}
-	
+	console.log(payload);
 			cart = await Cart.create(payload);
 		}
 

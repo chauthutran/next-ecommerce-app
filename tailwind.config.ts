@@ -15,11 +15,15 @@ const config: Config = {
         "firebrick": "#f01459",
 
 
-        "color-1": "#4c5973",
-        "color-2": "#b7cfdd",
-        "color-3": "#637c96",
-        "color-4": "#c4dbe9",
-        "color-5": "#e0dcde"
+        "color-1": "#242323",
+        "color-2": "#652a31",
+        "color-3": "#e79e77",
+        "color-4": "#fc43aa",
+        "color-5": "#f5981e",
+        "color-6": "#90c745",
+        "color-7": "#c16476",
+        "color-8": "#90c745",
+        "color-9": "#2184de"
       }
     },
   },

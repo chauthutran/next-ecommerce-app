@@ -84,7 +84,7 @@ export default function CartPage() {
 
             const response = await dbService.addProductToOrder(payload);
             if (response.status === "success") {
-                alert("success");
+                setAlertData({ type: Constant.STATUS_TYPE_SUCCESS, message: "You ordered successfully!" });
             }
             else {
                 setAlertData({ type: Constant.STATUS_TYPE_ERROR, message: response.message });

@@ -53,7 +53,7 @@ export default function CategoryMenus() {
         <div className="relative flex w-full lg:w-fit" style={{ height: 'calc(100vh - 87px)' }}>
             {/* Category list with background color and sliding effect */}
             <div
-                className={`grid grid-cols-1 gap-4 rounded-lg border-2 border-gray-200 
+                className={`grid grid-cols-1 gap-4 border-4 border-color-1
                     absolute top-0 left-0 lg:relative h-full w-72 transform transition-transform duration-500 ease-in-out 
                     ${isVisible ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:w-auto lg:grid`}
             >

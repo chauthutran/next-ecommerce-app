@@ -44,9 +44,15 @@ export async function addProductToOrder(payload: JSONObject): Promise<JSONObject
 	
         const order = await Order.create(payload);
 
-		await removeProductsFromCart(payload.user, payload.products);
-
-		return ({status: "success", data: Utils.cloneJSONObject(order)});
+		// Remove the products from cart
+		const productIds = payload.products.map((cardItem: JSONObject) => cardItem.product);
+		const removeResponse = await removeProductsFromCart(payload.user, productIds);
+		if( removeResponse.status === "error" ) {
+			return ({status: "error", message: removeResponse.message});
+		}
+		else {
+			return ({status: "success", data: Utils.cloneJSONObject(order)});
+		}
 
 	} catch (error: any) {
 		return ({status: "error", message: error.message});
