@@ -50,7 +50,7 @@ export default function HomePage() {
     return (
         <> 
             {/* Make CategoryMenus fixed */}
-            <div className="fixed lg:w-[250px]">
+            <div className="fixed lg:w-[250px] mt-3">
                 <CategoryMenus />
             </div>
 

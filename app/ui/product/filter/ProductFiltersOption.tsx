@@ -3,11 +3,11 @@
 import { JSONObject } from "@/lib/definations";
 import { useEffect, useState } from "react";
 import * as dbService from "@/lib/dbService";
-import ProductPriceFilter from "../product/filter/ProductPriceFilter";
+import ProductPriceFilter from "./ProductPriceFilter";
 import { BiFilter } from "react-icons/bi";
-import ProductRatingFilter from "../product/filter/ProductRatingFilter";
-import ProductCategoryFilter from "../product/filter/ProductCategoryFilter";
-import ProductBrandFilter from "../product/filter/ProductBrandFilter";
+import ProductRatingFilter from "./ProductRatingFilter";
+import ProductCategoryFilter from "./ProductCategoryFilter";
+import ProductBrandFilter from "./ProductBrandFilter";
 
 
 export default function ProductFiltersOption({ data, handleSelectFilters }: { data: JSONObject[], handleSelectFilters: (JSONObject: JSONObject) => void }) {
@@ -112,7 +112,7 @@ export default function ProductFiltersOption({ data, handleSelectFilters }: { da
 
                 {/* Button to toggle visibility on small screens */}
                 <button
-                    className="text-black bg-bright-yellow rounded-r-md p-1 shadow-lg shadow-mustard-yellow lg:hidden absolute left-[285px] transition-colors hover:bg-color-2"
+                    className="text-black bg-bright-yellow rounded-r-md p-1 shadow-lg shadow-mustard-yellow lg:hidden absolute left-[285px] transition-colors hover:bg-mustard-yellow"
                     onClick={toggleVisibility} >
                     <BiFilter className="size-8" />
                 </button>

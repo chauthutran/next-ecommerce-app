@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import ProductList from "./product/ProductList";
 import { RiBubbleChartFill } from "react-icons/ri";
 import { useCurrentPage } from "@/contexts/MainUiContext";
-import ProductFiltersOption from "./layout/ProductFiltersOption";
+import ProductFiltersOption from "./product/filter/ProductFiltersOption";
 
 
 export default function ProductSearchPage() {

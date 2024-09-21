@@ -35,14 +35,14 @@ export default function LoginForm({ onClose, onSuccess }: { onClose: () => void,
 	return (
 		<div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
 			<div className="bg-white rounded-lg shadow-lg w-96">
-				<div className="bg-yellow-500 text-white p-3 rounded-t-lg flex">
-					<h2 className="text-xl font-semibold">Login</h2>
+				<div className="bg-color-2 text-white p-3 rounded-t-lg flex">
+					<h2 className="text-xl">Login</h2>
 					<div className="ml-auto cursor-pointer" onClick={() => onClose()}>
 						<IoIosCloseCircle className="text-white size-6" />
 					</div>
 				</div>
 
-				<div className="p-6">
+				<div className="px-6 py-3">
 					<form>
 						<div className="mb-4">
 							<label
@@ -90,8 +90,8 @@ export default function LoginForm({ onClose, onSuccess }: { onClose: () => void,
 					</form>
 				</div>
 
-				<div className="bg-gray-100 p-4 rounded-b-lg flex justify-end space-x-2">
-					<button className="flex w-full bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-400 " onClick={(e) => handleLoginBtn(e)} >
+				<div className="bg-color-1 p-4 rounded-b-lg flex justify-end space-x-2">
+					<button className="flex w-full bg-color-13 text-white py-2 px-4 rounded hover:bg-blue-400" onClick={(e) => handleLoginBtn(e)} >
 						<span className="flex-1">Log in</span>
 						{loading && <FaSpinner className="ml-auto h-5" size={16} />}
 					</button>

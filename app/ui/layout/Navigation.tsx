@@ -28,7 +28,7 @@ export default function Navigation() {
         <>
 
 
-            {prevPage !== null && <nav className="flex items-center border-2 border-yellow-300 bg-yellow-100 text-gray-700 p-1 rounded hover:bg-yellow-200">
+            {prevPage !== null && <nav className="flex items-center bg-color-2 border-2 border-color-2 text-color-1 p-1 rounded hover:text-white">
                 {/* Home Navigation */}
                 {prevPage === Constant.PAGE_HOME && (
                     <div
@@ -53,7 +53,7 @@ export default function Navigation() {
                 {/* Search Result Button */}
                 {prevPage === Constant.PAGE_SEARCH_PRODUCT && (
                     <div
-                        className="flex font-bold items-center space-x-2 hover:bg-ghost-white rounded-md cursor-pointer"
+                        className="cursor-pointer"
                         onClick={() => setCurrentPage(Constant.PAGE_SEARCH_PRODUCT, previousPage?.data)}
                     >
                         <RiArrowGoBackLine size={22} />

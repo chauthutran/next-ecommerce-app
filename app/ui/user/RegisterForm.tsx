@@ -68,8 +68,8 @@ export default function RegisterForm({ onClose }: { onClose: () => void }) {
 	return (
 		<div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
 			<div className="bg-white rounded-lg shadow-lg w-96">
-				<div className="bg-yellow-500 text-white p-3 rounded-t-lg flex">
-					<h2 className="text-xl font-semibold">Register New User</h2>
+				<div className="bg-color-2 text-white p-3 rounded-t-lg flex">
+					<h2 className="text-xl">Register New User</h2>
 					<div className="ml-auto cursor-pointer" onClick={() => onClose()}>
 						<IoIosCloseCircle className="text-white size-6" />
 					</div>
@@ -186,8 +186,8 @@ export default function RegisterForm({ onClose }: { onClose: () => void }) {
 							</div>
 						</div>
 
-						<div className="bg-gray-100 p-4 rounded-b-lg justify-end">
-							<button type="submit" className="w-full bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-400">Submit</button>
+						<div className="bg-color-1 p-4 rounded-b-lg justify-end">
+							<button type="submit" className="w-full bg-color-13 text-white py-2 px-4 rounded hover:bg-blue-400">Submit</button>
 						</div>
 					</form>
 				</div>
