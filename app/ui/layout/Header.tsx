@@ -18,13 +18,13 @@ export default function Header() {
     const { user } = useAuth();
 
     return (
-        <header className="bg-color-1 text-white shadow-md p-4 grid grid-cols-1 md:grid-cols-2 px-4 py-3  gap-4">
+        <header className="bg-yellow-500 text-white shadow-md p-4 grid grid-cols-1 md:grid-cols-2 px-4 py-3  gap-4">
 
             <div className="text-2xl flex space-x-3 items-center">
                 <div className="cursor-pointer">
-                    <DiYii className="size-10 text-firebrick" onClick={() => setCurrentPage(Constant.PAGE_HOME)} />
+                    <DiYii className="size-10 text-white" onClick={() => setCurrentPage(Constant.PAGE_HOME)} />
                 </div>
-                <div className="font-extrabold cursor-pointer text-color-6 text-2xl whitespace-nowrap" onClick={() => setCurrentPage(Constant.PAGE_HOME)} >E-Commerce</div>
+                <div className="font-extrabold cursor-pointer text-2xl whitespace-nowrap" onClick={() => setCurrentPage(Constant.PAGE_HOME)} >E-Commerce</div>
             </div>
 
             <div className="flex flex-row space-x-3 justify-center items-center">
