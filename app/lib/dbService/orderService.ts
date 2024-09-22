@@ -17,7 +17,7 @@ export async function fetchUserOrders(userId: string): Promise<JSONObject> {
 		const orders =  await Order.find({user: userIdObj}).populate({
             path: 'products.product', // Path to populate (nested inside `products`)
             // select: 'name description price', // Specify the fields you want to include
-		});
+		}).sort({ createdAt: -1 });
 
 		return ({status: "success", data: Utils.cloneJSONObject(orders)});
 	} catch (error: any) {
