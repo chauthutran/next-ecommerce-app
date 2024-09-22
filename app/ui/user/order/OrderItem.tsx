@@ -60,14 +60,14 @@ export default function OrderItem({ data }: { data: JSONObject }) {
                             <p className="font-semibold">{product.product.name}</p>
                             <p className="text-sm text-gray-500">{product.product.description}</p>
                             <p className="font-medium">Quantity: {product.quantity}</p>
-                            <p className="font-medium">Price: <span className="text-red-500">${product.price}</span></p>
+                            <p className="font-medium">Price: <span className="text-red-500 font-semibold">${product.price}</span></p>
                         </div>
                     </div>
                 ))}
 
                 <hr className="my-2" />
 
-                <div className="font-bold text-lg flex">
+                <div className="font-bold text-lg flex mt-4">
                     <div>Total:</div>
                     <div className="px-3 bg-firebrick rounded ml-3 text-white">${calculateTotal(data).toFixed(2)}</div>
                 </div>

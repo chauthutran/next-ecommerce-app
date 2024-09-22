@@ -16,7 +16,7 @@ export default function OrderStatusSteps ({orderStatus}: {orderStatus: string}) 
             </div>
 
             {/* Line between steps */}
-            <div className="flex-auto border-t-4 border-gray-300 mx-4"></div>
+            <div className={`flex-auto border-t-4 mx-4 ${(orderStatus === 'shipped' || orderStatus === 'delivered') ? "border-blue-500 " : "border-gray-300 "}`}></div>
 
             {/* Step 2: Shipped */}
             <div className="flex flex-col items-center">
@@ -27,7 +27,7 @@ export default function OrderStatusSteps ({orderStatus}: {orderStatus: string}) 
             </div>
 
             {/* Line between steps */}
-            <div className="flex-auto border-t-4 border-gray-300 mx-4"></div>
+            <div className={`flex-auto border-t-4 border-gray-300 mx-4 ${(orderStatus === 'delivered') ? "border-green-500 " : "border-gray-300 "}`}></div>
 
             {/* Step 3: Delivered */}
             <div className="flex flex-col items-center">
