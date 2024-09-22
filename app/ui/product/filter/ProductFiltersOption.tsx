@@ -46,7 +46,7 @@ export default function ProductFiltersOption({ data, handleSelectFilters }: { da
 
 
     return (
-        <div className="relative flex w-fit lg:my-3">
+        <div className="relative flex w-fit lg:my-3 text-color-2">
 
             <div
                 className={`grid grid-cols-1 gap-4 rounded-lg border-2 border-gray-200
@@ -60,7 +60,7 @@ export default function ProductFiltersOption({ data, handleSelectFilters }: { da
                         <div className="text-xl font-semibold uppercase mb-3">Price</div>
                         {/* Price list */}
                         <div
-                            className="scrollbar-custom flex flex-col items-start text-black transition-all duration-300 ease-in-out space-y-3 ml-3"
+                            className="scrollbar-custom flex flex-col items-start transition-all duration-300 ease-in-out space-y-3 ml-3"
                         >
                             <ProductPriceFilter handleOnChange={(priceFilter) => setPriceFilter(priceFilter)}/>
                         </div>
@@ -74,7 +74,7 @@ export default function ProductFiltersOption({ data, handleSelectFilters }: { da
 
                         {/* Scrollable brand list */}
                         <div
-                            className="scrollbar-custom flex flex-col items-start space-y-1 text-black transition-all duration-300 ease-in-out max-h-60 overflow-y-auto"
+                            className="scrollbar-custom flex flex-col items-start space-y-1  transition-all duration-300 ease-in-out max-h-60 overflow-y-auto"
                         >
                            <ProductBrandFilter data={data} handleOnChange={(filterBrands: string[]) => {handlBrandChange(filterBrands)}} />
                         </div>
@@ -88,7 +88,7 @@ export default function ProductFiltersOption({ data, handleSelectFilters }: { da
 
                         {/* Scrollable Category list */}
                         <div
-                            className="scrollbar-custom flex flex-col items-start space-y-1 text-black transition-all duration-300 ease-in-out max-h-60 overflow-y-auto"
+                            className="scrollbar-custom flex flex-col items-start space-y-1  transition-all duration-300 ease-in-out max-h-60 overflow-y-auto"
                         >
                             <ProductCategoryFilter data={data} handleOnChange={(filterCategories: string[]) => {handleCategoryChange(filterCategories)}} />
                         </div>
@@ -101,7 +101,7 @@ export default function ProductFiltersOption({ data, handleSelectFilters }: { da
                         <div className="text-xl py-1 font-semibold mb-2 uppercase">Rating</div>
                         {/* Rating list */}
                         <div
-                            className="scrollbar-custom flex flex-col items-start space-y-1 text-black transition-all duration-300 ease-in-out"
+                            className="scrollbar-custom flex flex-col items-start space-y-1  transition-all duration-300 ease-in-out"
                         >
                             <ProductRatingFilter handleOnChange={(value) => handleRatingChange(value)}/>
                         </div>
@@ -112,7 +112,7 @@ export default function ProductFiltersOption({ data, handleSelectFilters }: { da
 
                 {/* Button to toggle visibility on small screens */}
                 <button
-                    className="text-black bg-bright-yellow rounded-r-md p-1 shadow-lg shadow-mustard-yellow lg:hidden absolute left-[285px] transition-colors hover:bg-mustard-yellow"
+                    className=" bg-bright-yellow rounded-r-md p-1 shadow-lg shadow-mustard-yellow lg:hidden absolute left-[285px] transition-colors hover:bg-mustard-yellow"
                     onClick={toggleVisibility} >
                     <BiFilter className="size-8" />
                 </button>

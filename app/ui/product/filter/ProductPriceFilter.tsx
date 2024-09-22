@@ -90,7 +90,7 @@ export default function ProductPriceFilter({handleOnChange}: {handleOnChange: (d
                      onChange={handleCheckboxChange}
                      className="form-checkbox h-5 w-5 rounded focus:ring focus:ring-yellow-400 focus:outline-none transition duration-200"
                  />
-                 <span className="text-black">None</span>
+                 <span>None</span>
              </label>
          </div>
 
@@ -105,7 +105,7 @@ export default function ProductPriceFilter({handleOnChange}: {handleOnChange: (d
                         onChange={handleCheckboxChange}
                         className="form-checkbox h-5 w-5 rounded focus:ring focus:ring-yellow-400 focus:outline-none transition duration-200"
                     />
-                    <span className="text-black">1$ or Less</span>
+                    <span>1$ or Less</span>
                 </label>
             </div>
 
@@ -120,7 +120,7 @@ export default function ProductPriceFilter({handleOnChange}: {handleOnChange: (d
                         onChange={handleCheckboxChange}
                         className="form-checkbox h-5 w-5 rounded focus:ring focus:ring-yellow-400 focus:outline-none transition duration-200"
                     />
-                    <span className="text-black">10$ or Less</span>
+                    <span>10$ or Less</span>
                 </label>
             </div>
 
@@ -135,7 +135,7 @@ export default function ProductPriceFilter({handleOnChange}: {handleOnChange: (d
                         onChange={handleCheckboxChange}
                         className="form-checkbox h-5 w-5 rounded focus:ring focus:ring-yellow-400 focus:outline-none transition duration-200"
                     />
-                    <span className="text-black">100$ or Less</span>
+                    <span>100$ or Less</span>
                 </label>
             </div>
 

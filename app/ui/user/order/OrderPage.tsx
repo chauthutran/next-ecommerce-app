@@ -74,13 +74,13 @@ export default function OrderPage() {
                         <div className="mb-2">
                             {/* <h3 className="font-medium text-lg mb-1">Products</h3> */}
                             {order.products.map((product: JSONObject, productIndex: number) => (
-                                <div key={productIndex} className="grid grid-cols-1 gap-5 lg:grid-cols-[50px_auto] md:grid-cols-[50px_auto] mx-3">
+                                <div key={productIndex} className="grid grid-cols-1 gap-5 lg:grid-cols-[50px_auto] md:grid-cols-[50px_auto] m-3">
                                     <Image
                                         src={product.product.images[0]}
                                         alt={product.product.name}
                                         width={50}
                                         height={50}
-                                        className="object-cover w-full h-48 mb-4 rounded"
+                                        className="object-cover mb-4 rounded"
                                     />
 
                                     <div>

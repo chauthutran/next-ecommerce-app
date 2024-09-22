@@ -52,7 +52,7 @@ export default function ProductBrandFilter({data, handleOnChange}: {data: JSONOb
                             onChange={(e) => handleBrandChange(e)}
                             className="form-checkbox h-5 w-5 text-yellow-500 border-red-500 rounded focus:ring focus:ring-yellow-400 focus:outline-none transition duration-200"
                         />
-                        <span className="text-black">{brand}</span>
+                        <span>{brand}</span>
                     </label>
                 </div>
             ))}

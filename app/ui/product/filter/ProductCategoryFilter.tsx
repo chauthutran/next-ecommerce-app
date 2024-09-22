@@ -48,7 +48,7 @@ export default function ProductCategoryFilter({data, handleOnChange}: {data: JSO
                             onChange={(e) => handleCategoryChange(e)}
                             className="form-checkbox h-5 w-5 text-yellow-500 border-red-500 rounded focus:ring focus:ring-yellow-400 focus:outline-none transition duration-200"
                         />
-                        <span className="text-black">{categoryName}</span>
+                        <span className="">{categoryName}</span>
                     </label>
                 </div>
                 ))}
