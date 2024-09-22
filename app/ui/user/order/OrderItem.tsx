@@ -53,7 +53,7 @@ export default function OrderItem({ data }: { data: JSONObject }) {
                             alt={product.product.name}
                             width={60}
                             height={60}
-                            className="object-cover mb-4 rounded"
+                            className="object-cover mb-4 rounded mt-2"
                         />
 
                         <div>
