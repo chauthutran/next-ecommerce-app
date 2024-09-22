@@ -1,25 +1,25 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import CategoryMenus from "./layout/CategoryMenus";
+import CategorySlide from "./layout/CategorySlide";
 import { JSONObject } from "@/lib/definations";
 import * as dbService from "@/lib/dbService";
 import ProductList from "./product/ProductList";
 import { RiBubbleChartFill } from "react-icons/ri";
 import * as AppStore from "@/lib/appStore";
-import { useAuth } from "@/contexts/AuthContext";
 
 
 export default function HomePage() {
 
-    const topRatingProductNo = AppStore.getConfigData().topRating;
-    const latestProductNo = AppStore.getConfigData().latestProduct;
+    const topRatingProductNo = AppStore.getConfigData().home.topRating;
+    const latestProductNo = AppStore.getConfigData().home.latestProduct;
 
     const [topRatingProducts, setTopRatingProducts] = useState<JSONObject[]>([]);
     const [latestProducts, setLatestProducts] = useState<JSONObject[]>([]);
     const [errMessage, setErrMessage] = useState("");
 
     const fetchTopRatingProducts = async () => {
+        console.log("topRatingProductNo", topRatingProductNo)
         const response: JSONObject = await dbService.fetchTopRatingProducts(topRatingProductNo);
         if (response.status != "success") {
             setErrMessage(response.message);
@@ -49,13 +49,13 @@ export default function HomePage() {
 
     return (
         <> 
-            {/* Make CategoryMenus fixed */}
-            <div className="fixed lg:w-[250px] mt-3">
-                <CategoryMenus />
-            </div>
+            {/* Make CategorySlide fixed */}
+            {/* <div className="fixed lg:w-[250px] mt-3">
+                <CategorySlide />
+            </div> */}
 
             {/* Adjust the margin-left for the main content so it doesn't overlap */}
-            <div className="bg-white rounded-lg p-3 lg:ml-[260px] my-3 mr-3">
+            <div className="bg-white rounded-lg p-3 m-3">
                 <div className="font-semibold text-2xl mt-5 mb-10 border-b border-slate-400 pb-3 flex">
                     <RiBubbleChartFill className="text-firebrick mr-2" />
                     Top rating products

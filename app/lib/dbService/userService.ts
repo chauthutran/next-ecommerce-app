@@ -94,3 +94,50 @@ export async function generateUsers(): Promise<JSONObject> {
 }
 	return { status: "success" };
 }
+
+
+export async function updateProfile(userData: JSONObject): Promise<JSONObject> {
+	const { _id, name, email, street, city, country, zipCode } = userData;
+
+	try {
+		await connectToDatabase();
+	
+		const newUser = await User.findByIdAndUpdate(
+			_id,
+			{
+			  $set: {
+				name,
+				email,
+				'address.street': street,
+				'address.city': city,
+				'address.country': country,
+				'address.zipCode': zipCode,
+			  },
+			},
+			{ new: true }
+		  );
+
+		return ({status: "success", data: Utils.cloneJSONObject(newUser)});
+
+	} catch (error: any) {
+		return ({status: "error", message: error.message});
+	}
+}
+
+
+export async function updatePassword(userId: string, newPassword: string): Promise<JSONObject> {
+
+	try {
+		await connectToDatabase();
+
+		const newUser = await User.findById(userId);
+		newUser.password = await Encrypt.hashPassword(newPassword); // Hash the password before saving
+		await newUser.save();
+	
+
+		return ({status: "success", data: Utils.cloneJSONObject(newUser)});
+
+	} catch (error: any) {
+		return ({status: "error", message: error.message});
+	}
+}

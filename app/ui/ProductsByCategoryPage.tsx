@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import CategoryMenus from "./layout/CategoryMenus";
+import CategorySlide from "./layout/CategorySlide";
 import { JSONObject } from "@/lib/definations";
 import * as dbService from "@/lib/dbService";
 import ProductList from "./product/ProductList";
@@ -34,10 +34,10 @@ export default function ProductsByCategoryPage() {
 
     return (
         <div className="">
-            {/* Make CategoryMenus fixed */}
-            <div className="fixed w-[250px]">
-                <CategoryMenus />
-            </div>
+            {/* Make CategorySlide fixed */}
+            {/* <div className="fixed w-[250px]">
+                <CategorySlide />
+            </div> */}
 
             {/* Adjust the margin-left for the main content so it doesn't overlap */}
             <div className=" bg-white rounded-lg p-3 lg:ml-[260px] my-3">

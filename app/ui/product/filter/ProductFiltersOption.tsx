@@ -74,7 +74,7 @@ export default function ProductFiltersOption({ data, handleSelectFilters }: { da
 
                         {/* Scrollable brand list */}
                         <div
-                            className="scrollbar-custom flex flex-col items-start space-y-1  transition-all duration-300 ease-in-out max-h-60 overflow-y-auto"
+                            className="scrollbar-custom flex flex-col items-start space-y-1 text-black transition-all duration-300 ease-in-out max-h-60 overflow-y-auto"
                         >
                            <ProductBrandFilter data={data} handleOnChange={(filterBrands: string[]) => {handlBrandChange(filterBrands)}} />
                         </div>
@@ -88,7 +88,7 @@ export default function ProductFiltersOption({ data, handleSelectFilters }: { da
 
                         {/* Scrollable Category list */}
                         <div
-                            className="scrollbar-custom flex flex-col items-start space-y-1  transition-all duration-300 ease-in-out max-h-60 overflow-y-auto"
+                            className="scrollbar-custom flex flex-col items-start space-y-1 text-black transition-all duration-300 ease-in-out max-h-60 overflow-y-auto"
                         >
                             <ProductCategoryFilter data={data} handleOnChange={(filterCategories: string[]) => {handleCategoryChange(filterCategories)}} />
                         </div>
@@ -101,7 +101,7 @@ export default function ProductFiltersOption({ data, handleSelectFilters }: { da
                         <div className="text-xl py-1 font-semibold mb-2 uppercase">Rating</div>
                         {/* Rating list */}
                         <div
-                            className="scrollbar-custom flex flex-col items-start space-y-1  transition-all duration-300 ease-in-out"
+                            className="scrollbar-custom flex flex-col items-start space-y-1 text-black transition-all duration-300 ease-in-out"
                         >
                             <ProductRatingFilter handleOnChange={(value) => handleRatingChange(value)}/>
                         </div>
@@ -112,7 +112,7 @@ export default function ProductFiltersOption({ data, handleSelectFilters }: { da
 
                 {/* Button to toggle visibility on small screens */}
                 <button
-                    className=" bg-bright-yellow rounded-r-md p-1 shadow-lg shadow-mustard-yellow lg:hidden absolute left-[285px] transition-colors hover:bg-mustard-yellow"
+                    className="text-black bg-bright-yellow rounded-r-md p-1 shadow-lg shadow-mustard-yellow lg:hidden absolute left-[285px] transition-colors hover:bg-mustard-yellow"
                     onClick={toggleVisibility} >
                     <BiFilter className="size-8" />
                 </button>

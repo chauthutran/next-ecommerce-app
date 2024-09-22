@@ -14,6 +14,7 @@ import { JSONObject } from "@/lib/definations";
 import CartPage from "./user/cart/CartPage";
 import Footer from "./layout/Footer";
 import OrderPage from "./user/order/OrderPage";
+import ProfilePage from "./user/ProfilePage";
 
 
 export default function AppWrapper() {
@@ -25,6 +26,7 @@ export default function AppWrapper() {
 
 	const fetchConfigData = async () => {
 		const configData = await AppStore.fetchConfigData();
+		console.log("configData", configData);
 		setConfigData(configData);
 	}
 
@@ -39,8 +41,6 @@ export default function AppWrapper() {
 
 	return (
 		<>
-			<Header />
-
 			<main className={`flex-1 overflow-auto bg-color-8`}>
 				{currentPage.name === Constant.PAGE_HOME && <HomePage />}
 				{currentPage.name === Constant.PAGE_PRODUCTS_BY_CATEGORY && <ProductsByCategoryPage />}
@@ -49,8 +49,11 @@ export default function AppWrapper() {
 
 				{currentPage.name === Constant.PAGE_USER_CART && <CartPage />}
 				{currentPage.name === Constant.PAGE_USER_ORDER && <OrderPage />}
+				{currentPage.name === Constant.PAGE_USER_PROFILE && <ProfilePage />}
 				
-				<Footer /> 
+
+				
+				{/* <Footer />  */}
 			</main>
 
 			
