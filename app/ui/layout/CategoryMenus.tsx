@@ -7,6 +7,7 @@ import { FiList } from "react-icons/fi";
 import { useCurrentPage } from "@/contexts/MainUiContext";
 import * as Constant from "@/lib/constants";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import { BiCategoryAlt } from "react-icons/bi";
 
 
 export default function CategoryMenus() {
@@ -51,12 +52,12 @@ export default function CategoryMenus() {
 
             <div className="relative">
                 <button
-                    className="px-3 hover:bg-color-17 cursor-pointer flex space-x-1 items-center"
+                    className="p-1 cursor-pointer flex space-x-1 items-center bg-color-17 text-color-1 rounded"
                     onClick={() => setDropdownOpen(!isDropdownOpen)}
                 >
-                    <span className="uppercase">Categories </span>
-                    {!isDropdownOpen && <IoMdArrowDropup />}
-                    {isDropdownOpen && <IoMdArrowDropdown />}
+                    <BiCategoryAlt size={23} />
+                    {/* {!isDropdownOpen && <IoMdArrowDropup />}
+                    {isDropdownOpen && <IoMdArrowDropdown />} */}
                 </button>
 
                 {isDropdownOpen && (

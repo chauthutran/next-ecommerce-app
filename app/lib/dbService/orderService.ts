@@ -25,7 +25,7 @@ export async function fetchUserOrders(userId: string): Promise<JSONObject> {
 	}
 }
 
-export async function addProductToOrder(payload: JSONObject): Promise<JSONObject> {
+export async function orderProducts(payload: JSONObject): Promise<JSONObject> {
 	
 	try {
 		await connectToDatabase();

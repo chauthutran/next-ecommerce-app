@@ -5,7 +5,6 @@ import connectToDatabase from "./db";
 import User from "../schemas/User.schema";
 import * as Encrypt from "./encryptPassword";
 import * as Utils from "@/lib/utils";
-import mongoose from "mongoose";
 
 
 export async function login({email, password}: JSONObject): Promise<JSONObject> {
@@ -97,8 +96,8 @@ export async function generateUsers(): Promise<JSONObject> {
 
 
 export async function updateProfile(userData: JSONObject): Promise<JSONObject> {
-	const { _id, name, email, street, city, country, zipCode } = userData;
-
+	const { _id, name, email, address } = userData;
+console.log();
 	try {
 		await connectToDatabase();
 	
@@ -108,14 +107,16 @@ export async function updateProfile(userData: JSONObject): Promise<JSONObject> {
 			  $set: {
 				name,
 				email,
-				'address.street': street,
-				'address.city': city,
-				'address.country': country,
-				'address.zipCode': zipCode,
+				address: {
+					street: address.street,
+					city: address.city,
+					country: address.country,
+					zipCode: address.zipCode
+				},
 			  },
 			},
 			{ new: true }
-		  );
+		);
 
 		return ({status: "success", data: Utils.cloneJSONObject(newUser)});
 

@@ -16,7 +16,7 @@ import * as Constant from "@/lib/constants";
 
 export default function ProductDetailsInfo({ data }: { data: JSONObject }) {
 
-    const { user } = useAuth();
+    const { user, addProductToCart } = useAuth();
     const [showLoginForm, setShowLoginForm] = useState(false);
     const [alertData, setAlertData] = useState<JSONObject | null>(null);
 
@@ -30,8 +30,9 @@ export default function ProductDetailsInfo({ data }: { data: JSONObject }) {
         return DOMPurify.sanitize(sanitizedHTML);
     }
 
-    const addProductToCart = async() => {
-        await dbService.addProductToCart( user!._id, data._id);
+    const handleAddProductToCart = async() => {
+        await addProductToCart(data);
+        // await dbService.handleAddProductToCart( user!._id, data._id);
         setAlertData({type: Constant.STATUS_TYPE_SUCCESS, message: "Product is added to the cart."});
     }
 
@@ -42,7 +43,7 @@ export default function ProductDetailsInfo({ data }: { data: JSONObject }) {
             setShowLoginForm(true);
         }
         else {
-            addProductToCart();
+            handleAddProductToCart();
         }
     }
 
@@ -76,7 +77,7 @@ export default function ProductDetailsInfo({ data }: { data: JSONObject }) {
                     />
                     <div className="mx-4 mt-2"><ProductRating rating={data.rating} numReviews={data.numReviews} /></div>
 
-                    <button className="mx-4 mt-3 bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-400" onClick={() => handleShowAddToCartForm()}>Add To Card</button>
+                    {user !== null && <button className="mx-4 mt-3 bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-400" onClick={() => handleShowAddToCartForm()}>Add To Cart</button>}
                 </div>}
 
                 {/* Product Info - Default infor without the configuration 'productDetails' */}
@@ -93,7 +94,7 @@ export default function ProductDetailsInfo({ data }: { data: JSONObject }) {
 
             {showLoginForm && <Modal>
                 {user === null && <div className="w-[400px]">
-                    <LoginForm onClose={()=> setShowLoginForm(false) } onSuccess={() => addProductToCart()} />
+                    <LoginForm onClose={()=> setShowLoginForm(false) } onSuccess={() => handleAddProductToCart()} />
                 </div>}
             </Modal>}
         </>

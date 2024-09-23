@@ -44,7 +44,8 @@ export async function addProductToCart(userId: string, productId: string, quanti
 				newQuantity = quantity;
 			} 
 			payload.quantity = newQuantity;
-			cart =  await Cart.findByIdAndUpdate(payload._id, payload, { new: true, runValidators: true });
+			cart =  await Cart.findByIdAndUpdate(payload._id, payload, { new: true, runValidators: true })
+					.populate("product");
 		}
 		else { // Add new
 			const payload = {
@@ -52,7 +53,7 @@ export async function addProductToCart(userId: string, productId: string, quanti
 				product : productIdObj,
 				quantity : 1
 			}
-	console.log(payload);
+			
 			cart = await Cart.create(payload);
 		}
 

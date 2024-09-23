@@ -4,7 +4,6 @@ import { useAuth } from '@/contexts/AuthContext';
 import { JSONObject } from '@/lib/definations';
 import { useEffect, useState } from 'react';
 import * as dbService from "@/lib/dbService";
-import Image from 'next/image';
 import CartItem from './CartItem';
 import * as Utils from "@/lib/utils";
 import { RiBubbleChartFill } from 'react-icons/ri';
@@ -82,7 +81,7 @@ export default function CartPage() {
                 shippingAddress: user!.address
             };
 
-            const response = await dbService.addProductToOrder(payload);
+            const response = await dbService.orderProducts(payload);
             if (response.status === "success") {
                 setAlertData({ type: Constant.STATUS_TYPE_SUCCESS, message: "You ordered successfully!" });
             }

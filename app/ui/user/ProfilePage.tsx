@@ -1,44 +1,67 @@
 import { useAuth } from "@/contexts/AuthContext"
 import { JSONObject } from "@/lib/definations";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiBubbleChartFill } from "react-icons/ri";
+import * as dbService from "@/lib/dbService";
+
 
 export default function ProfilePage() {
 
-    const { user } = useAuth();
+    const { user, updateProfile, error } = useAuth();
 
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState<JSONObject>(user!);
+    const [message, setMessage] = useState('');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+		if (name.includes("address")) {
+			const [field, key] = name.split(".");
+			setFormData({
+				...formData,
+				[field]: {
+					...formData[field],
+					[key]: value
+				}
+			});
+		} else {
+			setFormData({
+				...formData,
+				[name]: value,
+			});
+		}
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        console.log("===== formData: ", formData);
         try {
-            //   await axios.put('/api/profile', formData);
+            await updateProfile(formData);
             setIsEditing(false);
-            alert('Profile updated');
         } catch (error) {
             console.error(error);
         }
     };
 
 
+    useEffect(() => {
+        setMessage("New password is changed !");
+    }, [user])
+
+
     return (
         <div className="bg-white rounded-lg p-3 m-3">
             <div className="font-semibold text-2xl mb-5 border-b border-slate-400 pb-3 flex">
                 <RiBubbleChartFill className="text-firebrick mr-2" />
-                {user!.name}'s Profile
+                {user!.name}`s Profile
             </div>
 
             {!isEditing ? (
                 <div className="space-y-3">
+                    <p>Name: {user!.name}</p>
                     <p>Email: {user!.email}</p>
                     <p>Address: {`${user!.address.street}, ${user!.address.city}, ${user!.address.country} - ${user!.address.zipCode}`}</p>
                     <button className="bg-color-17 p-2 rounded-sm text-white hover:bg-firebrick mr-3" onClick={() => setIsEditing(true)}>Edit Profile</button>
-                    <button className="bg-color-17 p-2 rounded-sm text-white hover:bg-firebrick" onClick={() => {} }>Change Password</button>
                 </div>
             ) : (
                 <form onSubmit={handleSubmit} action="POST" className="space-y-3">
@@ -114,6 +137,9 @@ export default function ProfilePage() {
                     <div className="py-4 rounded-b-lg justify-end">
                         <button type="submit" className="w-full bg-color-17 text-white py-2 px-4 rounded hover:bg-firebrick">Submit</button>
                     </div>
+                    
+                    {error && <p className="text-red-500 italic">{error}</p>}
+                    {message && <p className="text-green-500 italic">{message}</p>}
                 </form>
             )}
         </div>

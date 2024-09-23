@@ -10,13 +10,18 @@ import { FaRegUser } from "react-icons/fa";
 import UserMenus from "./UserMenus";
 import { RiBubbleChartFill, RiHeart3Line } from "react-icons/ri";
 import Navigation from "./Navigation";
-import { MdLogout, MdOutlineShoppingCart } from "react-icons/md";
+import { MdLogout, MdOutlineCategory, MdOutlineShoppingCart } from "react-icons/md";
 import { TfiPackage } from "react-icons/tfi";
 import { useState } from "react";
 import Modal from "../basics/Modal";
 import LoginForm from "../user/LoginForm";
 import { PiPackageBold, PiShoppingCartBold } from "react-icons/pi";
-import { BiSolidPackage } from "react-icons/bi";
+import { BiCategoryAlt, BiSolidPackage } from "react-icons/bi";
+import { AiOutlineHome } from "react-icons/ai";
+import CategoryMenus from "./CategoryMenus";
+import CartIcon from "../icons/CartIcon";
+import FavoriteIcon from "../icons/FavoriteIcon";
+import OrderIcon from "../icons/OrderIcon";
 
 
 export default function Header() {
@@ -25,15 +30,6 @@ export default function Header() {
     const { user, setUser } = useAuth();
     const [showLoginForm, setShowLoginForm] = useState(false);
 
-    const logout = () => {
-        const ok = confirm("Are you sure you want to log out ?");
-        if (ok) {
-            setUser(null);
-            if( currentPage.name === Constant.PAGE_USER_CART || currentPage.name === Constant.PAGE_USER_ORDER ) {
-                setCurrentPage(Constant.PAGE_HOME);
-            }
-        }
-    }
 
     return (
         <>
@@ -43,39 +39,41 @@ export default function Header() {
                     <div className="cursor-pointer">
                         <DiYii className="size-10 text-color-2" onClick={() => setCurrentPage(Constant.PAGE_HOME)} />
                     </div>
-                    <div className="font-extrabold cursor-pointer text-2xl whitespace-nowrap text-color-2" onClick={() => setCurrentPage(Constant.PAGE_HOME)} >E-Commerce</div>
+                    <div className="font-extrabold cursor-pointer text-2xl whitespace-nowrap text-color-2" onClick={() => setCurrentPage(Constant.PAGE_HOME)} >
+                        E-Commerce
+                    </div>
                 </div>
 
-                <div className="flex flex-row space-x-3 justify-center items-center">
-                    <div className="flex-1">
+                <div className="flex flex-row justify-center items-center space-x-1">
+                    <div className="text-color-2 hover:text-gray-600" >
+                        <CategoryMenus />
+                    </div>
+                    <div className="flex-1 pr-2">
                         <ProductSearch
                             handleSearchResponse={(response: JSONObject) => setCurrentPage(Constant.PAGE_SEARCH_PRODUCT, response)} />
                     </div>
 
-                    {user === null && <button className="p-2 bg-gold rounded-full border-2 border-white bg-gray-300 text-gray-400 hover:bg-gray-200" onClick={() => setShowLoginForm(true)} >
+                    {user === null && <button
+                        onClick={() => setShowLoginForm(true)}
+                        className="text-gray-400 hover:text-gray-500"
+                    >
                         <FaRegUser /> 
                     </button>}
 
-                    {user !== null && <>
-                        <RiHeart3Line />
 
-                        <PiShoppingCartBold />
+                    {user !== null && <div className="flex space-x-3">
+                        <FavoriteIcon />
 
-                        <PiPackageBold size={18} />
+                        <CartIcon />
 
-                        <button
-                            // className="p-2 bg-gold rounded-full border-2 border-white bg-color-17 text-color-1"
-                            onClick={() => logout()} >
-                            <FaRegUser />
-                        </button>
-                    </>}
+                        <OrderIcon />
+
+                        <UserMenus />
+                    </div>}
 
                 </div>
 
             </header>
-
-            <Navigation />
-
 
             {showLoginForm && <Modal>
                 <div className="">

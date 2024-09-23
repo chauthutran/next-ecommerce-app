@@ -8,10 +8,10 @@ import { useCurrentPage } from '@/contexts/MainUiContext';
 import * as Constant from "@/lib/constants";
 
 
-export default function UserMenus({ handleItemClick }: { handleItemClick: (pageName: string) => void }) {
+export default function UserMenus() {
 	
 	const { setUser } = useAuth();
-	const { setCurrentPage } = useCurrentPage();
+	const { currentPage, setCurrentPage } = useCurrentPage();
 
 	const [isOpen, setIsOpen] = useState(false);
 	const divRef = useRef<HTMLDivElement>(null);
@@ -36,20 +36,25 @@ export default function UserMenus({ handleItemClick }: { handleItemClick: (pageN
 
 	const logout = () => {
 		const ok = confirm("Are you sure you want to log out ?");
-		if(ok) {
-			setUser(null);
-		}
+        if (ok) {
+            if (currentPage.name === Constant.PAGE_USER_CART
+                || currentPage.name === Constant.PAGE_USER_ORDER
+                || currentPage.name === Constant.PAGE_USER_PROFILE) {
+                setCurrentPage(Constant.PAGE_HOME);
+            }
+            setUser(null);
+        }
 	}
 	const renderUserRelatedMenus = () => {
 		return (
 			<>
-				<li className="px-4 py-2 flex space-x-2 items-center text-color-2 cursor-pointer hover:bg-color-17 hover:text-white hover:shadow-lg" onClick={() => {setCurrentPage(Constant.PAGE_USER_CART); setIsOpen(false);}} >
+				<li className="px-4 py-2 flex space-x-2 items-center text-color-2 cursor-pointer hover:bg-color-17 hover:text-white hover:shadow-lg" onClick={() => {setCurrentPage(Constant.PAGE_USER_PROFILE); setIsOpen(false);}} >
 					<MdOutlineShoppingCart size={22} />
-					<span>Cart</span>
+					<span>Profile</span>
 				</li>
-				<li className="px-4 py-2 flex space-x-2 items-center text-color-2 cursor-pointer hover:bg-color-17  hover:shadow-lg hover:text-white" onClick={() => {setCurrentPage(Constant.PAGE_USER_ORDER); setIsOpen(false);}} >
+				<li className="px-4 py-2 flex space-x-2 items-center text-color-2 cursor-pointer hover:bg-color-17  hover:shadow-lg hover:text-white" onClick={() => {setCurrentPage(Constant.PAGE_USER_CHANGE_PASSWORD); setIsOpen(false);}} >
 					<TfiPackage size={18} />
-					<span>Orders</span>
+					<span>Change Password</span>
 				</li>
 
 				<li className="mx-2 my-3 border-b border-gray-300 "></li>
@@ -68,7 +73,7 @@ export default function UserMenus({ handleItemClick }: { handleItemClick: (pageN
 			<div className="relative text-left">
 				<button
 					onClick={toggleDropdown}
-					className="p-2 bg-gold rounded-full bg-color-17 border-2 border-white focus:outline-none focus:ring-2 focus:ring-color-7 text-color-1"
+					className="text-gray-500 hover:text-gray-600"
 				>
 					<FaRegUser /> 
 				</button>

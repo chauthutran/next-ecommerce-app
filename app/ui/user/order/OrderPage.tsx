@@ -37,7 +37,7 @@ export default function OrderPage() {
 
             <h2 className="text-2xl font-semibold mb-3 flex">
                 <RiBubbleChartFill className="text-firebrick mr-2" />
-                Order List
+                Your Orders
             </h2>
 
             <div className="space-y-6">

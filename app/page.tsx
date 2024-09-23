@@ -15,7 +15,6 @@ export default function Home() {
 
 					<AppWrapper />
 
-					<Footer />
 				</div>
 		 	</AuthProvider> 
 		 </MainUiProvider>

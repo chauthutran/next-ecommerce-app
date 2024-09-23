@@ -15,6 +15,7 @@ import CartPage from "./user/cart/CartPage";
 import Footer from "./layout/Footer";
 import OrderPage from "./user/order/OrderPage";
 import ProfilePage from "./user/ProfilePage";
+import ChangePasswordForm from "./user/ChangePasswordForm";
 
 
 export default function AppWrapper() {
@@ -50,12 +51,14 @@ export default function AppWrapper() {
 				{currentPage.name === Constant.PAGE_USER_CART && <CartPage />}
 				{currentPage.name === Constant.PAGE_USER_ORDER && <OrderPage />}
 				{currentPage.name === Constant.PAGE_USER_PROFILE && <ProfilePage />}
-				
+				{currentPage.name === Constant.PAGE_USER_CHANGE_PASSWORD && <ChangePasswordForm />}
 
-				
-				{/* <Footer />  */}
+				{(currentPage.name !== Constant.PAGE_USER_PROFILE
+					&& currentPage.name !== Constant.PAGE_USER_CHANGE_PASSWORD) && <Footer /> }
 			</main>
 
+			{(currentPage.name === Constant.PAGE_USER_PROFILE
+					|| currentPage.name === Constant.PAGE_USER_CHANGE_PASSWORD) && <Footer /> }
 			
 		</>
 	)
