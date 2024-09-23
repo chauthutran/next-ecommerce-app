@@ -54,7 +54,7 @@ export default function CategoryMenus() {
                     className="px-3 hover:bg-color-17 cursor-pointer flex space-x-1 items-center"
                     onClick={() => setDropdownOpen(!isDropdownOpen)}
                 >
-                    <span>Categories </span>
+                    <span className="uppercase">Categories </span>
                     {!isDropdownOpen && <IoMdArrowDropup />}
                     {isDropdownOpen && <IoMdArrowDropdown />}
                 </button>

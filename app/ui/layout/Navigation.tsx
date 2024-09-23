@@ -30,20 +30,24 @@ export default function Navigation() {
     const prevPage = goBackPage();
     return (
         <nav className="bg-color-2 text-white px-8 py-2 flex">
-            <button className="mx-3 px-3 hover:bg-color-17 cursor-pointer" onClick={() => setCurrentPage(Constant.PAGE_HOME)}>Home</button>
+            <button className="mx-3 px-3 hover:bg-color-17 cursor-pointer uppercase" onClick={() => setCurrentPage(Constant.PAGE_HOME)}>Home</button>
             {/* <button className="mx-3 px-3 hover:bg-color-17 cursor-pointer">Category</button> */}
             <CategoryMenus />
+
             {user !== null && <>
-                <button className="mx-3 px-3 hover:bg-color-17 cursor-pointer" onClick={() => setCurrentPage(Constant.PAGE_USER_CART)} >
+                {/* <button className="mx-3 px-3 hover:bg-color-17 cursor-pointer uppercase" onClick={() => setCurrentPage(Constant.PAGE_USER_CART)} >
                     Cart
-                </button>
-                <button className="mx-3 px-3 hover:bg-color-17 cursor-pointer" onClick={() => setCurrentPage(Constant.PAGE_USER_ORDER) } >
+                </button> */}
+                {/* <button className="mx-3 px-3 hover:bg-color-17 cursor-pointer uppercase" onClick={() => setCurrentPage(Constant.PAGE_USER_ORDER) } >
                     Orders
                 </button>
-                <button className="mx-3 px-3 hover:bg-color-17 cursor-pointer" onClick={() => setCurrentPage(Constant.PAGE_USER_PROFILE) } >
+                <button className="mx-3 px-3 hover:bg-color-17 cursor-pointer uppercase" onClick={() => setCurrentPage(Constant.PAGE_USER_PROFILE) } >
                     Profile
-                </button>
+                </button> */}
             </>}
+
+            
+            <button className="mx-3 px-3 hover:bg-color-17 cursor-pointer uppercase" onClick={() => {} }>About Us</button>
         </nav>
     )
 }

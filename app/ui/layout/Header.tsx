@@ -8,13 +8,15 @@ import { DiYii } from "react-icons/di";
 import { useAuth } from "@/contexts/AuthContext";
 import { FaRegUser } from "react-icons/fa";
 import UserMenus from "./UserMenus";
-import { RiBubbleChartFill } from "react-icons/ri";
+import { RiBubbleChartFill, RiHeart3Line } from "react-icons/ri";
 import Navigation from "./Navigation";
 import { MdLogout, MdOutlineShoppingCart } from "react-icons/md";
 import { TfiPackage } from "react-icons/tfi";
 import { useState } from "react";
 import Modal from "../basics/Modal";
 import LoginForm from "../user/LoginForm";
+import { PiPackageBold, PiShoppingCartBold } from "react-icons/pi";
+import { BiSolidPackage } from "react-icons/bi";
 
 
 export default function Header() {
@@ -54,11 +56,19 @@ export default function Header() {
                         <FaRegUser /> 
                     </button>}
 
-                    {user !== null && <button
-                        className="p-2 bg-gold rounded-full border-2 border-white bg-color-17 text-color-1"
-                        onClick={() => logout()} >
-                        <FaRegUser /> 
-                    </button>}
+                    {user !== null && <>
+                        <RiHeart3Line />
+
+                        <PiShoppingCartBold />
+
+                        <PiPackageBold size={18} />
+
+                        <button
+                            // className="p-2 bg-gold rounded-full border-2 border-white bg-color-17 text-color-1"
+                            onClick={() => logout()} >
+                            <FaRegUser />
+                        </button>
+                    </>}
 
                 </div>
 
