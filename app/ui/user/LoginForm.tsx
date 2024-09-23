@@ -13,22 +13,20 @@ import { IoIosCloseCircle } from "react-icons/io";
 
 export default function LoginForm({ onClose, onSuccess }: { onClose: () => void, onSuccess?: () => void }) {
 
-	const { user, login, loading, error } = useAuth();
+	const { user, login, processStatus, error } = useAuth();
 
 	const [email, setEmail] = useState("test1@example.com");
 	const [password, setPassword] = useState("1234");
 
 
-	useEffect(() => {
-		if (user != null) {
-			if (onSuccess) onSuccess();
-			onClose();
-		}
-	}, [user])
-
 	const handleLoginBtn = async (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
 		await login(email, password);
+
+		if (processStatus != Constant.RESPONSE_LOGIN_SUCCESS) {
+			if (onSuccess) onSuccess();
+			onClose();
+		}
 	};
 
 
@@ -93,7 +91,7 @@ export default function LoginForm({ onClose, onSuccess }: { onClose: () => void,
 				<div className="bg-color-1 p-4 rounded-b-lg flex justify-end space-x-2">
 					<button className="flex w-full bg-color-13 text-white py-2 px-4 rounded hover:bg-blue-400" onClick={(e) => handleLoginBtn(e)} >
 						<span className="flex-1">Log in</span>
-						{loading && <FaSpinner className="ml-auto h-5" size={16} />}
+						{processStatus === Constant.RESPONSE_LOGIN_REQUEST && <FaSpinner className="ml-auto h-5" size={16} />}
 					</button>
 				</div>
 				<div className="flex items-end space-x-1 text-red-500 italic text-sm">

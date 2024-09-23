@@ -4,6 +4,7 @@ import { JSONObject } from '@/lib/definations';
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import * as dbService from "@/lib/dbService";
 import * as Utils from "@/lib/utils";
+import * as Constant from "@/lib/constants";
 
 interface AuthContextProps {
 	user: JSONObject | null;
@@ -19,8 +20,8 @@ interface AuthContextProps {
 	fetchUserCart: () => void;
 	addProductToCart: (data: JSONObject) => void;
 
+	processStatus: string;
 	error: string | null;
-	loading: boolean;
 }
 
 const AuthContext = createContext<AuthContextProps>({
@@ -37,8 +38,8 @@ const AuthContext = createContext<AuthContextProps>({
 	fetchUserCart: async() => {},
 	addProductToCart: async(data: JSONObject) => {},
 
-	error: null,
-	loading: false
+	processStatus: "",
+	error: null
 });
 
 export const useAuth = (): AuthContextProps => {
@@ -52,26 +53,25 @@ export const useAuth = (): AuthContextProps => {
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const [user, setUser] = useState<any>(null);
-	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<string | null>(null);
 	const [userCart, setUserCart] = useState<JSONObject[] | null>(null);
-
+	const [processStatus, setProcessStatus] = useState<string>("");
 
 
 	const login = async (email: string, password: string) => {
-		setLoading(true);
+		setProcessStatus(Constant.RESPONSE_LOGIN_REQUEST);
 		setError(null);
 
 		const response: JSONObject = await dbService.login({email, password});
 
 		if (response.status != "success")  {
+			setProcessStatus(Constant.RESPONSE_LOGIN_FAILURE);
 			setError(response.message);
 		}
 		else {
 			setUser(response.data);
+			setProcessStatus(Constant.RESPONSE_LOGIN_SUCCESS);
 		}
-
-		setLoading(false);
 	};
 
 	const logout = () => {
@@ -79,34 +79,38 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	}
 
 	const register = async(userData: JSONObject) => {
-		setLoading(true);
+		setProcessStatus(Constant.RESPONSE_REGISTER_USER_REQUEST);
 		setError(null);
 		
 		const response: JSONObject = await dbService.register(userData);
 		if (response.status != "success")  {
 			setError(response.message);
+			setProcessStatus(Constant.RESPONSE_REGISTER_USER_FAILURE);
 		}
 		else {
 			setUser(response.data);
+			setProcessStatus(Constant.RESPONSE_REGISTER_USER_SUCCESS);
 		}
 	}
 
 	
 	const updateProfile = async( user: JSONObject) => {
-		setLoading(true);
+		setProcessStatus(Constant.RESPONSE_UPDATE_PROFILE_REQUEST);
 		setError(null);
 
 		const response = await dbService.updateProfile(user);
 		if (response.status != "success")  {
 			setError(response.message);
+			setProcessStatus(Constant.RESPONSE_UPDATE_PROFILE_FAILURE);
 		}
 		else {
 			setUser(response.data);
+			setProcessStatus(Constant.RESPONSE_UPDATE_PROFILE_FAILURE);
 		}
 	}
 
 	const changePassword = async(curPassword: string, newPassword: string) => {
-		setLoading(true);
+		setProcessStatus(Constant.RESPONSE_CHANGE_PASSWORD_REQUEST);
 		setError(null);
 
 		const checkCurrentPasswordResponse = await dbService.login({email: user!.email, password: curPassword});
@@ -114,9 +118,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             const response = await dbService.updatePassword(user!._id, newPassword);
             if( response.status === "error") {
                 setError(response.messsage);
+				setProcessStatus(Constant.RESPONSE_CHANGE_PASSWORD_FAILURE);
             }
             else {
                	setUser( response.data );
+				setProcessStatus(Constant.RESPONSE_CHANGE_PASSWORD_SUCCESS);
             }
         }
         else {
@@ -126,7 +132,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 
 	const fetchUserCart = async() => {
-		setLoading(true);
+		setProcessStatus(Constant.RESPONSE_FETCH_USER_CART_REQUEST);
 		setError(null);
 
 		if( userCart === null ) {
@@ -134,20 +140,23 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 			if (response.status != "success") {
 				setError(response.message);
+				setProcessStatus(Constant.RESPONSE_FETCH_USER_CART_FAILURE);
 			}
 			else {
 				setUserCart(response.data);
+				setProcessStatus(Constant.RESPONSE_FETCH_USER_CART_SUCCESS);
 			}
 		}
 	}
 
 	const addProductToCart = async( data: JSONObject )=> {
-		setLoading(true);
+		setProcessStatus(Constant.RESPONSE_ADD_PRODUCT_TO_CART_REQUEST);
 		setError(null);
 
 		const response = await dbService.addProductToCart(user!._id, data._id);
 		if (response.status != "success")  {
 			setError(response.message);
+			setProcessStatus(Constant.RESPONSE_ADD_PRODUCT_TO_CART_FAILURE);
 		}
 		else {
 			const newProductInCart = response.data;
@@ -155,12 +164,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 			Utils.findAndReplaceItemFromList(newUserCart, newProductInCart._id, "_id", newProductInCart );
 
 			setUserCart(newUserCart);
+			setProcessStatus(Constant.RESPONSE_ADD_PRODUCT_TO_CART_FAILURE);
 		}
 	}
 
 
 	return (
-		<AuthContext.Provider value={{ user, setUser, loading, error: error, login, logout, register, userCart, fetchUserCart, addProductToCart, updateProfile, changePassword }}>
+		<AuthContext.Provider value={{  processStatus, user, setUser, error: error, login, logout, register, userCart, fetchUserCart, addProductToCart, updateProfile, changePassword }}>
 			{children}
 		</AuthContext.Provider>
 	);

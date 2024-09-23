@@ -4,7 +4,6 @@ import * as Constant from "@/lib/constants";
 import Modal from "../basics/Modal";
 import RegisterForm from "../user/RegisterForm";
 import { useState } from "react";
-import LoginForm from "../user/LoginForm";
 import { useAuth } from "@/contexts/AuthContext";
 
 export default function Footer() {

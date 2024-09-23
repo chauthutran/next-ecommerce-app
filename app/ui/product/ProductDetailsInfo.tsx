@@ -2,14 +2,13 @@
 
 import { JSONObject } from "@/lib/definations";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import * as AppStore from "@/lib/appStore";
 import DOMPurify from "dompurify";
 import ProductRating from "./ProductRating";
 import { useAuth } from "@/contexts/AuthContext";
 import Modal from "../basics/Modal";
 import LoginForm from "../user/LoginForm";
-import * as dbService from "@/lib/dbService";
 import Alert from "../basics/Alert";
 import * as Constant from "@/lib/constants";
 

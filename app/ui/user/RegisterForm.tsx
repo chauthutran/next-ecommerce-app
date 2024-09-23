@@ -15,7 +15,7 @@ import { IoIosCloseCircle } from 'react-icons/io';
 export default function RegisterForm({ onClose }: { onClose: () => void }) {
 
 	const { setCurrentPage } = useCurrentPage();
-	const { loading, error, user, register } = useAuth();
+	const { error, user, register, processStatus } = useAuth();
 
 	// Set initial form state based on schema
 	const [formData, setFormData] = useState<JSONObject>({
@@ -31,13 +31,6 @@ export default function RegisterForm({ onClose }: { onClose: () => void }) {
 		},
 		orders: [], // Assuming orders are selected/added through another process
 	});
-
-
-	useEffect(() => {
-		if (user != null) {
-			alert("The user is registered successfully and logged!");
-		}
-	}, [user])
 
 
 	// Handle form input change
@@ -60,9 +53,12 @@ export default function RegisterForm({ onClose }: { onClose: () => void }) {
 		}
 	};
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async(e: React.FormEvent) => {
 		e.preventDefault();
-		register(formData);
+		await register(formData);
+		if (processStatus != Constant.RESPONSE_REGISTER_USER_SUCCESS) {
+			alert("The user is registered successfully and logged!");
+		}
 	};
 
 	return (
