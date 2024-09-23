@@ -2,7 +2,7 @@
 
 import { JSONObject } from "@/lib/definations";
 import * as dbService from "@/lib/dbService";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FiList } from "react-icons/fi";
 import { useCurrentPage } from "@/contexts/MainUiContext";
 import * as Constant from "@/lib/constants";
@@ -12,10 +12,11 @@ import { BiCategoryAlt } from "react-icons/bi";
 
 export default function CategoryMenus() {
 
+	const divRef = useRef<HTMLDivElement>(null);
+
     const { currentPage, setCurrentPage } = useCurrentPage();
     const [categories, setCategories] = useState<JSONObject | null>(null);
     const [errMessage, setErrMessage] = useState("");
-    const [selectedId, setSelectedId] = useState("");
     const [isDropdownOpen, setDropdownOpen] = useState(false);
 
 
@@ -30,8 +31,19 @@ export default function CategoryMenus() {
         }
     }
 
+	const handleClickOutside = (event: MouseEvent) => {
+		if (divRef.current && !divRef.current.contains(event.target as Node)) {
+			setDropdownOpen(false);
+		}
+	};
+
     useEffect(() => {
         fetchlist();
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
     }, []);
 
     useEffect(() => {
@@ -39,7 +51,6 @@ export default function CategoryMenus() {
     }, [currentPage])
 
     const handleCategorySelected = (category: JSONObject) => {
-        setSelectedId(category._id);
         setCurrentPage(Constant.PAGE_PRODUCTS_BY_CATEGORY, category);
         setDropdownOpen(false);
     }
@@ -61,16 +72,16 @@ export default function CategoryMenus() {
                 </button>
 
                 {isDropdownOpen && (
-                    <div className="absolute left-0 text-black py-2 h-72 w-52">
+                    <div ref={divRef} className="absolute left-0 text-black py-2 h-72 w-52">
                         <div className="overflow-y-auto h-72 bg-white shadow-2xl shadow-color-2 border-2 rounded-b-md scrollbar-custom ">
                             {categories.map((category: JSONObject, idx: number) => (
                                 <div
                                     key={`category_${category._id}`}
-                                    className={`flex items-center space-x-2 px-3 py-2 cursor-pointer text-color-2 hover:bg-color-1 hover:text-black transition-all duration-300 ease-in-out ${selectedId === category._id && "bg-color-2 text-white"}`}
+                                    className={`flex items-center space-x-2 px-3 py-2 cursor-pointer text-color-2 hover:bg-color-17 hover:text-white`}
                                     onClick={() => handleCategorySelected(category)}
                                 >
                                     {/* Icon */}
-                                    <div className={`flex items-center cursor-pointer text-color-2 hover:bg-gray-100 hover:text-black transition-all duration-300 ease-in-out ${selectedId === category._id && "bg-color-2 text-white"}`}
+                                    <div className={`flex items-center cursor-pointer text-color-2 hover:bg-color-17 hover:text-white`}
                                     >
                                         {category.icon}
                                     </div>
