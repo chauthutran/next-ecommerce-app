@@ -62,7 +62,7 @@ export default function Header() {
 
 
                     {user !== null && <div className="flex space-x-3">
-                        <FavoriteIcon />
+                        {/* <FavoriteIcon /> */}
 
                         <CartIcon />
 
