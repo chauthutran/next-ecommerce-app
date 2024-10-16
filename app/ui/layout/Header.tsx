@@ -45,7 +45,7 @@ export default function Header() {
                 </div>
 
                 <div className="flex flex-row justify-center items-center space-x-1">
-                    <div className="text-color-2 hover:text-gray-600" >
+                    <div className="text-color-2 hover:text-gray-600 block sm:hidden md:hidden" >
                         <CategoryMenus />
                     </div>
                     <div className="flex-1 pr-2">

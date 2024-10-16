@@ -33,14 +33,14 @@ export default function ProductsByCategoryPage() {
     if (errMessage !== "") return (<div>{errMessage}</div>);
 
     return (
-        <div className="">
+        <div className="flex flex-row mx-1 my-1 space-x-1">
             {/* Make CategorySlide fixed */}
-            {/* <div className="fixed w-[250px]">
+            <div className="w-[600px] hidden lg:block md:block">
                 <CategorySlide />
-            </div> */}
+            </div>
 
             {/* Adjust the margin-left for the main content so it doesn't overlap */}
-            <div className=" bg-white rounded-lg p-3 m-3">
+            <div className="bg-white rounded-lg p-1">
                 <div className="font-semibold text-2xl mt-5 mb-10 border-b border-slate-400 pb-3 flex">
                     <RiBubbleChartFill className="text-firebrick mr-2" />
                     {currentPage.data!.name}
