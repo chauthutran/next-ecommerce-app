@@ -50,7 +50,7 @@ export default function HomePage() {
     return (
         <div className="flex flex-row mx-1 my-1 space-x-1"> 
             {/* Make CategorySlide fixed */}
-            <div className="w-[600px] hidden lg:block md:block">
+            <div className="w-fit hidden lg:block md:block">
                 <CategorySlide />
             </div>
 

@@ -45,7 +45,7 @@ export default function CategorySlide() {
     else if (categories == null) return (<div>Loading ...</div>);
 
     return (
-        <div className="flex w-full lg:w-fit">
+        <div className="flex w-full">
             <div className="bg-white h-full overflow-y-auto scrollbar-custom">
                 {categories.map((category: JSONObject, idx: number) => (
                     <div
@@ -56,7 +56,7 @@ export default function CategorySlide() {
                         <div>
                             {category.icon}
                         </div>
-                        <span className="">{category.name}</span>
+                        <span className="whitespace-nowrap">{category.name}</span>
                     </div>
                 ))}
             </div>
