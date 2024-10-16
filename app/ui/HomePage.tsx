@@ -55,8 +55,8 @@ export default function HomePage() {
             </div> */}
 
             {/* Adjust the margin-left for the main content so it doesn't overlap */}
-            <div className="bg-white rounded-lg p-3 m-3">
-                <div className="font-semibold text-2xl mt-5 mb-10 border-b border-slate-400 pb-3 flex">
+            <div className="bg-white rounded-lg mx-2 my-1 p-1">
+                <div className="font-semibold text-2xl mt-2 mb-10 border-b border-slate-400 pb-3 flex">
                     <RiBubbleChartFill className="text-firebrick mr-2" />
                     Top rating products
                 </div>

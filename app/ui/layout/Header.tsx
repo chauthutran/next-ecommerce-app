@@ -33,7 +33,7 @@ export default function Header() {
 
     return (
         <>
-            <header className="bg-color-1 text-black border-b border-color-6 p-4 grid grid-cols-1 md:grid-cols-2 px-4 py-3  gap-4">
+            <header className="bg-color-1 text-black border-b border-color-6 p-4 grid grid-cols-1 md:grid-cols-2 px-4 py-3 gap-4">
 
                 <div className="text-2xl flex space-x-3 items-center">
                     <div className="cursor-pointer">

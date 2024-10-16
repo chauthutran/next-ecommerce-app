@@ -17,20 +17,20 @@ export default function ProductItemIntro({ data }: { data: JSONObject }) {
     }
 
     return (
-        <div key={data._id} className="bg-white p-4 rounded-lg shadow-md cursor-pointer"
+        <div key={data._id} className="bg-white rounded-lg shadow-md cursor-pointer"
                 onClick={() => showDetailsPage()} >
             <Image
                 src={data.images[0]}
                 alt={data.name}
                 width={300}
-                height={300}
-                className="object-cover w-full h-48 mb-4 rounded"
+                height={150}
+                className="object-cover w-full h-36 mb-4 rounded"
             />
 
-            <h2 className="text-gray-800">{data.description}</h2>
-            <p className="text-lg font-semibold text-red-600 mt-2">${data.price}</p>
+            <h2 className="text-gray-800 p-1">{data.description}</h2>
+            <p className="text-lg font-semibold text-red-600 mt-2 p-1">${data.price}</p>
             
-            <ProductRating rating={data.rating} numReviews={data.numReviews} />
+            <div className="p-1"><ProductRating rating={data.rating} numReviews={data.numReviews} /></div>
         </div>
     )
 }
